@@ -1,6 +1,10 @@
 <div id="navbar-container">
   <div id="navbar-container-mobile">
-    <button mat-button [matMenuTriggerFor]="menu" id="navbar-mobile-button-menu">
+    <button
+      mat-button
+      [matMenuTriggerFor]="menu"
+      id="navbar-mobile-button-menu"
+    >
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -13,9 +17,13 @@
       <button class="navbar-mobile-button" mat-menu-item routerLink="/register">
         Register
       </button>
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/helper">
+        Helper
+      </button>
     </mat-menu>
   </div>
   <button class="navbar-web-button" routerLink="/">Home</button>
   <button class="navbar-web-button" routerLink="/login">Login</button>
   <button class="navbar-web-button" routerLink="/register">Register</button>
+  <button class="navbar-web-button" routerLink="/helper">Helper</button>
 </div>

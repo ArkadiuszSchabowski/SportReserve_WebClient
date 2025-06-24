@@ -5,6 +5,7 @@ import { LoginComponent } from 'src/app/components/public/login/login.component'
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
+import { HelperComponent } from 'src/app/components/public/helper/helper.component';
 
 
 
@@ -12,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HelperComponent
   ],
   imports: [
     CommonModule, FormsModule, MaterialModule
@@ -20,7 +22,8 @@ import { FormsModule } from '@angular/forms';
   exports:[
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HelperComponent
   ]
 })
 export class PublicModule { }
