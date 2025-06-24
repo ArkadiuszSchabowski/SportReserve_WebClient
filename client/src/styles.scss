@@ -1,0 +1,117 @@
+@use "@angular/material" as mat;
+@include mat.core();
+
+$primary: mat.define-palette(mat.$light-green-palette, 300);
+$accent: mat.define-palette(mat.$deep-purple-palette, 700);
+
+$warn: mat.define-palette(mat.$red-palette);
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($theme);
+
+mat-card {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: auto !important;
+  border: 2px solid white !important;
+  border-radius: 25px !important;
+  background-color: mat.get-color-from-palette($accent) !important;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-label {
+  color: mat.get-color-from-palette($accent);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+button{
+  color: white;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+button.password-button{
+  background-color: mat.get-color-from-palette($accent) !important;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+
+.mat-mdc-menu-content {
+  background-color: mat.get-color-from-palette($accent, 700);
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.component-container {
+  min-width: 400px;
+  min-height: calc(100% - 110px);
+  padding: 90px 20px 20px 20px;
+}
+
+.title-label {
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: white;
+}
+.margin-top-10{
+  margin-top: 10px;
+}
+
+.margin-top-20 {
+  margin-top: 20px;
+}
+
+.margin-top-30{
+  margin-top: 30px;
+}
+
+.error-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+  font-size: 16px;
+  color: orange;
+}
+
+.submit-white-button {
+  font-size: 18px;
+  font-weight: bold;
+  width: 200px;
+  min-height: 40px;
+  color: mat.get-color-from-palette($accent) !important;
+  background-color: white !important;
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .component-container {
+    min-height: calc(100% - 130px);
+    padding-top: 110px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .component-container {
+    min-height: calc(100% - 130px);
+    padding-top: 110px;
+  }
+}
