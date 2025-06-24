@@ -1,0 +1,25 @@
+name: Client - Pipeline
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.13.1'
+      - run: npm install
+        working-directory: ./client
+      - run: npx ng build
+        working-directory: ./client
+      - run: npx ng test --watch=false --browsers=ChromeHeadless
+        working-directory: ./client
+        env:
+          CI: true
