@@ -27,6 +27,11 @@ mat-card {
   background-color: mat.get-color-from-palette($accent) !important;
 }
 
+mat-stepper{
+  background-color: mat.get-color-from-palette($accent) !important;
+  border-radius: 25px;
+}
+
 mat-form-field {
   width: 100%;
 }
@@ -45,6 +50,10 @@ button{
 input::-ms-reveal,
 input::-ms-clear {
   display: none;
+}
+
+.mat-step-text-label{
+  color: white;
 }
 
 button.password-button{
@@ -82,6 +91,10 @@ button.password-button{
 
 .margin-top-30{
   margin-top: 30px;
+}
+
+.margin-right-5{
+  margin-right: 5px;
 }
 
 .error-form {
