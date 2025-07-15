@@ -23,9 +23,6 @@ export class LoginComponent {
   login(loginForm: NgForm) {
     this.errors = new LoginError();
 
-    this.errors.email = this.validatorService.validateEmail(this.model.email);
-    this.errors.password = this.validatorService.validatePassword(this.model.password);
-
     if (this.errors.email || this.errors.password) {
       return;
     }

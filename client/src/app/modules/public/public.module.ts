@@ -4,10 +4,10 @@ import { HomeComponent } from 'src/app/components/public/home/home.component';
 import { LoginComponent } from 'src/app/components/public/login/login.component';
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { MaterialModule } from '../material/material.module';
-import { FormsModule } from '@angular/forms';
 import { HelperComponent } from 'src/app/components/public/helper/helper.component';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { HelperComponent } from 'src/app/components/public/helper/helper.compone
     HelperComponent
   ],
   imports: [
-    CommonModule, FormsModule, MaterialModule
+    CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
   ],
   exports:[
     HomeComponent,
