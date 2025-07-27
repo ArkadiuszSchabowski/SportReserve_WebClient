@@ -1,0 +1,22 @@
+#home-container {
+  display: flex;
+  flex-direction: row;
+  width: calc(100% - 40px);
+  height: calc(100% - 70px);
+  padding-top: 70px;
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  #home-container {
+    height: calc(100% - 90px);
+    padding-top: 90px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #home-container {
+    height: calc(100% - 90px);
+    padding-top: 90px;
+  }
+}

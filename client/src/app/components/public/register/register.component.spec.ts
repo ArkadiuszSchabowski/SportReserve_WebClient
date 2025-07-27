@@ -7,7 +7,7 @@ import { MaterialModule } from 'src/app/modules/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -23,7 +23,7 @@ describe('RegisterComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [BrowserAnimationsModule, FormsModule, HttpClientModule, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MaterialModule, ToastrModule],
+      imports: [BrowserAnimationsModule, FormsModule, HttpClientTestingModule, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MaterialModule, ToastrModule],
       providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
     fixture = TestBed.createComponent(RegisterComponent);

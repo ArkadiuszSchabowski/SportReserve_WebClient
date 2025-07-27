@@ -7,42 +7,37 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 export class ValidatorService {
   constructor() {}
 
-  public validatePassword(password: string): string | null {
-    if (password.length < 5 || password.length > 25) {
-      return 'Password must be between 5 and 25 characters.';
-    }
-    return null;
-  }
-
-  public matchPasswords(
-    passwordKey: string,
-    confirmPasswordKey: string
-  ): ValidatorFn {
+  matchPasswords(passwordKey: string, confirmPasswordKey: string): ValidatorFn {
     return (formGroup: AbstractControl): ValidationErrors | null => {
-      const passwordControl = formGroup.get(passwordKey);
-      const confirmPasswordControl = formGroup.get(confirmPasswordKey);
+      const password = formGroup.get(passwordKey)?.value;
+      const repeatPasswordControl = formGroup.get(confirmPasswordKey);
+      const repeatPassword = repeatPasswordControl?.value;
 
-      if (!passwordControl || !confirmPasswordControl) {
+      if (!repeatPassword) {
+        if (repeatPasswordControl?.hasError('passwordMismatch')) {
+          repeatPasswordControl.setErrors(null);
+        }
         return null;
       }
 
-      const password = passwordControl.value;
-      const confirmPassword = confirmPasswordControl.value;
-
-      if (
-        confirmPasswordControl.errors &&
-        !confirmPasswordControl.errors['passwordMismatch']
-      ) {
-        return null;
-      }
-
-      if (password !== confirmPassword) {
-        confirmPasswordControl.setErrors({ passwordMismatch: true });
+      if (password !== repeatPassword) {
+        repeatPasswordControl?.setErrors({
+          ...repeatPasswordControl.errors,
+          passwordMismatch: 'Passwords do not match.',
+        });
+        return { passwordMismatch: 'Passwords do not match.' };
       } else {
-        confirmPasswordControl.setErrors(null);
+        if (repeatPasswordControl?.hasError('passwordMismatch')) {
+          const errors = { ...repeatPasswordControl.errors };
+          delete errors['passwordMismatch'];
+          if (Object.keys(errors).length === 0) {
+            repeatPasswordControl.setErrors(null);
+          } else {
+            repeatPasswordControl.setErrors(errors);
+          }
+        }
+        return null;
       }
-
-      return null;
     };
   }
 }

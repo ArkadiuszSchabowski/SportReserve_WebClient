@@ -8,6 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     CommonModule
   ],
   exports:[
+    MatButtonModule,
     MatCardModule,
     MatDatepickerModule,
     MatIconModule,

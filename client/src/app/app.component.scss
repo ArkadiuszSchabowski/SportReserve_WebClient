@@ -5,7 +5,10 @@ app-navbar {
   height: 70px;
   min-height: 70px;
   z-index: 100;
+  border: 2px solid white;
 }
+
+
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   app-navbar {
