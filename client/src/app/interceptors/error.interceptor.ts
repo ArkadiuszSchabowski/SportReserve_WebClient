@@ -23,8 +23,32 @@ export class ErrorInterceptor implements HttpInterceptor {
           switch (error.status) {
             case 0:
               this.toastr.error(
-                'Nie można połączyć się z serwerem. Sprawdź połączenie internetowe lub spróbuj ponownie później.'
+                'Cannot connect to the server. Please check your internet connection or try again later.'
               );
+              break;
+            case 400:
+              {
+                if (error.error.errors) {
+                  const modelStateErrors = [];
+                  for (const key in error.error.errors) {
+                    if (error.error.errors[key]) {
+                      modelStateErrors.push(error.error.errors[key]);
+                    }
+                  }
+                  console.log(modelStateErrors);
+                  throw modelStateErrors.flat();
+                } else {
+                  throw error;
+                }
+              }
+              break;
+            case 401:
+              this.toastr.error('You are not authorized to perform this action.');
+              break;
+            case 409:
+              throw error;
+            default:
+              this.toastr.error('Server error.');
               break;
           }
         }
