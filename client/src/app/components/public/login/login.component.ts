@@ -47,8 +47,10 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       },
       error: (error) => {
-        this.toastr.error(error.error);
-        this.validationServerErrors = error;
+        if(error.status !== 0){
+          this.toastr.error(error.error);
+          this.validationServerErrors = error;
+        }
       },
     });
   }
