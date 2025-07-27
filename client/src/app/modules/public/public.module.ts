@@ -4,8 +4,7 @@ import { HomeComponent } from 'src/app/components/public/home/home.component';
 import { LoginComponent } from 'src/app/components/public/login/login.component';
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { MaterialModule } from '../material/material.module';
-import { HelperComponent } from 'src/app/components/public/helper/helper.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
@@ -14,16 +13,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    HelperComponent
   ],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
+    CommonModule, ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
   ],
   exports:[
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    HelperComponent
   ]
 })
 export class PublicModule { }
