@@ -51,6 +51,29 @@ mat-form-field {
 mat-label {
   color: mat.get-color-from-palette($primary);
 }
+.component-container {
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 70px);
+  min-height: calc(100vh - 70px);
+  width: calc(100% - 40px);
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 70px;
+}
+
+.left-container {
+  display: none;
+}
+.right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: mat.get-color-from-palette($primary);
+}
+
 .error-container {
   display: flex;
   justify-content: center;
@@ -133,8 +156,27 @@ button.password-button {
   background-color: white !important;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-
+  .component-container {
+    height: calc(100% - 90px);
+    min-height: calc(100vh - 90px);
+    margin-top: 90px;
+  }
 }
 @media screen and (min-width: 1200px) {
-
+  .component-container {
+    height: calc(100% - 90px);
+    min-height: calc(100vh - 90px);
+    margin-top: 90px;
+  }
+    .left-container {
+    display: flex;
+    height: 100%;
+    width: 55%;
+    background-color: red;
+  }
+  .right-container {
+    display: flex;
+    height: 100%;
+    width: 45%;
+  }
 }

@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://localhost:5000/api/apigateway/'
+    apiUrl: 'https://localhost:5001/api/'
   };
-
-  // users - apiUrl: 'https://localhost:5001/api/'
+  
+  // apiUrl: 'https://localhost:5000/api/apigateway/'
