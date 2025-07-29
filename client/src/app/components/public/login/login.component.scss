@@ -1,34 +1,13 @@
 @use "@angular/material" as mat;
 @use "src/styles" as theme;
 
-#login-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-width: 520px;
-  height: calc(100% - 70px);
-  padding-top: 70px;
-}
 #login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  width: 400px;
   height: 100%;
   padding-bottom: 70px;
-}
-#left-container {
-  display: none;
-}
-#right-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  background-color: red;
 }
 form {
   display: flex;
@@ -37,6 +16,8 @@ form {
 }
 mat-card {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   border: none;
 }
@@ -45,7 +26,6 @@ mat-card-content {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 420px;
 }
 mat-form-field {
   display: flex;
@@ -56,15 +36,4 @@ mat-form-field {
 }
 
 @media screen and (min-width: 1200px) {
-  #left-container {
-    display: flex;
-    height: 100%;
-    width: 55%;
-    background-color: red;
-  }
-  #right-container {
-    display: flex;
-    height: 100%;
-    width: 45%;
-  }
 }

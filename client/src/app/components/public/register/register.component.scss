@@ -1,16 +1,6 @@
 @use "@angular/material" as mat;
 @use "src/styles" as theme;
 
-#register-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-width: 520px;
-  height: calc(100% - 70px);
-  padding-top: 70px;
-  background-color: mat.get-color-from-palette(theme.$primary);
-}
-
 #register-form,
 #personal-information-form {
   display: flex;
@@ -23,31 +13,14 @@
 #register-title-label {
   padding-top: 20px;
 }
-#left-container {
-  display: none;
-}
-#right-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  background-color: mat.get-color-from-palette(theme.$primary);
-}
-form {
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
+
 mat-stepper {
   display: flex;
   flex-direction: column;
-  padding-top: 20px;
 }
 
 mat-card {
   display: flex;
-  width: 100%;
   border: none;
 }
 mat-card-content {
@@ -55,7 +28,7 @@ mat-card-content {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 420px;
+  width: 300px;
 }
 mat-form-field {
   display: flex;
@@ -63,18 +36,13 @@ mat-form-field {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
+  mat-card-content {
+    width: 350px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-  #left-container {
-    display: flex;
-    height: 100%;
-    width: 55%;
-    background-color: red;
-  }
-  #right-container {
-    display: flex;
-    height: 100%;
-    width: 45%;
+  mat-card-content {
+    width: 350px;
   }
 }
