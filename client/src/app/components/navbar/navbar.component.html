@@ -11,15 +11,43 @@
       <button class="navbar-mobile-button" mat-menu-item routerLink="/">
         Home
       </button>
-      <button class="navbar-mobile-button" mat-menu-item routerLink="/login">
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/login"
+        *ngIf="!(authService.currentUserSource | async)"
+      >
         Login
       </button>
       <button class="navbar-mobile-button" mat-menu-item routerLink="/register">
         Register
       </button>
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/"
+        (click)="logout()"
+        *ngIf="authService.currentUserSource | async"
+      >
+        Logout
+      </button>
     </mat-menu>
   </div>
   <button class="navbar-web-button" routerLink="/">Home</button>
-  <button class="navbar-web-button" routerLink="/login">Login</button>
+  <button
+    class="navbar-web-button"
+    routerLink="/login"
+    *ngIf="!(authService.currentUserSource | async)"
+  >
+    Login
+  </button>
   <button class="navbar-web-button" routerLink="/register">Register</button>
+  <button
+    class="navbar-web-button"
+    routerLink="/"
+    (click)="logout()"
+    *ngIf="authService.currentUserSource | async"
+  >
+    Logout
+  </button>
 </div>

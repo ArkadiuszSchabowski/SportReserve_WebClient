@@ -5,6 +5,9 @@ import { GetUserDto } from '../models/user/get-user-dto';
 import { RegisterDto } from '../models/register-dto';
 import { LoginDto } from '../models/login-dto';
 import { RegisterStepOneDto } from '../models/user/register-step-one-dto';
+import { map } from 'rxjs';
+import { TokenDto } from '../models/token-dto';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,28 +15,35 @@ import { RegisterStepOneDto } from '../models/user/register-step-one-dto';
 export class UserService {
   apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUsers() {
-    return this.http.get<GetUserDto[]>(this.apiUrl + "users");
+    return this.http.get<GetUserDto[]>(this.apiUrl + 'users');
   }
 
   getUser(id: number) {
     return this.http.get<GetUserDto>(this.apiUrl + `user/${id}`);
   }
   getUserByEmail(email: string) {
-    let params = new HttpParams().set('email', email);
+    const params = new HttpParams().set('email', email);
 
     return this.http.get<GetUserDto>(this.apiUrl + 'user/by-email', { params });
   }
-  login(dto: LoginDto){
-    return this.http.post(this.apiUrl + 'user/login', dto);
+  login(loginDto: LoginDto) {
+    return this.http.post<TokenDto>(this.apiUrl + 'user/login', loginDto).pipe(
+      map((response) => {
+        if (response.token) {
+          localStorage.setItem('token', response.token);
+          this.authService.currentUserSource.next(response.token);
+        }
+      })
+    );
   }
 
   register(dto: RegisterDto) {
     return this.http.post<string>(this.apiUrl + 'user/register', dto);
   }
-  validateRegisterStepOne(dto: RegisterStepOneDto){
+  validateRegisterStepOne(dto: RegisterStepOneDto) {
     return this.http.post(this.apiUrl + 'user/register/step1/validate', dto);
   }
 
