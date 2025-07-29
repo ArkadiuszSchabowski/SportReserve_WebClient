@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
+import { AuthService } from './auth.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
-describe('UserService', () => {
-  let service: UserService;
+describe('AuthService', () => {
+  let service: AuthService;
   let toastrService: ToastrService;
 
   class MockToastrService {
@@ -16,11 +15,11 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [ToastrModule],
       providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
     toastrService = TestBed.inject(ToastrService);
-    service = TestBed.inject(UserService);
+    service = TestBed.inject(AuthService);
   });
 
   it('should be created', () => {
