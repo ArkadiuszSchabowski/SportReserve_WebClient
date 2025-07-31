@@ -1,0 +1,16 @@
+<div id="main-container" class="component-container">
+  <div id="profile-content-navigation">
+    <button class="navigation-button" routerLink="/profile/information">Information</button>
+    <button class="navigation-button" routerLink="/profile/reservations">Reservations</button>
+        <button
+      class="navigation-button"
+      routerLink="/"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+  <div id="profile-content-body">
+    <router-outlet></router-outlet>
+  </div>
+</div>
