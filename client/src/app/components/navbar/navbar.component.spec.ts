@@ -9,17 +9,13 @@ describe('NavbarComponent', () => {
   let fixture: ComponentFixture<NavbarComponent>;
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponent],
       imports: [MaterialModule],
-      providers: [{ provide: ToastrService, useClass: MockToastrService }]
+      providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
     fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;

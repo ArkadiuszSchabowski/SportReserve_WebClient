@@ -1,22 +1,18 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserService', () => {
   let service: UserService;
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientModule],
+      imports: [HttpClientTestingModule],
       providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
     toastrService = TestBed.inject(ToastrService);
