@@ -44,7 +44,7 @@ export class LoginComponent {
     this.userService.login(credentials).subscribe({
       next: () => {
         this.toastr.success('Logged in successfully.');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/profile/information');
       },
       error: (error) => {
         if(error.status !== 0){
