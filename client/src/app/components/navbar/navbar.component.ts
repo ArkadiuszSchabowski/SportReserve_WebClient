@@ -8,8 +8,4 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class NavbarComponent {
   constructor(public authService: AuthService) {}
-
-  logout() {
-    this.authService.logout();
-  }
 }

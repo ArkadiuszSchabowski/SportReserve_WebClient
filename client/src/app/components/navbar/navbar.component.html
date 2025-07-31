@@ -19,35 +19,59 @@
       >
         Login
       </button>
-      <button class="navbar-mobile-button" mat-menu-item routerLink="/register">
+      <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/register"
+        *ngIf="!(authService.currentUserSource | async)"
+      >
         Register
+      </button>
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/races">
+        Races
       </button>
       <button
         class="navbar-mobile-button"
         mat-menu-item
-        routerLink="/"
-        (click)="logout()"
+        routerLink="/profile/information"
         *ngIf="authService.currentUserSource | async"
       >
-        Logout
+        Profile
+      </button>
+      <button class="navbar-mobile-button" mat-menu-item routerLink="/contact">
+        Contact
       </button>
     </mat-menu>
   </div>
-  <button class="navbar-web-button" routerLink="/">Home</button>
-  <button
-    class="navbar-web-button"
-    routerLink="/login"
-    *ngIf="!(authService.currentUserSource | async)"
-  >
-    Login
-  </button>
-  <button class="navbar-web-button" routerLink="/register">Register</button>
-  <button
-    class="navbar-web-button"
-    routerLink="/"
-    (click)="logout()"
-    *ngIf="authService.currentUserSource | async"
-  >
-    Logout
-  </button>
+  <div id="navbar-container-web">
+    <button
+      class="navbar-disabled-web-button"
+      routerLink="/"
+      *ngIf="authService.currentUserSource | async"
+    ></button>
+    <button class="navbar-web-button" routerLink="/">Home</button>
+    <button
+      class="navbar-web-button"
+      routerLink="/login"
+      *ngIf="!(authService.currentUserSource | async)"
+    >
+      Login
+    </button>
+    <button
+      class="navbar-web-button"
+      routerLink="/register"
+      *ngIf="!(authService.currentUserSource | async)"
+    >
+      Register
+    </button>
+    <button class="navbar-web-button" routerLink="/races">Races</button>
+    <button
+      class="navbar-web-button"
+      routerLink="/profile/information"
+      *ngIf="authService.currentUserSource | async"
+    >
+      Profile
+    </button>
+    <button class="navbar-web-button" routerLink="/contact">Contact</button>
+  </div>
 </div>
