@@ -7,11 +7,7 @@ describe('AuthService', () => {
   let service: AuthService;
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({

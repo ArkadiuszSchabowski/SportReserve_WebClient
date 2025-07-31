@@ -12,11 +12,7 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({

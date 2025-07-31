@@ -56,9 +56,7 @@ mat-label {
   flex-direction: row;
   height: calc(100% - 70px);
   min-height: calc(100vh - 70px);
-  width: calc(100% - 40px);
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 100%;
   margin-top: 70px;
 }
 
@@ -124,11 +122,18 @@ button.password-button {
   display: none !important;
 }
 
+.title-label,
+.subtitle-label {
+  color: white;
+}
 .title-label {
-  margin-bottom: 20px;
   font-size: 22px;
   font-weight: 500;
-  color: white;
+  margin-bottom: 20px;
+}
+.subtitle-label {
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .margin-top-10 {
@@ -141,6 +146,9 @@ button.password-button {
 
 .margin-top-30 {
   margin-top: 30px;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px;
 }
 
 .margin-right-5 {
@@ -168,7 +176,7 @@ button.password-button {
     min-height: calc(100vh - 90px);
     margin-top: 90px;
   }
-    .left-container {
+  .left-container {
     display: flex;
     height: 100%;
     width: 55%;

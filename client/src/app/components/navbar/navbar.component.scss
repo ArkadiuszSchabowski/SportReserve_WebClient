@@ -9,6 +9,11 @@
   padding-left: 20px;
   background-color: mat.get-color-from-palette(theme.$primary, 700);
 }
+#navbar-container-web{
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
 
 #navbar-mobile-button-menu {
   color: white !important;
@@ -20,15 +25,17 @@
   background-color: mat.get-color-from-palette(theme.$primary, 700);
 }
 
-.navbar-web-button {
+.navbar-web-button, .navbar-disabled-web-button {
   display: none;
+  flex: 1;
   justify-content: center;
   align-items: center;
-  width: 150px;
   height: 100%;
   font-size: 16px;
   font-weight: bold;
-  border: 0;
+  border: none;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   background-color: mat.get-color-from-palette(theme.$primary);
 }
 
@@ -42,26 +49,24 @@
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #navbar-container {
-    justify-content: center;
-    padding-left: 0px;
+    padding-left: 0;
   }
   #navbar-mobile-button-menu {
     display: none;
   }
-  .navbar-web-button {
+  .navbar-web-button, .navbar-disabled-web-button {
     display: flex;
   }
 }
 
 @media screen and (min-width: 1200px) {
   #navbar-container {
-    justify-content: center;
-    padding-left: 0px;
+    padding-left: 0;
   }
   #navbar-mobile-button-menu {
     display: none;
   }
-  .navbar-web-button {
+  .navbar-web-button, .navbar-disabled-web-button {
     display: flex;
   }
 }

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProfileInformationComponent } from './profile-information.component';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ProfileInformationComponent', () => {
   let component: ProfileInformationComponent;
@@ -8,7 +10,8 @@ describe('ProfileInformationComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileInformationComponent]
+      declarations: [ProfileInformationComponent],
+      imports: [BrowserAnimationsModule, MaterialModule],
     });
     fixture = TestBed.createComponent(ProfileInformationComponent);
     component = fixture.componentInstance;

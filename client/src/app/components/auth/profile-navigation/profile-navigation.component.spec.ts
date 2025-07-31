@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavbarComponent } from './navbar.component';
-import { MaterialModule } from 'src/app/modules/material/material.module';
+import { ProfileNavigationComponent } from './profile-navigation.component';
 import { ToastrService } from 'ngx-toastr';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('ProfileNavigationComponent', () => {
+  let component: ProfileNavigationComponent;
+  let fixture: ComponentFixture<ProfileNavigationComponent>;
   let toastrService: ToastrService;
 
   class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [NavbarComponent],
-      imports: [MaterialModule],
+      declarations: [ProfileNavigationComponent],
+      imports: [AppRoutingModule],
       providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(ProfileNavigationComponent);
     component = fixture.componentInstance;
     toastrService = TestBed.inject(ToastrService);
     fixture.detectChanges();

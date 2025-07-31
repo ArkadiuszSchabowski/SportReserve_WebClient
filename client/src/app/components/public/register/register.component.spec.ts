@@ -14,16 +14,21 @@ describe('RegisterComponent', () => {
   let fixture: ComponentFixture<RegisterComponent>;
   let toastrService: ToastrService;
 
-  class MockToastrService {
-    success(message: string) {
-      console.log(message);
-    }
-  }
+  class MockToastrService {}
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [RegisterComponent],
-      imports: [BrowserAnimationsModule, FormsModule, HttpClientTestingModule, ReactiveFormsModule, MatDatepickerModule, MatNativeDateModule, MaterialModule, ToastrModule],
+      imports: [
+        BrowserAnimationsModule,
+        FormsModule,
+        HttpClientTestingModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MaterialModule,
+        ToastrModule,
+      ],
       providers: [{ provide: ToastrService, useClass: MockToastrService }],
     });
     fixture = TestBed.createComponent(RegisterComponent);
