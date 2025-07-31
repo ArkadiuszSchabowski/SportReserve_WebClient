@@ -1,1 +1,34 @@
-<p>profile-information works!</p>
+<div id="main-container">
+  <div id="profile-form">
+    <label id="title-label" class="title-label">PROFILE INFORMATION</label>
+    <div class="model-field">
+      <label class="subtitle-label">Email:</label>
+      <mat-form-field class="margin-bottom-10">
+        <input id="email" formControlName="email" matInput disabled />
+      </mat-form-field>
+    </div>
+    <div class="model-field">
+      <label class="subtitle-label">Name:</label>
+      <mat-form-field class="margin-bottom-10">
+        <input id="name" formControlName="name" matInput disabled />
+      </mat-form-field>
+    </div>
+    <div class="model-field">
+      <label class="subtitle-label">Surname:</label>
+      <mat-form-field class="margin-bottom-10">
+        <input id="surname" formControlName="surname" matInput disabled />
+      </mat-form-field>
+    </div>
+    <div class="model-field">
+      <label class="subtitle-label">Date of birth:</label>
+      <mat-form-field class="margin-bottom-10">
+        <input
+          id="dateOfBirth"
+          formControlName="dateOfBirth"
+          matInput
+          disabled
+        />
+      </mat-form-field>
+    </div>
+  </div>
+</div>

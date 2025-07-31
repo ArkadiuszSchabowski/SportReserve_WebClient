@@ -1,0 +1,40 @@
+@use "@angular/material" as mat;
+@use "src/styles" as theme;
+
+#profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  height: 100%;
+  padding-bottom: 70px;
+}
+
+#title-label {
+  text-align: center;
+}
+mat-form-field {
+  margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .model-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .subtitle-label {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .model-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .subtitle-label {
+    width: 200px;
+  }
+}
