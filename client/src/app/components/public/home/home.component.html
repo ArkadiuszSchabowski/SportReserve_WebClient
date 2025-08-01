@@ -1,3 +1,36 @@
 <div id="main-container" class="component-container">
-    <p>home works!</p>
+  <div id="left-container">
+    <div id="title-container">
+      <title id="title">Sport Reserve</title>
+    </div>
+  </div>
+  <div id="right-container">
+    <div id="carousel-container">
+      <carousel>
+        <slide
+          id="slide"
+          (click)="goToRegisterPage()"
+          *ngIf="!(authService.currentUserSource | async)"
+        >
+          <img src="../../../../assets/photos/Home/1.png" />
+        </slide>
+        <slide>
+          <img src="../../../../assets/photos/Home/2.png" />
+        </slide>
+        <slide>
+          <img src="../../../../assets/photos/Home/3.png" />
+        </slide>
+        <slide>
+          <img src="../../../../assets/photos/Home/4.png" />
+        </slide>
+      </carousel>
+    </div>
+    <div id="text-container">
+      <div id="text">
+        Join the Sport Reserve community! Find and book runs that fit what you
+        need and want to do. If you're looking for a new challenge, or just want
+        to be active, our app helps you sign up easily.
+      </div>
+    </div>
+  </div>
 </div>
