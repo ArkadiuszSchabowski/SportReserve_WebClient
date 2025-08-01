@@ -1,4 +1,10 @@
 @use "@angular/material" as mat;
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Importing Datepicker SCSS file. */
+@import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";
+
 @include mat.core();
 
 $primary: mat.define-palette(mat.$deep-purple-palette, 700);
@@ -58,6 +64,7 @@ mat-label {
   min-height: calc(100vh - 70px);
   width: 100%;
   margin-top: 70px;
+  background-color: mat.get-color-from-palette($primary, 700);
 }
 
 .left-container {
