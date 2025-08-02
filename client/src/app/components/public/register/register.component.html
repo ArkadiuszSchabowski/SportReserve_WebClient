@@ -1,5 +1,6 @@
 <div id="main-container" class="component-container">
-  <div class="left-container"></div>
+  <div class="left-container">
+  </div>
   <div class="right-container">
     <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
       <mat-step [stepControl]="loginDataForm" [editable]="false">
@@ -116,10 +117,13 @@
                 <button
                   type="submit"
                   mat-flat-button
-                  class="submit-button margin-top-10"
+                  class="submit-button margin-top-20 margin-bottom-10"
                 >
                   Next
                 </button>
+                <div id="login-container">
+                  <a routerLink="/login">Do you have an account?</a>
+                </div>
               </mat-card-content>
             </div>
           </mat-card>
@@ -215,7 +219,7 @@
                   mat-flat-button
                   class="submit-button margin-top-10"
                 >
-                  Register
+                  Sign up
                 </button>
               </mat-card-content>
             </div>
