@@ -10,6 +10,10 @@ import { LoginComponent } from 'src/app/components/public/login/login.component'
 import { RacesComponent } from 'src/app/components/public/races/races.component';
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { AnimalShelterRunComponent } from 'src/app/components/auth/race/animal-shelter-run/animal-shelter-run/animal-shelter-run.component';
+import { LondonRunComponent } from 'src/app/components/auth/race/london-run/london-run/london-run.component';
+import { ValentineRunComponent } from 'src/app/components/auth/race/valentine-run/valentine-run/valentine-run.component';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,17 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     LoginComponent,
     RacesComponent,
     RegisterComponent,
+    AnimalShelterRunComponent,
+    LondonRunComponent,
+    ValentineRunComponent
   ],
   imports: [
-    CommonModule, CarouselModule.forRoot(), ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
+    AppRoutingModule, CommonModule, CarouselModule.forRoot(), ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
   ],
   exports:[
+    AnimalShelterRunComponent,
+    LondonRunComponent,
+    ValentineRunComponent,
     ContactComponent,
     HomeComponent,
     LoginComponent,

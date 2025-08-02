@@ -13,10 +13,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-  ],
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,8 +27,8 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     ToastrModule.forRoot(),
   ],
   providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
