@@ -1,1 +1,51 @@
-<p>valentine-run works!</p>
+<div id="main-container" class="component-container">
+  <div id="container-valentine-race" class="race-container">
+    <div class="left-image-container">
+      <img id="poster-image" />
+    </div>
+    <div class="right-information-container">
+      <div class="bold white-text">Race Name: Valentine Race with Heart</div>
+      <div class="bold white-text">Date: 14.02.2026 (14th February)</div>
+      <div class="bold white-text">Distances: 5K (run/walk)</div>
+      <div class="bold white-text">Start Locations:</div>
+      <div class="white-text bold">
+        Liverpool: Albert Dock (the square in front of the Royal Liver Building)
+      </div>
+      <div class="white-text bold">
+        Newcastle: Quayside (near the Tyne Bridge)
+      </div>
+      <div class="white-text bold">
+        Brighton: Madeira Drive (near Brighton Palace Pier)
+      </div>
+      <div class="bold white-text">Entry Fee: £10</div>
+      <div class="description white-text">
+        Celebrate Valentine's Day in a unique way – with an active run from the
+        heart! The Valentine Race with Heart is an ideal proposition for
+        couples, friends, and anyone who wants to spend February 14th in a
+        joyful, sporty atmosphere. Choose one of three charming locations –
+        Liverpool, Newcastle, or Brighton – and feel the magic of Valentine's as
+        you traverse urban landscapes filled with romantic accents. The 5K
+        distance is perfect for both experienced runners and those who prefer a
+        leisurely walk. The entry fee is a symbolic £10, which helps to organize
+        this special event. Every participant also has the option to choose a
+        special Valentine's gadget: a commemorative t-shirt in any size with the
+        possibility of name personalization, a heart-themed mug, or a shaker
+        with a Valentine's accent. This is not just a race; it's a celebration
+        of the love for movement and for loved ones. Sign up today and create
+        unforgettable memories by running together with heart!
+      </div>
+      <div class="button-container">
+        <button mat-raised-button class="race-button" (click)="goToForm()">
+          Join the race
+        </button>
+        <button
+          mat-raised-button
+          class="race-browse-button"
+          routerLink="/races"
+        >
+          Browse other races
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
