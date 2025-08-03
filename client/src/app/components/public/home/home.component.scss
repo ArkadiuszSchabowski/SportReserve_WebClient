@@ -9,6 +9,9 @@
   margin-top: 10px;
   border-bottom: 2px solid white;
 }
+#carousel-container {
+  cursor: pointer;
+}
 #title {
   display: flex;
   width: 300px;
@@ -85,6 +88,9 @@ img {
     font-size: 24px;
     margin: 40px 50px 0 0 !important;
   }
+  #login-button{
+    margin: 40px 0 0 0 !important;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -129,5 +135,8 @@ img {
     height: 75px;
     font-size: 26px;
     margin: 50px 50px 0 0 !important;
+  }
+  #login-button{
+    margin: 50px 0 0 0 !important;
   }
 }
