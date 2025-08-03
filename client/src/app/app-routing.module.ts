@@ -20,18 +20,11 @@ import { LondonRunFormComponent } from './components/auth/race/london-run/london
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
-  {
-    path: 'races',
-    component: RacesComponent,
-    children: [
-      {
-        path: 'race-for-the-animal-shelter',
-        component: AnimalShelterRunComponent,
-      },
-      { path: 'valentine-race-with-heart', component: ValentineRunComponent },
-      { path: 'london-half-marathon-race', component: LondonRunComponent },
-    ],
-  },
+  { path: 'races', component: RacesComponent },
+  { path: 'races/race-for-the-animal-shelter', component: AnimalShelterRunComponent },
+  { path: 'races/valentine-race-with-heart', component: ValentineRunComponent },
+  { path: 'races/london-half-marathon-race', component: LondonRunComponent },
+
   {
     path: 'race-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,
