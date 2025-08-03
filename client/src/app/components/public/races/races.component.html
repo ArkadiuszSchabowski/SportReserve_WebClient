@@ -1,11 +1,7 @@
 <div id="main-container" class="component-container">
   <div id="container-animal-shelter-race" class="race-container">
     <div class="left-image-container">
-      <button
-        id="animal-shelter-button"
-        class="poster-button"
-        routerLink="/race/race-for-the-animal-shelter"
-      ></button>
+      <img id="animal-shelter-poster" class="poster-button">
     </div>
     <div class="right-information-container">
       <div class="bold white-text">Race Name: Run for the Animal Shelter</div>
@@ -31,15 +27,20 @@
         cause. Become a hero for homeless animals and give your New Year true
         meaning!
       </div>
+      <div class="button-container">
+        <button
+          mat-raised-button
+          class="race-button"
+          (click)="goToForm('race-for-the-animal-shelter/form')"
+        >
+          Join the race
+        </button>
+      </div>
     </div>
   </div>
   <div id="container-valentine-race" class="race-container">
     <div class="left-image-container">
-      <button
-        id="valentine-button"
-        class="poster-button"
-        routerLink="/race/valentine-race-with-heart"
-      ></button>
+      <img id="valentine-poster" class="poster-button">
     </div>
     <div class="right-information-container">
       <div class="bold white-text">Race Name: Valentine Race with Heart</div>
@@ -72,15 +73,20 @@
         of the love for movement and for loved ones. Sign up today and create
         unforgettable memories by running together with heart!
       </div>
+      <div class="button-container">
+        <button
+          mat-raised-button
+          class="race-button"
+          (click)="goToForm('valentine-race-with-heart/form')"
+        >
+          Join the race
+        </button>
+      </div>
     </div>
   </div>
   <div id="container-london-half-marathon-race" class="race-container">
     <div class="left-image-container">
-      <button
-        id="london-half-marathon-button"
-        class="poster-button"
-        routerLink="/race/london-half-marathon-race"
-      ></button>
+      <img id="london-half-marathon-poster" class="poster-button">
     </div>
     <div class="right-information-container">
       <div class="bold white-text">Race Name: London Half-Marathon Race</div>
@@ -107,6 +113,15 @@
         around the world who collectively create the unforgettable atmosphere of
         this prestigious event. Sign up today and become part of London's
         running history!
+      </div>
+            <div class="button-container">
+        <button
+          mat-raised-button
+          class="race-button"
+          (click)="goToForm('london-half-marathon-race/form')"
+        >
+          Join the race
+        </button>
       </div>
     </div>
   </div>

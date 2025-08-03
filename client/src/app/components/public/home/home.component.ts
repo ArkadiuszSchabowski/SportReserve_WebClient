@@ -9,8 +9,5 @@ import { AuthService } from 'src/app/_services/auth.service';
 })
 export class HomeComponent {
   constructor(private router: Router, public authService: AuthService) {}
-  goToRegisterPage() {
-    
-    this.router.navigateByUrl('/register');
-  }
+
 }

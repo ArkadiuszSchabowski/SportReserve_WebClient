@@ -1,3 +1,6 @@
+@use "@angular/material" as mat;
+@use "src/styles" as theme;
+
 #main-container {
   display: flex;
   flex-direction: column;
@@ -12,9 +15,9 @@
 .poster-button {
   margin-bottom: 10px;
 }
-#animal-shelter-button,
-#valentine-button,
-#london-half-marathon-button {
+#animal-shelter-poster,
+#valentine-poster,
+#london-half-marathon-poster {
   display: flex;
   width: 400px;
   height: 400px;
@@ -24,16 +27,16 @@
   margin: 20 0px;
 }
 
-#animal-shelter-button {
-  background-image: url(../../../../assets/photos/Home/poster2.png);
+#animal-shelter-poster {
+  background-image: url("/assets/photos/Home/poster2.png");
 }
 
-#valentine-button {
-  background-image: url(../../../../assets/photos/Home/poster3.png);
+#valentine-poster {
+  background-image: url("/assets/photos/Home/poster3.png");
 }
 
-#london-half-marathon-button {
-  background-image: url(../../../../assets/photos/Home/poster4.png);
+#london-half-marathon-poster {
+  background-image: url("/assets/photos/Home/poster4.png");
 }
 
 .bold {
@@ -47,6 +50,11 @@
 
 .description {
   margin-top: 10px;
+}
+.race-button{
+  margin-top: 20px !important;
+  color: mat.get-color-from-palette(theme.$primary) !important;
+  background-color: white !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {

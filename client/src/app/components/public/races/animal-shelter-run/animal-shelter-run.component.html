@@ -1,0 +1,44 @@
+<div id="main-container" class="component-container">
+  <div id="race-container" class="race-container">
+    <div class="left-image-container">
+      <img id="poster-image" />
+    </div>
+    <div class="right-information-container">
+      <div class="bold white-text">Race Name: Run for the Animal Shelter</div>
+      <div class="bold white-text">Date: 01.01.2026 (1st January)</div>
+      <div class="bold white-text">Distances: 5K, 10K, 15K</div>
+      <div class="bold white-text">
+        Start Location: Manchester, Heaton Park (near the main entrance off
+        Sheepfoot Lane)
+      </div>
+      <div class="bold white-text">Entry Fee: Free</div>
+      <div class="description white-text">
+        Start the New Year with a heart! Take part in the Run for the Animal
+        Shelter and make your first step in 2026 a stride towards good. This is
+        a perfect opportunity to combine your New Year's resolutions with
+        invaluable help for animals in need. Join hundreds of running
+        enthusiasts who will collectively traverse the picturesque paths of
+        Heaton Park. What's more, participation in the race is completely free,
+        and the city itself is the organizer, making it even more accessible and
+        supported for everyone who wants to help. During registration, you have
+        the option, but not the obligation, to specify a donation amount, which
+        will be entirely allocated to support local animal shelters. Feel the
+        energy of the community and the satisfaction of running for a noble
+        cause. Become a hero for homeless animals and give your New Year true
+        meaning!
+      </div>
+      <div class="button-container">
+        <button mat-raised-button class="race-button" (click)="goToForm()">
+          Join the race
+        </button>
+        <button
+          mat-raised-button
+          class="race-browse-button"
+          routerLink="/races"
+        >
+          Browse other races
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

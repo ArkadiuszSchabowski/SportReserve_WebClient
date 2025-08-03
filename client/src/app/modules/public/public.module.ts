@@ -11,9 +11,9 @@ import { RacesComponent } from 'src/app/components/public/races/races.component'
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { AnimalShelterRunComponent } from 'src/app/components/auth/race/animal-shelter-run/animal-shelter-run/animal-shelter-run.component';
-import { LondonRunComponent } from 'src/app/components/auth/race/london-run/london-run/london-run.component';
-import { ValentineRunComponent } from 'src/app/components/auth/race/valentine-run/valentine-run/valentine-run.component';
+import { AnimalShelterRunComponent } from 'src/app/components/public/races/animal-shelter-run/animal-shelter-run.component';
+import { LondonRunComponent } from 'src/app/components/public/races/london-run/london-run.component';
+import { ValentineRunComponent } from 'src/app/components/public/races/valentine-run/valentine-run.component';
 
 @NgModule({
   declarations: [

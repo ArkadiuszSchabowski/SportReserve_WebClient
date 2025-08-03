@@ -9,19 +9,28 @@
       <carousel>
         <slide
           id="slide"
-          (click)="goToRegisterPage()"
+          routerLink="/register"
           *ngIf="!(authService.currentUserSource | async)"
         >
           <img src="../../../../assets/photos/Home/1.png" />
         </slide>
         <slide>
-          <img src="../../../../assets/photos/Home/2.png" />
+          <img
+            src="../../../../assets/photos/Home/2.png"
+            routerLink="/races/race-for-the-animal-shelter"
+          />
         </slide>
         <slide>
-          <img src="../../../../assets/photos/Home/3.png" />
+          <img
+            src="../../../../assets/photos/Home/3.png"
+            routerLink="/races/valentine-race-with-heart"
+          />
         </slide>
         <slide>
-          <img src="../../../../assets/photos/Home/4.png" />
+          <img
+            src="../../../../assets/photos/Home/4.png"
+            routerLink="/races/london-half-marathon-race"
+          />
         </slide>
       </carousel>
     </div>

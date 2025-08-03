@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
-  selector: 'app-races',
-  templateUrl: './races.component.html',
-  styleUrls: ['./races.component.scss'],
+  selector: 'app-valentine-run',
+  templateUrl: './valentine-run.component.html',
+  styleUrls: ['./valentine-run.component.scss'],
 })
-export class RacesComponent {
+export class ValentineRunComponent {
   currentUser: string | null = null;
   constructor(private authService: AuthService, private router: Router) {
     this.setUser();
@@ -19,11 +19,11 @@ export class RacesComponent {
       },
     });
   }
-  goToForm(url: string) {
+  goToForm() {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
-      this.router.navigateByUrl(`${url}`);
+      this.router.navigateByUrl('valentine-race-with-heart/form');
     }
   }
 }
