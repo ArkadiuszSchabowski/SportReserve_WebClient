@@ -44,10 +44,9 @@
 
 img {
   display: block;
-  height: 300px;
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 280px;
+  width: 470px;
+  margin: 10px auto 20px auto;
 }
 #left-container {
   display: flex;
@@ -75,8 +74,8 @@ img {
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   img {
-    width: 60%;
-    height: 320px;
+    height: 400px;
+    width: 700px;
   }
   #text {
     padding: 0 80px;
@@ -88,7 +87,7 @@ img {
     font-size: 24px;
     margin: 40px 50px 0 0 !important;
   }
-  #login-button{
+  #login-button {
     margin: 40px 0 0 0 !important;
   }
 }
@@ -127,7 +126,8 @@ img {
     font-size: 22px;
   }
   img {
-    height: 500px;
+    height: 450px;
+    width: 700px;
   }
   #register-button,
   #login-button {
@@ -136,7 +136,7 @@ img {
     font-size: 26px;
     margin: 50px 50px 0 0 !important;
   }
-  #login-button{
+  #login-button {
     margin: 50px 0 0 0 !important;
   }
 }

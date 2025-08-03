@@ -12,6 +12,16 @@ form {
   width: 100%;
   height: 100%;
 }
+#login-image{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/assets/photos/login/login.png');
+}
+
 #register-container{
   border-top: 2px solid white;
   margin-top: 50px;
