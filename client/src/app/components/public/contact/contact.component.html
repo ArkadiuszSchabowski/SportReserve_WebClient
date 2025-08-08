@@ -1,3 +1,48 @@
 <div id="main-container" class="component-container">
-    <p>contact works!</p>
+  <div class="left-container">
+    <img id="contact-image" />
+  </div>
+  <div class="right-container">
+    <form [formGroup]="form" id="contact-form" (ngSubmit)="sendEmail()">
+      <mat-card>
+        <mat-card-content>
+          <label class="title-label">CONTACT FORM</label>
+          <mat-form-field>
+            <mat-label>Your email</mat-label>
+            <input matInput id="sender" type="text" formControlName="sender" />
+          </mat-form-field>
+          <div class="error-container">
+            <div class="error" *ngIf="senderError">
+              {{ senderError }}
+            </div>
+          </div>
+          <mat-form-field>
+            <mat-label>Topic</mat-label>
+            <input matInput id="topic" type="text" formControlName="topic" />
+          </mat-form-field>
+          <div class="error-container">
+            <div class="error" *ngIf="topicError">
+              {{ topicError }}
+            </div>
+          </div>
+          <mat-form-field>
+            <mat-label>Message</mat-label>
+            <textarea
+              matInput
+              id="message"
+              formControlName="message"
+            ></textarea>
+          </mat-form-field>
+          <div class="error-container">
+            <div class="error" *ngIf="messageError">
+              {{ messageError }}
+            </div>
+          </div>
+          <button mat-raised-button class="submit-button margin-top-20 margin-bottom-10" type="submit">
+            Send
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
 </div>
