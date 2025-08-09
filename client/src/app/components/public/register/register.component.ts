@@ -206,7 +206,7 @@ export class RegisterComponent {
         return 'Repeat password is required.';
       }
       if (control.errors['minlength'] || control.errors['maxlength']) {
-        return 'Repeat password must be between 5 and 25 characters.';
+        return 'Password must be between 5 and 25 characters.';
       }
       if (control.errors['passwordMismatch']) {
         return control.errors['passwordMismatch'];

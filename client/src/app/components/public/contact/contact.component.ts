@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { EmailService } from 'src/app/_services/email.service';
+import { SendEmailToAdminDto } from 'src/app/models/email/send-email-to-admin-dto';
 
 @Component({
   selector: 'app-contact',
@@ -7,11 +11,16 @@ import { Validators, FormBuilder } from '@angular/forms';
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private emailService: EmailService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   form = this.formBuilder.group({
     sender: ['', [Validators.required, Validators.email]],
-    topic: [
+    subject: [
       '',
       [Validators.required, Validators.minLength(5), Validators.maxLength(50)],
     ],
@@ -30,6 +39,19 @@ export class ContactComponent {
       this.form.markAllAsTouched();
       return;
     }
+
+    let dto: SendEmailToAdminDto = {
+      from: this.form.get('sender')!.value,
+      subject: this.form.get('subject')!.value,
+      message: this.form.get('message')!.value,
+    };
+
+    this.emailService.sendToAdmin(dto).subscribe({
+      next: () => {
+        this.toastr.success('Email sent successfully.');
+        this.router.navigateByUrl("/");
+      },
+    });
   }
 
   get senderError(): string | null {
@@ -45,14 +67,14 @@ export class ContactComponent {
     return null;
   }
 
-  get topicError(): string | null {
-    const control = this.form.get('topic');
+  get subjectError(): string | null {
+    const control = this.form.get('subject');
     if (control && control.touched && control.errors) {
       if (control.errors['required']) {
-        return 'Message topic is required.';
+        return 'Subject is required.';
       }
       if (control.errors['minlength'] || control.errors['maxlength']) {
-        return 'Message topic must be between 5 and 50 characters.';
+        return 'Subject must be between 5 and 50 characters.';
       }
     }
     return null;
