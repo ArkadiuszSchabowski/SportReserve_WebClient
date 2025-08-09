@@ -11,7 +11,7 @@ export class ContactComponent {
 
   form = this.formBuilder.group({
     sender: ['', [Validators.required, Validators.email]],
-    topic: [
+    subject: [
       '',
       [Validators.required, Validators.minLength(5), Validators.maxLength(50)],
     ],
@@ -45,14 +45,14 @@ export class ContactComponent {
     return null;
   }
 
-  get topicError(): string | null {
-    const control = this.form.get('topic');
+  get subjectError(): string | null {
+    const control = this.form.get('subject');
     if (control && control.touched && control.errors) {
       if (control.errors['required']) {
-        return 'Message topic is required.';
+        return 'Subject is required.';
       }
       if (control.errors['minlength'] || control.errors['maxlength']) {
-        return 'Message topic must be between 5 and 50 characters.';
+        return 'Subject must be between 5 and 50 characters.';
       }
     }
     return null;
