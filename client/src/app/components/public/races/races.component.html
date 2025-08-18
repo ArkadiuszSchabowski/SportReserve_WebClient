@@ -1,128 +1,40 @@
-<div id="main-container" class="component-container">
-  <div id="container-animal-shelter-race" class="race-container">
+<div id="main-container" class="component-container white-text">
+  <div
+    class="race-container"
+    *ngFor="let traces of paginationResult.results"
+  >
     <div class="left-image-container">
-      <img id="animal-shelter-poster" class="poster-button">
+      <img id="poster" class="poster-button" [src]="serverUrl + '/' + traces.posterUrl" alt="{{traces.name}}" />
     </div>
     <div class="right-information-container">
-      <div class="bold white-text">Race Name: Run for the Animal Shelter</div>
-      <div class="bold white-text">Date: 01.01.2026 (1st January)</div>
-      <div class="bold white-text">Distances: 5K, 10K, 15K</div>
-      <div class="bold white-text">
-        Start Location: Manchester, Heaton Park (near the main entrance off
-        Sheepfoot Lane)
+      <div class="bold">{{ traces.name }}</div>
+      <div class="bold">Date: {{ traces.dateOfStart }}</div>
+      <div class="bold" *ngFor="let trace of traces.raceTraces">
+        <div>{{trace.details}}</div>
       </div>
-      <div class="bold white-text">Entry Fee: Free</div>
-      <div class="description white-text">
-        Start the New Year with a heart! Take part in the Run for the Animal
-        Shelter and make your first step in 2026 a stride towards good. This is
-        a perfect opportunity to combine your New Year's resolutions with
-        invaluable help for animals in need. Join hundreds of running
-        enthusiasts who will collectively traverse the picturesque paths of
-        Heaton Park. What's more, participation in the race is completely free,
-        and the city itself is the organizer, making it even more accessible and
-        supported for everyone who wants to help. During registration, you have
-        the option, but not the obligation, to specify a donation amount, which
-        will be entirely allocated to support local animal shelters. Feel the
-        energy of the community and the satisfaction of running for a noble
-        cause. Become a hero for homeless animals and give your New Year true
-        meaning!
+
+      <div *ngIf="traces.entryFeeGBP" class="bold">Entry Fee: {{ traces.entryFeeGBP }} GBP</div>
+      <div *ngIf="!traces.entryFeeGBP" class="bold">Entry Fee: Free</div>
+      <div class="description">
+        {{ traces.description }}
       </div>
       <div class="button-container">
         <button
           mat-raised-button
           class="race-button"
-          (click)="goToForm('race-for-the-animal-shelter/form')"
+          (click)="goToForm(traces.name + '/form')"
         >
           Join the race
         </button>
       </div>
     </div>
   </div>
-  <div id="container-valentine-race" class="race-container">
-    <div class="left-image-container">
-      <img id="valentine-poster" class="poster-button">
-    </div>
-    <div class="right-information-container">
-      <div class="bold white-text">Race Name: Valentine Race with Heart</div>
-      <div class="bold white-text">Date: 14.02.2026 (14th February)</div>
-      <div class="bold white-text">Distances: 5K (run/walk)</div>
-      <div class="bold white-text">Start Locations:</div>
-      <div class="white-text bold">
-        Liverpool: Albert Dock (the square in front of the Royal Liver Building)
-      </div>
-      <div class="white-text bold">
-        Newcastle: Quayside (near the Tyne Bridge)
-      </div>
-      <div class="white-text bold">
-        Brighton: Madeira Drive (near Brighton Palace Pier)
-      </div>
-      <div class="bold white-text">Entry Fee: £10</div>
-      <div class="description white-text">
-        Celebrate Valentine's Day in a unique way – with an active run from the
-        heart! The Valentine Race with Heart is an ideal proposition for
-        couples, friends, and anyone who wants to spend February 14th in a
-        joyful, sporty atmosphere. Choose one of three charming locations –
-        Liverpool, Newcastle, or Brighton – and feel the magic of Valentine's as
-        you traverse urban landscapes filled with romantic accents. The 5K
-        distance is perfect for both experienced runners and those who prefer a
-        leisurely walk. The entry fee is a symbolic £10, which helps to organize
-        this special event. Every participant also has the option to choose a
-        special Valentine's gadget: a commemorative t-shirt in any size with the
-        possibility of name personalization, a heart-themed mug, or a shaker
-        with a Valentine's accent. This is not just a race; it's a celebration
-        of the love for movement and for loved ones. Sign up today and create
-        unforgettable memories by running together with heart!
-      </div>
-      <div class="button-container">
-        <button
-          mat-raised-button
-          class="race-button"
-          (click)="goToForm('valentine-race-with-heart/form')"
-        >
-          Join the race
-        </button>
-      </div>
-    </div>
-  </div>
-  <div id="container-london-half-marathon-race" class="race-container">
-    <div class="left-image-container">
-      <img id="london-half-marathon-poster" class="poster-button">
-    </div>
-    <div class="right-information-container">
-      <div class="bold white-text">Race Name: London Half-Marathon Race</div>
-      <div class="bold white-text">Date: 10.03.2026 (10th March)</div>
-      <div class="bold white-text">Distance: Half-Marathon (21.1K)</div>
-      <div class="bold white-text">
-        Start Location: London, Green Park (near Constitution Hill)
-      </div>
-      <div class="bold white-text">Entry Fee: £25</div>
-      <div class="description white-text">
-        Dreaming of a race in the heart of one of the world's most iconic
-        capitals? The London Half-Marathon Race is your chance! Prepare for an
-        unforgettable 21.1 kilometers that will lead you through the vibrant
-        streets of London, past majestic landmarks and picturesque parks.
-        Starting from Green Park, you'll run past Buckingham Palace, Big Ben,
-        and the London Eye, admiring views you know from postcards. The entry
-        fee is £25, guaranteeing professional organization and an unforgettable
-        experience. What's more, every participant who finishes the race will
-        receive a commemorative medal with their time engraved. For the top
-        runners, impressive trophies and attractive cash prizes are awarded:
-        £500 for the winner, £250 for second place, and £100 for third place.
-        This is an excellent opportunity to test your endurance and feel the
-        true spirit of London running. Join thousands of participants from
-        around the world who collectively create the unforgettable atmosphere of
-        this prestigious event. Sign up today and become part of London's
-        running history!
-      </div>
-            <div class="button-container">
-        <button
-          mat-raised-button
-          class="race-button"
-          (click)="goToForm('london-half-marathon-race/form')"
-        >
-          Join the race
-        </button>
-      </div>
-    </div>
-  </div>
+  <mat-paginator
+    [length]="paginationResult.totalCount"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+    (page)="changePage($event)"
+  >
+  </mat-paginator>
 </div>
