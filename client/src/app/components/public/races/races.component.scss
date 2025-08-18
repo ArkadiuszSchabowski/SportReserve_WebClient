@@ -1,6 +1,16 @@
 @use "@angular/material" as mat;
 @use "src/styles" as theme;
 
+::ng-deep .mat-mdc-paginator-container {
+  min-width: 460px !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+::ng-deep .mat-mdc-paginator-range-label {
+  margin-right: 28px !important;
+}
+
 #main-container {
   display: flex;
   flex-direction: column;

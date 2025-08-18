@@ -48,6 +48,39 @@ mat-form-field {
   border: 2px solid white !important;
 }
 
+::ng-deep .mat-mdc-paginator-container{
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+::ng-deep mat-paginator {
+  color: white !important;
+  background-color: mat.get-color-from-palette($primary) !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+  color: white !important;
+}
+
+::ng-deep mat-form-field{
+  border: 2px solid white !important;
+}
+
+::ng-deep .mat-mdc-paginator-icon{
+  fill: white !important;
+}
+
+::ng-deep .mat-mdc-paginator button[disabled] .mat-mdc-paginator-icon {
+  fill: gray !important;
+}
+
+::ng-deep .mat-mdc-select-min-line{
+  color: white !important;
+}
+
 ::ng-deep .mat-step-icon.mat-step-icon-selected {
   background-color: rgb(67, 176, 67) !important;
 }
