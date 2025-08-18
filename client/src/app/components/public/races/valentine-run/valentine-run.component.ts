@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -7,11 +7,13 @@ import { AuthService } from 'src/app/_services/auth.service';
   templateUrl: './valentine-run.component.html',
   styleUrls: ['./valentine-run.component.scss'],
 })
-export class ValentineRunComponent {
+export class ValentineRunComponent implements OnInit {
   currentUser: string | null = null;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
     this.setUser();
   }
+
   setUser() {
     this.authService.currentUser$.subscribe({
       next: (response) => {

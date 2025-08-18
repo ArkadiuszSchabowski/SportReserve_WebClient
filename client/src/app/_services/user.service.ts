@@ -18,19 +18,19 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUsers() {
-    return this.http.get<GetUserDto[]>(this.apiUrl + 'users');
+    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/users');
   }
 
   getUser(id: number) {
-    return this.http.get<GetUserDto>(this.apiUrl + `user/${id}`);
+    return this.http.get<GetUserDto>(this.apiUrl + `api/user/${id}`);
   }
   getUserByEmail(email: string) {
     const params = new HttpParams().set('email', email);
 
-    return this.http.get<GetUserDto>(this.apiUrl + 'user/by-email', { params });
+    return this.http.get<GetUserDto>(this.apiUrl + 'api/user/by-email', { params });
   }
   login(loginDto: LoginDto) {
-    return this.http.post<TokenDto>(this.apiUrl + 'user/login', loginDto).pipe(
+    return this.http.post<TokenDto>(this.apiUrl + 'api/user/login', loginDto).pipe(
       map((response) => {
         if (response.token) {
           localStorage.setItem('token', response.token);
@@ -41,13 +41,13 @@ export class UserService {
   }
 
   register(dto: RegisterDto) {
-    return this.http.post<string>(this.apiUrl + 'user/register', dto);
+    return this.http.post<string>(this.apiUrl + 'api/user/register', dto);
   }
   validateRegisterStepOne(dto: RegisterStepOneDto) {
-    return this.http.post(this.apiUrl + 'user/register/step1/validate', dto);
+    return this.http.post(this.apiUrl + 'api/user/register/step1/validate', dto);
   }
 
   remove(id: number) {
-    return this.http.delete(this.apiUrl + `user/${id}`);
+    return this.http.delete(this.apiUrl + `api/user/${id}`);
   }
 }

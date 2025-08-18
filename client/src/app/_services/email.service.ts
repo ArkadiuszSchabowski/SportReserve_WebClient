@@ -12,6 +12,6 @@ export class EmailService {
   constructor(private http: HttpClient) { }
 
   sendToAdmin(dto: SendEmailToAdminDto){
-    return this.http.post(this.apiUrl + "email/send", dto);
+    return this.http.post(this.apiUrl + "api/email/send", dto);
   }
 }
