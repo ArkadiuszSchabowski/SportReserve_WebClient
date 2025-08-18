@@ -1,0 +1,51 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { PaginationResult } from '../models/pagination/pagination-result';
+import { environment } from '../environments/environment';
+import { PaginationDto } from '../models/pagination/pagination-dto';
+import { map, Observable } from 'rxjs';
+import { GetRaceDto } from '../models/race/get-race-dto';
+import { GetRaceViewDto } from '../models/race/get-race-trace-view-dto';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RaceService {
+  apiUrl = environment.apiUrl;
+
+  constructor(private http: HttpClient) {}
+
+  get(dto: PaginationDto): Observable<PaginationResult<GetRaceViewDto>> {
+
+    let params = new HttpParams()
+      .set('PageNumber', dto.pageNumber.toString())
+      .set('PageSize', dto.pageSize.toString());
+          return this.http
+          .get<PaginationResult<GetRaceDto>>(this.apiUrl + 'api/race', { params })
+          .pipe(map((races) => {
+          return {
+            totalCount: races.totalCount,
+            results: races.results.map((race) => {
+              return {
+                id: race.id,
+                name: race.name,
+                dateOfStart: race.dateOfStart,
+                description: race.description,
+                entryFeeGBP: race.entryFeeGBP,
+                posterUrl: race.posterUrl,
+                raceTraces: race.raceTraces.map((traces) => {
+                  return {
+                    hourOfStart: traces.hourOfStart,
+                    id: traces.id,
+                    isRegistrationOpen: traces.isRegistrationOpen,
+                    slots: traces.slots,
+                    details: `${traces.location} - ${traces.distanceKm} km`,
+                  };
+                }),
+              };
+            }),
+          };
+        })
+      );
+  }
+}
