@@ -1,20 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-london-run',
   templateUrl: './london-run.component.html',
-  styleUrls: ['./london-run.component.scss']
+  styleUrls: ['./london-run.component.scss'],
 })
-export class LondonRunComponent {
+export class LondonRunComponent implements OnInit {
   currentUser: string | null = null;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
     this.setUser();
   }
   setUser() {
     this.authService.currentUser$.subscribe({
-      next: response => {
+      next: (response) => {
         this.currentUser = response;
       },
     });

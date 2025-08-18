@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -7,14 +7,15 @@ import { AuthService } from 'src/app/_services/auth.service';
   templateUrl: './animal-shelter-run.component.html',
   styleUrls: ['./animal-shelter-run.component.scss'],
 })
-export class AnimalShelterRunComponent {
+export class AnimalShelterRunComponent implements OnInit {
   currentUser: string | null = null;
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {}
+  ngOnInit(): void {
     this.setUser();
   }
   setUser() {
     this.authService.currentUser$.subscribe({
-      next: response => {
+      next: (response) => {
         this.currentUser = response;
       },
     });
