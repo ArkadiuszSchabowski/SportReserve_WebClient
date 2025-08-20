@@ -4,7 +4,7 @@
     *ngFor="let traces of paginationResult.results"
   >
     <div class="left-image-container">
-      <img id="poster" class="poster-button" [src]="serverUrl + '/' + traces.posterUrl" alt="{{traces.name}}" />
+      <img id="poster" class="poster-button" [src]="raceUrl + traces.posterUrl" alt="{{traces.name}}" />
     </div>
     <div class="right-information-container">
       <div class="bold">{{ traces.name }}</div>
