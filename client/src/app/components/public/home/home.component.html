@@ -35,12 +35,17 @@
       </carousel>
     </div>
     <div id="text-container">
-      <div id="text">
+      <div id="text" *ngIf="authService.currentUserSource | async">
+        Welcome back! Use the app to join your chosen
+        run, track your progress, or discover a new challenge. Plan your
+        activity and hit the trails!
+      </div>
+      <div id="text" *ngIf="!(authService.currentUserSource | async)">
         Join the Sport Reserve community! Find and book runs that fit what you
         need and want to do. If you're looking for a new challenge, or just want
         to be active, our app helps you sign up easily.
       </div>
-      <div id="button-container">
+      <div id="button-container" *ngIf="!(authService.currentUserSource | async)">
         <button mat-raised-button id="register-button" routerLink="/register">
           Sign up
         </button>
