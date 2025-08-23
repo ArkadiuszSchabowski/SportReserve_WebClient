@@ -17,6 +17,7 @@ import { LondonRunFormComponent } from './components/auth/race/london-run-form/l
 import { AnimalShelterRunComponent } from './components/public/races/animal-shelter-run/animal-shelter-run.component';
 import { LondonRunComponent } from './components/public/races/london-run/london-run.component';
 import { ValentineRunComponent } from './components/public/races/valentine-run/valentine-run.component';
+import { ModeratorPanelComponent } from './components/auth/moderator-panel/moderator-panel.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,7 +26,11 @@ const routes: Routes = [
   { path: 'races/race-for-the-animal-shelter', component: AnimalShelterRunComponent },
   { path: 'races/valentine-race-with-heart', component: ValentineRunComponent },
   { path: 'races/london-half-marathon-race', component: LondonRunComponent },
-
+    {
+    path: 'moderator-panel',
+    component: ModeratorPanelComponent,
+    canActivate: [authGuard],
+  },
   {
     path: 'race-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,

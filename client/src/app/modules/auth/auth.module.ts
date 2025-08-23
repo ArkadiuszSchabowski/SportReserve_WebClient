@@ -8,6 +8,7 @@ import { ProfileReservationsComponent } from 'src/app/components/auth/profile/pr
 import { AnimalShelterRunFormComponent } from 'src/app/components/auth/race/animal-shelter-run-form/animal-shelter-run-form.component';
 import { LondonRunFormComponent } from 'src/app/components/auth/race/london-run-form/london-run-form.component';
 import { ValentineRunFormComponent } from 'src/app/components/auth/race/valentine-run-form/valentine-run-form.component';
+import { ModeratorPanelComponent } from 'src/app/components/auth/moderator-panel/moderator-panel.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +17,10 @@ import { ValentineRunFormComponent } from 'src/app/components/auth/race/valentin
     ProfileReservationsComponent,
     AnimalShelterRunFormComponent,
     LondonRunFormComponent,
-    ValentineRunFormComponent
+    ValentineRunFormComponent,
+    ModeratorPanelComponent,
   ],
   imports: [AppRoutingModule, CommonModule, MaterialModule],
-  exports: [
-    ProfileInformationComponent,
-    ProfileNavigationComponent,
-    ProfileReservationsComponent,
-  ],
+  exports: [],
 })
 export class AuthModule {}
