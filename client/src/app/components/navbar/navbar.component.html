@@ -38,18 +38,21 @@
       >
         Profile
       </button>
+            <button
+        class="navbar-mobile-button"
+        mat-menu-item
+        routerLink="/moderator-panel"
+        *ngIf="authService.currentUserSource | async"
+      >
+        Moderator Panel
+      </button>
       <button class="navbar-mobile-button" mat-menu-item routerLink="/contact">
         Contact
       </button>
     </mat-menu>
   </div>
   <div id="navbar-container-web">
-    <button
-      class="navbar-disabled-web-button"
-      routerLink="/"
-      *ngIf="authService.currentUserSource | async"
-    ></button>
-    <button class="navbar-web-button" routerLink="/">Home</button>
+    <button class="navbar-web-button navbar-web-left-edge-button" routerLink="/">Home</button>
     <button
       class="navbar-web-button"
       routerLink="/login"
@@ -72,6 +75,13 @@
     >
       Profile
     </button>
-    <button class="navbar-web-right-edge-button" routerLink="/contact">Contact</button>
+    <button
+      class="navbar-web-button"
+      routerLink="/moderator-panel"
+      *ngIf="authService.currentUserSource | async"
+    >
+      Moderator Panel
+    </button>
+    <button class="navbar-web-button" routerLink="/contact">Contact</button>
   </div>
 </div>

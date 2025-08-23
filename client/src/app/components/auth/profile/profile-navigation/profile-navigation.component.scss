@@ -48,9 +48,9 @@
     display: flex;
     flex-flow: 1;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     width: 20%;
-    min-width: 200px;
+    min-width: 150px;
     height: 100%;
     background-color: mat.get-color-from-palette(theme.$primary);
     border-left: 2px solid white;
@@ -64,9 +64,6 @@
   .navigation-button {
     height: 100px;
     width: 100%;
-    min-width: 200px;
-  }
-  .navigation-button {
     color: white;
     background-color: mat.get-color-from-palette(theme.$primary);
   }
@@ -74,6 +71,9 @@
     color: mat.get-color-from-palette(theme.$primary);
     background-color: white;
   }
+}
+.border-top-2{
+  border-top: 2px solid white;
 }
 
 @media screen and (min-width: 1200px) {
@@ -84,7 +84,7 @@
   #profile-content-navigation {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     width: 20%;
     height: 100%;
     background-color: mat.get-color-from-palette(theme.$primary);
@@ -98,8 +98,6 @@
   .navigation-button {
     height: 100px;
     width: 100%;
-  }
-  .navigation-button {
     color: white;
     background-color: mat.get-color-from-palette(theme.$primary);
   }
