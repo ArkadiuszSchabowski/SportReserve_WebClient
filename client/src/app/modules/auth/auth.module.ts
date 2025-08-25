@@ -9,6 +9,9 @@ import { AnimalShelterRunFormComponent } from 'src/app/components/auth/race/anim
 import { LondonRunFormComponent } from 'src/app/components/auth/race/london-run-form/london-run-form.component';
 import { ValentineRunFormComponent } from 'src/app/components/auth/race/valentine-run-form/valentine-run-form.component';
 import { ModeratorPanelComponent } from 'src/app/components/auth/moderator-panel/moderator-panel.component';
+import { ModeratorPanelRacesComponent } from 'src/app/components/auth/moderator-panel-races/moderator-panel-races.component';
+import { ModeratorPanelUsersComponent } from 'src/app/components/auth/moderator-panel-users/moderator-panel-users.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,8 +22,10 @@ import { ModeratorPanelComponent } from 'src/app/components/auth/moderator-panel
     LondonRunFormComponent,
     ValentineRunFormComponent,
     ModeratorPanelComponent,
+    ModeratorPanelUsersComponent, 
+    ModeratorPanelRacesComponent
   ],
-  imports: [AppRoutingModule, CommonModule, MaterialModule],
+  imports: [AppRoutingModule, CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [],
 })
 export class AuthModule {}
