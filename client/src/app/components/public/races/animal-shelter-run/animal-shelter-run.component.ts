@@ -24,7 +24,7 @@ export class AnimalShelterRunComponent implements OnInit {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
-      this.router.navigateByUrl('race-for-the-animal-shelter/form');
+      this.router.navigateByUrl('run-for-the-animal-shelter/form');
     }
   }
 }
