@@ -5,7 +5,7 @@ import { environment } from '../environments/environment';
 import { PaginationDto } from '../models/pagination/pagination-dto';
 import { map, Observable } from 'rxjs';
 import { GetRaceDto } from '../models/race/get-race-dto';
-import { GetRaceViewDto } from '../models/race/get-race-trace-view-dto';
+import { GetRaceViewDto } from '../models/race/get-race-view-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -47,5 +47,9 @@ export class RaceService {
           };
         })
       );
+  }
+
+    remove(id: number) {
+    return this.http.delete(this.apiUrl + `api/race/${id}`);
   }
 }

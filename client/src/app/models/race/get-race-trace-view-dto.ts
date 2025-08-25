@@ -1,11 +1,7 @@
-import { GetRaceTraceViewDto } from "./get-race-view-dto";
-
-export class GetRaceViewDto {
+export class GetRaceTraceViewDto {
     id: number = 0;
-    name: string = '';
-    dateOfStart: string = '';
-    description: string = '';
-    posterUrl: string | null = null;
-    entryFeeGBP: number | null = null;
-    raceTraces: GetRaceTraceViewDto[] = [];
+    hourOfStart: string = '';
+    slots: number | null = null;
+    isRegistrationOpen: boolean = true;
+    details: string = '';
 }

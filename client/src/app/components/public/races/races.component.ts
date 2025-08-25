@@ -6,7 +6,7 @@ import { RaceService } from 'src/app/_services/race.service';
 import { environment } from 'src/app/environments/environment';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
 import { PaginationResult } from 'src/app/models/pagination/pagination-result';
-import { GetRaceViewDto } from 'src/app/models/race/get-race-trace-view-dto';
+import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 
 @Component({
   selector: 'app-races',
