@@ -1,0 +1,22 @@
+#main-container, #select-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#select-container{
+    flex-direction: column;
+}
+.button-container{
+    margin-top: 20px;
+}
+
+.submit-button{
+    margin: 10px;
+}
+
+mat-label{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
