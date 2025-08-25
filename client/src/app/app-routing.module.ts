@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'race-for-the-animal-shelter/form',
+    path: 'run-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,
     canActivate: [authGuard],
   },
