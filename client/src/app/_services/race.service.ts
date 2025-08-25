@@ -48,4 +48,8 @@ export class RaceService {
         })
       );
   }
+
+    remove(id: number) {
+    return this.http.delete(this.apiUrl + `api/race/${id}`);
+  }
 }
