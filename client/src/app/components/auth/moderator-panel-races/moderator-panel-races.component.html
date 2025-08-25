@@ -1,3 +1,34 @@
 <div id="main-container" class="component-container">
-    <p>moderator-panel-races works!</p>
+    <mat-label>Moderator Panel - Races</mat-label>
+    <div id="form-container">
+        <form [formGroup]="searchForm">
+            <mat-form-field>
+                <input matInput
+                  type="text"
+                  placeholder="Search on this page..."
+                  formControlName="searchValue"
+                />
+            </mat-form-field>
+        </form>
+    </div>
+  <div class="search-container">
+    <div id="race-container" *ngFor="let race of paginationResult.results">
+      <div class="race-information">
+        <p>
+          Race ID: <strong>{{ race.id }} </strong>
+        </p>
+        <p>Name: {{ race.name }}</p>
+        <p>Date of start: {{ race.dateOfStart }}</p>
+        <button (click)="openDialog(race)"><mat-icon>delete_forever</mat-icon></button>
+      </div>
+    </div>
+  </div>
+    <mat-paginator
+    [length]="paginationResult.totalCount"
+    [pageSize]="5"
+    [pageSizeOptions]="[100, 200, 500, 1000]"
+    aria-label="Select page"
+    (page)="changePage($event)"
+  >
+  </mat-paginator>
 </div>
