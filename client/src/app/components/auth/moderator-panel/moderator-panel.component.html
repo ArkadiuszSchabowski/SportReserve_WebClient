@@ -1,3 +1,10 @@
 <div id="main-container" class="component-container">
-    <p>moderator-panel works!</p>
+    <div id="select-container">
+        <mat-label>Moderator Panel</mat-label>
+        <div class="button-container">
+            <button mat-raised-button class="submit-button" routerLink="/moderator-panel-users">Users</button>
+            <button mat-raised-button class="submit-button" routerLink="/moderator-panel-races">Races</button>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>

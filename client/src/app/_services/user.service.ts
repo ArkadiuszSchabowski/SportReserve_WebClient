@@ -18,7 +18,7 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUsers() {
-    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/users');
+    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/user');
   }
 
   getUser(id: number) {

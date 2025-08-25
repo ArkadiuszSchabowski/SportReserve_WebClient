@@ -29,6 +29,11 @@ export class RacesComponent implements OnInit {
     this.setUser();
     this.getRaces();
   }
+  createSlug(text: string){
+   var slug = text.toLowerCase() .trim() .replace(/ /g, '-'); 
+   
+   this.goToForm(slug);
+}
 
   changePage(event: PageEvent) {
     console.log('changePage function');

@@ -11,14 +11,16 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { DialogModule } from './modules/dialog/dialog.module';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     BrowserAnimationsModule,
+    DialogModule,
     FormsModule,
     HttpClientModule,
     MaterialModule,

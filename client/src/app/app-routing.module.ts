@@ -18,21 +18,29 @@ import { AnimalShelterRunComponent } from './components/public/races/animal-shel
 import { LondonRunComponent } from './components/public/races/london-run/london-run.component';
 import { ValentineRunComponent } from './components/public/races/valentine-run/valentine-run.component';
 import { ModeratorPanelComponent } from './components/auth/moderator-panel/moderator-panel.component';
+import { ModeratorPanelRacesComponent } from './components/auth/moderator-panel-races/moderator-panel-races.component';
+import { ModeratorPanelUsersComponent } from './components/auth/moderator-panel-users/moderator-panel-users.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'races', component: RacesComponent },
-  { path: 'races/race-for-the-animal-shelter', component: AnimalShelterRunComponent },
+  {
+    path: 'races/race-for-the-animal-shelter',
+    component: AnimalShelterRunComponent,
+  },
   { path: 'races/valentine-race-with-heart', component: ValentineRunComponent },
   { path: 'races/london-half-marathon-race', component: LondonRunComponent },
-    {
+  {
     path: 'moderator-panel',
     component: ModeratorPanelComponent,
     canActivate: [authGuard],
   },
+
+  { path: 'moderator-panel-users', component: ModeratorPanelUsersComponent },
+  { path: 'moderator-panel-races', component: ModeratorPanelRacesComponent },
   {
-    path: 'race-for-the-animal-shelter/form',
+    path: 'run-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,
     canActivate: [authGuard],
   },
