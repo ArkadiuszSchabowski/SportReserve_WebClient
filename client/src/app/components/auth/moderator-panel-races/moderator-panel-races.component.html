@@ -23,9 +23,9 @@
       </div>
     </div>
   </div>
-    <mat-paginator
+    <mat-paginator class="select-white-theme"
     [length]="paginationResult.totalCount"
-    [pageSize]="5"
+    [pageSize]="100"
     [pageSizeOptions]="[100, 200, 500, 1000]"
     aria-label="Select page"
     (page)="changePage($event)"

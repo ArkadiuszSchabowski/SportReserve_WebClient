@@ -77,10 +77,6 @@ mat-form-field {
   fill: gray !important;
 }
 
-::ng-deep .mat-mdc-select-min-line{
-  color: white !important;
-}
-
 ::ng-deep .mat-step-icon.mat-step-icon-selected {
   background-color: rgb(67, 176, 67) !important;
 }
@@ -88,6 +84,11 @@ mat-form-field {
 mat-label {
   color: mat.get-color-from-palette($primary);
 }
+
+.select-white-theme .mat-mdc-select-min-line {
+  color: white !important;
+}
+
 .component-container {
   display: flex;
   flex-direction: row;
@@ -226,6 +227,14 @@ button.password-button {
 .race-browse-button {
   background-color: rgb(230, 150, 2) !important;
 }
+
+::ng-deep .mat-mdc-select-arrow {
+  color: mat.get-color-from-palette($primary) !important;
+}
+::ng-deep .mat-datepicker-toggle-default-icon{
+  color: mat.get-color-from-palette($primary) !important;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .component-container {
     height: calc(100% - 90px);
