@@ -21,6 +21,67 @@ $theme: mat.define-light-theme(
 
 @include mat.all-component-themes($theme);
 
+::ng-deep .carousel-control-next,
+::ng-deep .carousel-control-prev {
+  width: 40px;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  min-width: 460px !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+::ng-deep .mat-mdc-paginator-range-label {
+  margin-right: 28px !important;
+}
+
+::ng-deep .mat-step-icon {
+  background-color: mat.get-color-from-palette($primary) !important;
+  color: white !important;
+  border: 2px solid white !important;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+::ng-deep mat-paginator {
+  color: white !important;
+  background-color: mat.get-color-from-palette($primary) !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+  color: white !important;
+}
+
+::ng-deep mat-form-field {
+  border: 2px solid white !important;
+}
+
+::ng-deep .mat-mdc-paginator-icon {
+  fill: white !important;
+}
+
+::ng-deep .mat-mdc-paginator button[disabled] .mat-mdc-paginator-icon {
+  fill: gray !important;
+}
+
+::ng-deep .mat-step-icon.mat-step-icon-selected {
+  background-color: rgb(67, 176, 67) !important;
+}
+
+::ng-deep .mat-mdc-select-arrow {
+  color: mat.get-color-from-palette($primary) !important;
+}
+::ng-deep .mat-datepicker-toggle-default-icon {
+  color: mat.get-color-from-palette($primary) !important;
+}
+
 mat-card {
   background-color: mat.get-color-from-palette($primary) !important;
 }
@@ -42,47 +103,32 @@ mat-form-field {
   width: 100%;
 }
 
-::ng-deep .mat-step-icon {
-  background-color: mat.get-color-from-palette($primary) !important;
-  color: white !important;
-  border: 2px solid white !important;
-}
-
-::ng-deep .mat-mdc-paginator-container{
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-::ng-deep mat-paginator {
-  color: white !important;
-  background-color: mat.get-color-from-palette($primary) !important;
-}
-
-::ng-deep .mat-mdc-select-arrow {
-  color: white !important;
-}
-
-::ng-deep mat-form-field{
-  border: 2px solid white !important;
-}
-
-::ng-deep .mat-mdc-paginator-icon{
-  fill: white !important;
-}
-
-::ng-deep .mat-mdc-paginator button[disabled] .mat-mdc-paginator-icon {
-  fill: gray !important;
-}
-
-::ng-deep .mat-step-icon.mat-step-icon-selected {
-  background-color: rgb(67, 176, 67) !important;
-}
-
 mat-label {
   color: mat.get-color-from-palette($primary);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  color: white;
+}
+
+button.password-button {
+  background-color: mat.get-color-from-palette($primary) !important;
+  margin-right: 10px;
+  border-radius: 15px;
+}
+
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
 }
 
 .select-white-theme .mat-mdc-select-min-line {
@@ -118,6 +164,7 @@ mat-label {
   height: 25px;
   width: 100%;
 }
+
 .error {
   color: orange;
   font-size: 16px;
@@ -125,32 +172,8 @@ mat-label {
   padding: 0;
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-button {
-  color: white;
-}
-
-input::-ms-reveal,
-input::-ms-clear {
-  display: none;
-}
-
 .mat-step-text-label {
   color: white;
-}
-
-button.password-button {
-  background-color: mat.get-color-from-palette($primary) !important;
-  margin-right: 10px;
-  border-radius: 15px;
 }
 
 .mat-mdc-menu-content {
@@ -165,11 +188,13 @@ button.password-button {
 .subtitle-label {
   color: white;
 }
+
 .title-label {
   font-size: 22px;
   font-weight: 500;
   margin-bottom: 20px;
 }
+
 .subtitle-label {
   font-size: 18px;
   font-weight: 400;
@@ -193,6 +218,7 @@ button.password-button {
 .margin-right-5 {
   margin-right: 5px;
 }
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -228,13 +254,6 @@ button.password-button {
   background-color: rgb(230, 150, 2) !important;
 }
 
-::ng-deep .mat-mdc-select-arrow {
-  color: mat.get-color-from-palette($primary) !important;
-}
-::ng-deep .mat-datepicker-toggle-default-icon{
-  color: mat.get-color-from-palette($primary) !important;
-}
-
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .component-container {
     height: calc(100% - 90px);
@@ -258,7 +277,6 @@ button.password-button {
     display: flex;
     height: 100%;
     width: 55%;
-    background-color: red;
   }
   .right-container {
     display: flex;

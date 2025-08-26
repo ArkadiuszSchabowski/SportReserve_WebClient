@@ -1,3 +1,18 @@
+mat-label{
+  margin-top: 10px;
+  font-size: 20px;
+  color: white;
+}
+
+mat-icon {
+  color: red;
+}
+
+p{
+  margin: 0;
+  padding: 1px;
+}
+
 #main-container {
   display: flex;
   flex-direction: column;
@@ -6,6 +21,7 @@
   color: white;
   min-width: 400px;
 }
+
 #form-container{
   display: flex;
   width: 100%;
@@ -21,6 +37,7 @@
   height: auto;
   border-top: 2px solid white;
 }
+
 .user-information {
   display: flex;
   flex-direction: column;
@@ -43,16 +60,4 @@
 .submit-button {
   margin-top: 10px;
   margin-left: 20px;
-}
-p{
-  margin: 0;
-  padding: 1px;
-}
-mat-label{
-  margin-top: 10px;
-  font-size: 20px;
-  color: white;
-}
-mat-icon {
-  color: red;
 }

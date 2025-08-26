@@ -1,6 +1,33 @@
 @use "@angular/material" as mat;
 @use "src/styles" as theme;
 
+mat-stepper {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card {
+  display: flex;
+  border: none;
+}
+
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+a{
+  color: white;
+}
+
 #register-form,
 #personal-information-form {
   display: flex;
@@ -26,31 +53,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url('/assets/photos/registration/registration.png');
-}
-
-a{
-  color: white;
-}
-
-mat-stepper {
-  display: flex;
-  flex-direction: column;
-}
-
-mat-card {
-  display: flex;
-  border: none;
-}
-mat-card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 400px;
-}
-mat-form-field {
-  display: flex;
-  flex-direction: column;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {

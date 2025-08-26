@@ -1,6 +1,10 @@
 @use "@angular/material" as mat;
 @use "src/styles" as theme;
 
+mat-form-field {
+  margin-top: 10px;
+}
+
 #profile-form {
   display: flex;
   flex-direction: column;
@@ -13,16 +17,14 @@
 #title-label {
   text-align: center;
 }
-mat-form-field {
-  margin-top: 10px;
-}
 
-@media screen and (min-width: 768px) and (max-width: 1199px) {
+@media screen and (min-width: 768px) and (max-width: 1199px) {  
   .model-field {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
+
   .subtitle-label {
     width: 200px;
   }
@@ -34,6 +36,7 @@ mat-form-field {
     flex-direction: row;
     align-items: center;
   }
+  
   .subtitle-label {
     width: 200px;
   }
