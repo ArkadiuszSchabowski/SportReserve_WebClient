@@ -226,6 +226,14 @@ button.password-button {
 .race-browse-button {
   background-color: rgb(230, 150, 2) !important;
 }
+
+::ng-deep .mat-mdc-select-arrow {
+  color: mat.get-color-from-palette($primary) !important;
+}
+::ng-deep .mat-datepicker-toggle-default-icon{
+  color: mat.get-color-from-palette($primary) !important;
+}
+
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   .component-container {
     height: calc(100% - 90px);
