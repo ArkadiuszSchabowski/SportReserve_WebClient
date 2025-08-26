@@ -115,7 +115,7 @@ export class RegisterComponent {
       error: (error) => {
         if (error.status === 409) {
           console.log(error);
-          this.serverError = error.error;
+          this.serverError = error.error.message;
           return;
         }
         this.validationModelErrors = error;
@@ -156,7 +156,7 @@ export class RegisterComponent {
         }
         if (error.status === 400) {
           if (error.error) {
-            this.serverError = error.error;
+            this.serverError = error.error.message;
             return;
           }
         }
