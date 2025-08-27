@@ -1,22 +1,35 @@
 <div id="main-container">
   <div id="profile-form">
+    <form [formGroup]="userForm">
     <label id="title-label" class="title-label">PROFILE INFORMATION</label>
     <div class="model-field">
       <label class="subtitle-label">Email:</label>
       <mat-form-field class="margin-bottom-10">
-        <input id="email" formControlName="email" matInput />
+        <input
+          id="email"
+          formControlName="email"
+          matInput
+        />
       </mat-form-field>
     </div>
     <div class="model-field">
       <label class="subtitle-label">Name:</label>
       <mat-form-field class="margin-bottom-10">
-        <input id="name" formControlName="name" matInput />
+        <input
+          id="name"
+          formControlName="name"
+          matInput
+        />
       </mat-form-field>
     </div>
     <div class="model-field">
       <label class="subtitle-label">Surname:</label>
       <mat-form-field class="margin-bottom-10">
-        <input id="surname" formControlName="surname" matInput />
+        <input
+          id="surname"
+          formControlName="surname"
+          matInput
+        />
       </mat-form-field>
     </div>
     <div class="model-field">
@@ -29,5 +42,16 @@
         />
       </mat-form-field>
     </div>
+    <div class="model-field">
+      <label class="subtitle-label">Gender:</label>
+      <mat-form-field class="margin-bottom-10">
+        <input
+          id="gender"
+          formControlName="gender"
+          matInput
+        />
+      </mat-form-field>
+    </div>
+    </form>
   </div>
 </div>
