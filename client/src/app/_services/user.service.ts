@@ -3,10 +3,10 @@ import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { GetUserDto } from '../models/user/get-user-dto';
 import { Injectable } from '@angular/core';
-import { LoginDto } from '../models/login-dto';
+import { LoginDto } from '../models/auth/login-dto';
 import { map } from 'rxjs';
-import { RegisterDto } from '../models/register-dto';
-import { RegisterStepOneDto } from '../models/user/register-step-one-dto';
+import { RegisterDto } from '../models/auth/register-dto';
+import { RegisterStepOneDto } from '../models/auth/register-step-one-dto';
 import { TokenDto } from '../models/token-dto';
 
 @Injectable({
