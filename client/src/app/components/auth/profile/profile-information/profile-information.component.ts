@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
+import { GetUserDto } from 'src/app/models/user/get-user-dto';
 import { TokenService } from 'src/app/_services/token.service';
 import { UserService } from 'src/app/_services/user.service';
-import { GetUserDto } from 'src/app/models/user/get-user-dto';
 
 @Component({
   selector: 'app-profile-information',
@@ -21,13 +21,15 @@ export class ProfileInformationComponent implements OnInit {
   });
 
   constructor(
+    private fb: FormBuilder,
     private tokenService: TokenService,
-    private userService: UserService,
-    private fb: FormBuilder
+    private userService: UserService
   ) {}
+
   ngOnInit(): void {
     this.getProfileInformation();
   }
+
   getProfileInformation() {
     this.email = this.tokenService.getEmailFromToken();
 

@@ -1,6 +1,6 @@
+import { AuthService } from 'src/app/_services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-london-run',
@@ -10,21 +10,24 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class LondonRunComponent implements OnInit {
   currentUser: string | null = null;
   constructor(private authService: AuthService, private router: Router) {}
+
   ngOnInit(): void {
     this.setUser();
   }
-  setUser() {
-    this.authService.currentUser$.subscribe({
-      next: (response) => {
-        this.currentUser = response;
-      },
-    });
-  }
+  
   goToForm() {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
       this.router.navigateByUrl('london-half-marathon-race/form');
     }
+  }
+
+  setUser() {
+    this.authService.currentUser$.subscribe({
+      next: (response) => {
+        this.currentUser = response;
+      },
+    });
   }
 }

@@ -1,8 +1,7 @@
-import { TestBed } from '@angular/core/testing';
-
-import { UserService } from './user.service';
-import { ToastrService } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ToastrService } from 'ngx-toastr';
+import { TestBed } from '@angular/core/testing';
+import { UserService } from './user.service';
 
 describe('UserService', () => {
   let service: UserService;

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ValentineRunFormComponent } from './valentine-run-form.component';
 
 describe('ValentineRunFormComponent', () => {
@@ -8,7 +7,7 @@ describe('ValentineRunFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ValentineRunFormComponent]
+      declarations: [ValentineRunFormComponent],
     });
     fixture = TestBed.createComponent(ValentineRunFormComponent);
     component = fixture.componentInstance;

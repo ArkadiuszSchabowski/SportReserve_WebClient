@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogRemoveUserComponent } from '../../dialog/dialog-remove-user/dialog-remove-user.component';
 import { FormBuilder } from '@angular/forms';
+import { GetUserDto } from 'src/app/models/user/get-user-dto';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user.service';
-import { GetUserDto } from 'src/app/models/user/get-user-dto';
-import { DialogRemoveUserComponent } from '../../dialog/dialog-remove-user/dialog-remove-user.component';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-moderator-panel-users',
@@ -12,51 +12,22 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./moderator-panel-users.component.scss'],
 })
 export class ModeratorPanelUsersComponent implements OnInit {
-  constructor(
-    private userService: UserService,
-    private fb: FormBuilder,
-    private toastr: ToastrService,
-    public dialog: MatDialog
-  ) {}
-  ngOnInit(): void {
-    this.getUsers();
-    this.filterUsersWhenValueChanges();
-  }
-
-  filterUsersWhenValueChanges() {
-    this.searchForm.get('searchValue')?.valueChanges.subscribe((value) => {
-      this.filterUsers(value);
-    });
-  }
-
   users: GetUserDto[] = [];
   allUsers: GetUserDto[] = [];
-
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
 
-  getUsers() {
-    this.userService.getUsers().subscribe({
-      next: (response) => {
-        this.allUsers = response;
-        this.users = response;
-      },
-      error: (error) => console.log(error),
-    });
-  }
+  constructor(
+    private dialog: MatDialog,
+    private fb: FormBuilder,
+    private toastr: ToastrService,
+    private userService: UserService
+  ) {}
 
-  openDialog(user: GetUserDto) {
-    let dialogRef = this.dialog.open(DialogRemoveUserComponent, {data: user});
-
-    dialogRef.afterClosed().subscribe({
-      next: (response) => {
-        console.log(response);
-        if (response == true) {
-          this.deleteUser(user.id);
-        }
-      },
-    });
+  ngOnInit(): void {
+    this.getUsers();
+    this.filterUsersWhenValueChanges();
   }
 
   deleteUser(id: number) {
@@ -68,6 +39,7 @@ export class ModeratorPanelUsersComponent implements OnInit {
       },
     });
   }
+
   filterUsers(searchText: string | null) {
     if (!searchText) {
       this.users = this.allUsers;
@@ -85,5 +57,34 @@ export class ModeratorPanelUsersComponent implements OnInit {
         user.dateOfBirth.toLowerCase().includes(filteredText) ||
         user.gender.toLowerCase().includes(filteredText)
     );
+  }
+
+  filterUsersWhenValueChanges() {
+    this.searchForm.get('searchValue')?.valueChanges.subscribe((value) => {
+      this.filterUsers(value);
+    });
+  }
+
+  getUsers() {
+    this.userService.getUsers().subscribe({
+      next: (response) => {
+        this.allUsers = response;
+        this.users = response;
+      },
+      error: (error) => console.log(error),
+    });
+  }
+
+  openDialog(user: GetUserDto) {
+    let dialogRef = this.dialog.open(DialogRemoveUserComponent, { data: user });
+
+    dialogRef.afterClosed().subscribe({
+      next: (response) => {
+        console.log(response);
+        if (response == true) {
+          this.deleteUser(user.id);
+        }
+      },
+    });
   }
 }

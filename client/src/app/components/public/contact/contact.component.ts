@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { EmailService } from 'src/app/_services/email.service';
+import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SendEmailToAdminDto } from 'src/app/models/email/send-email-to-admin-dto';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -11,14 +11,7 @@ import { SendEmailToAdminDto } from 'src/app/models/email/send-email-to-admin-dt
   styleUrls: ['./contact.component.scss'],
 })
 export class ContactComponent {
-  constructor(
-    private formBuilder: FormBuilder,
-    private emailService: EmailService,
-    private toastr: ToastrService,
-    private router: Router
-  ) {}
-
-  form = this.formBuilder.group({
+  form = this.fb.group({
     sender: ['', [Validators.required, Validators.email]],
     subject: [
       '',
@@ -33,6 +26,13 @@ export class ContactComponent {
       ],
     ],
   });
+
+  constructor(
+    private fb: FormBuilder,
+    private emailService: EmailService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   sendEmail() {
     if (this.form.invalid) {
@@ -49,7 +49,7 @@ export class ContactComponent {
     this.emailService.sendToAdmin(dto).subscribe({
       next: () => {
         this.toastr.success('Email sent successfully.');
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl('/');
       },
     });
   }

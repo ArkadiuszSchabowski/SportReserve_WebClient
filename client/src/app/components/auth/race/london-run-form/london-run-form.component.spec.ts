@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { LondonRunFormComponent } from './london-run-form.component';
 
 describe('LondonRunFormComponent', () => {
@@ -8,7 +7,7 @@ describe('LondonRunFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [LondonRunFormComponent]
+      declarations: [LondonRunFormComponent],
     });
     fixture = TestBed.createComponent(LondonRunFormComponent);
     component = fixture.componentInstance;

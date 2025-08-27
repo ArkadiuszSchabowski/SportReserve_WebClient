@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user.service';
-import { LoginDto } from 'src/app/models/login-dto';
+import { LoginDto } from 'src/app/models/auth/login-dto';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +11,22 @@ import { LoginDto } from 'src/app/models/login-dto';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-    serverError: string = '';
+  serverError: string = '';
   validationServerErrors: string[] = [];
 
-  form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+  form = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required]],
+    
   });
-
   passwordHiddenSignal = signal(true);
 
-  constructor(private userService: UserService, private toastr: ToastrService, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
 
   changePasswordVisibility(event: MouseEvent) {
     this.passwordHiddenSignal.set(!this.passwordHiddenSignal());
@@ -47,7 +52,7 @@ export class LoginComponent {
         this.router.navigateByUrl('/profile/information');
       },
       error: (error) => {
-        if(error.status !== 0){
+        if (error.status !== 0) {
           this.toastr.error(error.error);
           this.validationServerErrors = error;
         }
@@ -55,7 +60,7 @@ export class LoginComponent {
     });
   }
 
-    get emailError(): string | null {
+  get emailError(): string | null {
     const control = this.form.get('email');
 
     if (control && control.touched && control.errors) {

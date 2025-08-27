@@ -1,8 +1,7 @@
+import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ProfileNavigationComponent } from './profile-navigation.component';
 import { ToastrService } from 'ngx-toastr';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 
 describe('ProfileNavigationComponent', () => {
   let component: ProfileNavigationComponent;
