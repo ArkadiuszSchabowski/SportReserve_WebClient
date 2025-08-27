@@ -1,13 +1,13 @@
-import { formatDate } from '@angular/common';
 import { Component, signal, ViewChild } from '@angular/core';
+import { formatDate } from '@angular/common';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
+import { RegisterDto } from 'src/app/models/register-dto';
+import { RegisterStepOneDto } from 'src/app/models/user/register-step-one-dto';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/_services/user.service';
 import { ValidatorService } from 'src/app/_services/validator.service';
-import { RegisterDto } from 'src/app/models/register-dto';
-import { RegisterStepOneDto } from 'src/app/models/user/register-step-one-dto';
 
 @Component({
   selector: 'app-register',
@@ -21,23 +21,6 @@ export class RegisterComponent {
   passwordHiddenSignal = signal(true);
   repeatPasswordHiddenSignal = signal(true);
   isLinear = true;
-
-  ngOnInit() {
-    this.loginDataForm.get('repeatPassword')?.valueChanges.subscribe(() => {
-      this.serverError = null;
-      this.validationModelErrors = null;
-    });
-  }
-
-  changePasswordVisibility(event: MouseEvent) {
-    this.passwordHiddenSignal.set(!this.passwordHiddenSignal());
-    event.stopPropagation();
-  }
-
-  changeRepeatPasswordVisibility(event: MouseEvent) {
-    this.repeatPasswordHiddenSignal.set(!this.repeatPasswordHiddenSignal());
-    event.stopPropagation();
-  }
 
   genders = [
     { value: 'male', viewValue: 'Male' },
@@ -87,40 +70,27 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private validatorService: ValidatorService,
-    private userService: UserService,
+    private router: Router,
     private toastr: ToastrService,
-    private router: Router
+    private userService: UserService,
+    private validatorService: ValidatorService
   ) {}
 
-  validateRegisterStepOne() {
-    this.validationModelErrors = [];
-    this.serverError = '';
-
-    if (this.loginDataForm.invalid) {
-      this.loginDataForm.markAllAsTouched();
-      return;
-    }
-
-    let credentials: RegisterStepOneDto = {
-      email: this.loginDataForm.get('email')!.value,
-      password: this.loginDataForm.get('password')!.value,
-      repeatPassword: this.loginDataForm.get('repeatPassword')!.value,
-    };
-
-    this.userService.validateRegisterStepOne(credentials).subscribe({
-      next: () => {
-        this.stepper.next();
-      },
-      error: (error) => {
-        if (error.status === 409) {
-          console.log(error);
-          this.serverError = error.error.message;
-          return;
-        }
-        this.validationModelErrors = error;
-      },
+  ngOnInit() {
+    this.loginDataForm.get('repeatPassword')?.valueChanges.subscribe(() => {
+      this.serverError = null;
+      this.validationModelErrors = null;
     });
+  }
+
+  changePasswordVisibility(event: MouseEvent) {
+    this.passwordHiddenSignal.set(!this.passwordHiddenSignal());
+    event.stopPropagation();
+  }
+
+  changeRepeatPasswordVisibility(event: MouseEvent) {
+    this.repeatPasswordHiddenSignal.set(!this.repeatPasswordHiddenSignal());
+    event.stopPropagation();
   }
 
   register() {
@@ -165,11 +135,51 @@ export class RegisterComponent {
     });
   }
 
+  validateRegisterStepOne() {
+    this.validationModelErrors = [];
+    this.serverError = '';
+
+    if (this.loginDataForm.invalid) {
+      this.loginDataForm.markAllAsTouched();
+      return;
+    }
+
+    let credentials: RegisterStepOneDto = {
+      email: this.loginDataForm.get('email')!.value,
+      password: this.loginDataForm.get('password')!.value,
+      repeatPassword: this.loginDataForm.get('repeatPassword')!.value,
+    };
+
+    this.userService.validateRegisterStepOne(credentials).subscribe({
+      next: () => {
+        this.stepper.next();
+      },
+      error: (error) => {
+        if (error.status === 409) {
+          console.log(error);
+          this.serverError = error.error.message;
+          return;
+        }
+        this.validationModelErrors = error;
+      },
+    });
+  }
+
   get dateOfBirth(): string | null {
     const value = this.personalInformationform.get('dateOfBirth')?.value;
     if (!value) return null;
 
     return formatDate(value, 'yyyy-MM-dd', 'en-US');
+  }
+
+  get dateOfBirthError(): string | null {
+    const control = this.personalInformationform.get('dateOfBirth');
+    if (control && control.touched && control.errors) {
+      if (control.errors['required']) {
+        return 'Date of birth is required.';
+      }
+    }
+    return null;
   }
 
   get emailError(): string | null {
@@ -181,6 +191,29 @@ export class RegisterComponent {
       }
       if (control.errors['email']) {
         return 'Invalid email address format.';
+      }
+    }
+    return null;
+  }
+
+  get genderError(): string | null {
+    const control = this.personalInformationform.get('gender');
+    if (control && control.touched && control.errors) {
+      if (control.errors['required']) {
+        return 'You must choose a gender.';
+      }
+    }
+    return null;
+  }
+
+  get nameError(): string | null {
+    const control = this.personalInformationform.get('name');
+    if (control && control.touched && control.errors) {
+      if (control.errors['required']) {
+        return 'User name is required.';
+      }
+      if (control.errors['minlength'] || control.errors['maxlength']) {
+        return 'User name must be between 3 and 25 characters.';
       }
     }
     return null;
@@ -215,19 +248,6 @@ export class RegisterComponent {
     return null;
   }
 
-  get nameError(): string | null {
-    const control = this.personalInformationform.get('name');
-    if (control && control.touched && control.errors) {
-      if (control.errors['required']) {
-        return 'User name is required.';
-      }
-      if (control.errors['minlength'] || control.errors['maxlength']) {
-        return 'User name must be between 3 and 25 characters.';
-      }
-    }
-    return null;
-  }
-
   get surnameError(): string | null {
     const control = this.personalInformationform.get('surname');
     if (control && control.touched && control.errors) {
@@ -236,26 +256,6 @@ export class RegisterComponent {
       }
       if (control.errors['minlength'] || control.errors['maxlength']) {
         return 'User surname must be between 3 and 25 characters.';
-      }
-    }
-    return null;
-  }
-
-  get genderError(): string | null {
-    const control = this.personalInformationform.get('gender');
-    if (control && control.touched && control.errors) {
-      if (control.errors['required']) {
-        return 'You must choose a gender.';
-      }
-    }
-    return null;
-  }
-
-  get dateOfBirthError(): string | null {
-    const control = this.personalInformationform.get('dateOfBirth');
-    if (control && control.touched && control.errors) {
-      if (control.errors['required']) {
-        return 'Date of birth is required.';
       }
     }
     return null;

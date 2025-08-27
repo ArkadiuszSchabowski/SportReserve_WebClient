@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AnimalShelterRunFormComponent } from './animal-shelter-run-form.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('AnimalShelterRunFormComponent', () => {
   let component: AnimalShelterRunFormComponent;

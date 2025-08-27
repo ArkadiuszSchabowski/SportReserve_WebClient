@@ -1,7 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-
-import { RaceService } from './race.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RaceService } from './race.service';
+import { TestBed } from '@angular/core/testing';
 
 describe('RaceService', () => {
   let service: RaceService;

@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AnimalShelterRunComponent } from './animal-shelter-run.component';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 describe('AnimalShelterRunComponent', () => {

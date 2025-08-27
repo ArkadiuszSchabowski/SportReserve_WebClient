@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
-import { RaceService } from 'src/app/_services/race.service';
+import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/app/environments/environment';
+import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
+import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
 import { PaginationResult } from 'src/app/models/pagination/pagination-result';
-import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
+import { RaceService } from 'src/app/_services/race.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-races',
@@ -29,11 +29,6 @@ export class RacesComponent implements OnInit {
     this.setUser();
     this.getRaces();
   }
-  createSlug(text: string){
-   var slug = text.toLowerCase() .trim() .replace(/ /g, '-'); 
-   
-   this.goToForm(slug);
-}
 
   changePage(event: PageEvent) {
     console.log('changePage function');
@@ -50,6 +45,12 @@ export class RacesComponent implements OnInit {
     });
   }
 
+  createSlug(text: string) {
+    var slug = text.toLowerCase().trim().replace(/ /g, '-');
+
+    this.goToForm(slug);
+  }
+
   getRaces() {
     let dto = new PaginationDto();
 
@@ -62,19 +63,19 @@ export class RacesComponent implements OnInit {
     });
   }
 
-  setUser() {
-    this.authService.currentUser$.subscribe({
-      next: (response) => {
-        this.currentUser = response;
-      },
-    });
-  }
-
   goToForm(url: string) {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
       this.router.navigateByUrl(`${url}`);
     }
+  }
+
+  setUser() {
+    this.authService.currentUser$.subscribe({
+      next: (response) => {
+        this.currentUser = response;
+      },
+    });
   }
 }

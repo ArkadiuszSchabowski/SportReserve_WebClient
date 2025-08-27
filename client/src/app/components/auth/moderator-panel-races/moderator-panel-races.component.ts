@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogRemoveRaceComponent } from '../../dialog/dialog-remove-race/dialog-remove-race.component';
 import { FormBuilder } from '@angular/forms';
+import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 import { MatDialog } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
-import { RaceService } from 'src/app/_services/race.service';
+import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
 import { PaginationResult } from 'src/app/models/pagination/pagination-result';
-import { DialogRemoveRaceComponent } from '../../dialog/dialog-remove-race/dialog-remove-race.component';
-import { PageEvent } from '@angular/material/paginator';
-import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
+import { RaceService } from 'src/app/_services/race.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-moderator-panel-races',
@@ -18,16 +18,15 @@ export class ModeratorPanelRacesComponent implements OnInit {
   paginationResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
   allRacesResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
   paginationDto: PaginationDto = new PaginationDto();
-
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
 
   constructor(
-    private raceService: RaceService,
+    private dialog: MatDialog,
     private fb: FormBuilder,
-    private toastr: ToastrService,
-    public dialog: MatDialog
+    private raceService: RaceService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -35,13 +34,28 @@ export class ModeratorPanelRacesComponent implements OnInit {
     this.getRaces();
     this.filterRacesWhenValueChanges();
   }
-  setInitPageSize() {
-    this.paginationDto.pageSize = 100;
+
+  changePage(event: PageEvent) {
+    this.paginationDto.pageNumber = event.pageIndex + 1;
+    this.paginationDto.pageSize = event.pageSize;
+
+    this.raceService.get(this.paginationDto).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.paginationResult.results = response.results;
+        this.paginationResult.totalCount = response.totalCount;
+        this.allRacesResult.results = response.results.slice();
+      },
+      error: (error) => console.log(error),
+    });
   }
 
-  filterRacesWhenValueChanges() {
-    this.searchForm.get('searchValue')?.valueChanges.subscribe((value) => {
-      this.filterRaces(value);
+  deleteRace(id: number) {
+    this.raceService.remove(id).subscribe({
+      next: () => {
+        this.toastr.success(`Race (ID: ${id}) successfully removed.`);
+        this.getRaces();
+      },
     });
   }
 
@@ -61,6 +75,12 @@ export class ModeratorPanelRacesComponent implements OnInit {
         race.name.toString().toLowerCase().includes(filteredText) ||
         race.dateOfStart.toLowerCase().includes(filteredText)
     );
+  }
+
+  filterRacesWhenValueChanges() {
+    this.searchForm.get('searchValue')?.valueChanges.subscribe((value) => {
+      this.filterRaces(value);
+    });
   }
 
   getRaces() {
@@ -88,26 +108,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
     });
   }
 
-  deleteRace(id: number) {
-    this.raceService.remove(id).subscribe({
-      next: () => {
-        this.toastr.success(`Race (ID: ${id}) successfully removed.`);
-        this.getRaces();
-      },
-    });
-  }
-  changePage(event: PageEvent) {
-    this.paginationDto.pageNumber = event.pageIndex + 1;
-    this.paginationDto.pageSize = event.pageSize;
-
-    this.raceService.get(this.paginationDto).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.paginationResult.results = response.results;
-        this.paginationResult.totalCount = response.totalCount;
-        this.allRacesResult.results = response.results.slice();
-      },
-      error: (error) => console.log(error),
-    });
+  setInitPageSize() {
+    this.paginationDto.pageSize = 100;
   }
 }

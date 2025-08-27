@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DialogRemoveRaceComponent } from './dialog-remove-race.component';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MaterialModule } from 'src/app/modules/material/material.module';
 import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 describe('DialogRemoveRaceComponent', () => {
   let component: DialogRemoveRaceComponent;
