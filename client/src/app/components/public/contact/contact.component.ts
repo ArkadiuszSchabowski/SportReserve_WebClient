@@ -12,13 +12,13 @@ import { SendEmailToAdminDto } from 'src/app/models/email/send-email-to-admin-dt
 })
 export class ContactComponent {
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private emailService: EmailService,
     private toastr: ToastrService,
     private router: Router
   ) {}
 
-  form = this.formBuilder.group({
+  form = this.fb.group({
     sender: ['', [Validators.required, Validators.email]],
     subject: [
       '',
@@ -49,7 +49,7 @@ export class ContactComponent {
     this.emailService.sendToAdmin(dto).subscribe({
       next: () => {
         this.toastr.success('Email sent successfully.');
-        this.router.navigateByUrl("/");
+        this.router.navigateByUrl('/');
       },
     });
   }

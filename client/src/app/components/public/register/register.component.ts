@@ -44,7 +44,7 @@ export class RegisterComponent {
     { value: 'female', viewValue: 'Female' },
   ];
 
-  loginDataForm = this.formBuilder.group(
+  loginDataForm = this.fb.group(
     {
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -72,7 +72,7 @@ export class RegisterComponent {
     }
   );
 
-  personalInformationform = this.formBuilder.group({
+  personalInformationform = this.fb.group({
     name: [
       '',
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
@@ -86,7 +86,7 @@ export class RegisterComponent {
   });
 
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private validatorService: ValidatorService,
     private userService: UserService,
     private toastr: ToastrService,
