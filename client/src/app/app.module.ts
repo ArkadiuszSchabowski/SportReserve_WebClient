@@ -25,7 +25,6 @@ import { DialogModule } from './modules/dialog/dialog.module';
     HttpClientModule,
     MaterialModule,
     PublicModule,
-    ReactiveFormsModule,
     ToastrModule.forRoot(),
   ],
   providers: [
