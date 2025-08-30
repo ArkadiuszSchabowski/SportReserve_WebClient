@@ -1,16 +1,23 @@
 <div id="main-container" class="component-container">
   <mat-label>Moderator Panel - Races</mat-label>
-  <div id="form-container">
-    <form [formGroup]="searchForm">
-      <mat-form-field>
-        <input
-          matInput
-          type="text"
-          placeholder="Search on this page..."
-          formControlName="searchValue"
-        />
-      </mat-form-field>
-    </form>
+  <div id="add-search-container">
+    <div id="search-container">
+      <form [formGroup]="searchForm">
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            placeholder="Search on this page..."
+            formControlName="searchValue"
+          />
+        </mat-form-field>
+      </form>
+    </div>
+    <div id="add-container">
+      <button id="button-add-race" class="button-green" (click)="openDialogAdd()">
+        <mat-icon class="green">add</mat-icon>
+      </button>
+    </div>
   </div>
   <div class="race-container" *ngFor="let race of paginationResult.results">
     <div class="race-information-item">

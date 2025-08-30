@@ -1,20 +1,18 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DialogUpdateRaceComponent } from './dialog-update-race.component';
-import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
+import { DialogAddRaceComponent } from './dialog-add-race.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MaterialModule } from 'src/app/modules/material/material.module';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { MaterialModule } from 'src/app/modules/material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-describe('DialogUpdateRaceComponent', () => {
-  let component: DialogUpdateRaceComponent;
-  let fixture: ComponentFixture<DialogUpdateRaceComponent>;
-  const data: GetRaceViewDto = new GetRaceViewDto();
+describe('DialogAddRaceComponent', () => {
+  let component: DialogAddRaceComponent;
+  let fixture: ComponentFixture<DialogAddRaceComponent>;
   let toastrService: ToastrService;
 
-  class MockToastrService{}
+  class MockToastrService {}
 
   const mockDialogRef = {
     close: jasmine.createSpy('close'),
@@ -22,15 +20,14 @@ describe('DialogUpdateRaceComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DialogUpdateRaceComponent],
+      declarations: [DialogAddRaceComponent],
       imports: [BrowserAnimationsModule, HttpClientTestingModule, MaterialModule, ReactiveFormsModule],
       providers: [
-        { provide: MAT_DIALOG_DATA, useValue: data },
         { provide: MatDialogRef, useValue: mockDialogRef },
-        {provide: ToastrService, useClass: MockToastrService}
+        { provide: ToastrService, useClass: MockToastrService },
       ],
     });
-    fixture = TestBed.createComponent(DialogUpdateRaceComponent);
+    fixture = TestBed.createComponent(DialogAddRaceComponent);
     component = fixture.componentInstance;
     toastrService = TestBed.inject(ToastrService);
     fixture.detectChanges();

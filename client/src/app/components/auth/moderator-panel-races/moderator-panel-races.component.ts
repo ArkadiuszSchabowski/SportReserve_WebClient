@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DialogRemoveRaceComponent } from '../../dialog/dialog-remove-race/dialog-remove-race.component';
 import { FormBuilder } from '@angular/forms';
-import { GetRaceViewDto } from 'src/app/models/race/get-race-view-dto';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
@@ -11,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DialogUpdateRaceComponent } from '../../dialog/dialog-update-race/dialog-update-race.component';
 import { environment } from 'src/app/environments/environment';
 import { GetRaceDto } from 'src/app/models/race/get-race-dto';
+import { DialogAddRaceComponent } from '../../dialog/dialog-add-race/dialog-add-race.component';
 
 @Component({
   selector: 'app-moderator-panel-races',
@@ -45,7 +45,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
 
     this.raceService.get(this.paginationDto).subscribe({
       next: (response) => {
-        console.log(response);
         this.paginationResult.results = response.results;
         this.paginationResult.totalCount = response.totalCount;
         this.allRacesResult.results = response.results.slice();
@@ -71,8 +70,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
 
     const filteredText = searchText.toLowerCase().trim();
 
-    console.log(this.allRacesResult.results);
-
     this.paginationResult.results = this.allRacesResult.results.filter(
       (race) =>
         race.id.toString().includes(filteredText) ||
@@ -97,6 +94,22 @@ export class ModeratorPanelRacesComponent implements OnInit {
       },
       error: (error) => console.log(error),
     });
+  }
+  openDialogAdd() {
+    let dialogRef = this.dialog.open(DialogAddRaceComponent);
+
+    dialogRef.afterClosed().subscribe({
+      next: () => {},
+    }),
+      this.raceService.get(this.paginationDto).subscribe({
+        next: (response) => {
+          this.paginationResult = response;
+
+          this.allRacesResult.results = response.results.slice();
+          this.allRacesResult.totalCount = response.totalCount;
+        },
+        error: (error) => console.log(error),
+      });
   }
 
   openDialogRemove(race: GetRaceDto) {
