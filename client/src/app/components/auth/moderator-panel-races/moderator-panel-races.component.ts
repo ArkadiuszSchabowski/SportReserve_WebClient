@@ -8,6 +8,9 @@ import { PaginationDto } from 'src/app/models/pagination/pagination-dto';
 import { PaginationResult } from 'src/app/models/pagination/pagination-result';
 import { RaceService } from 'src/app/_services/race.service';
 import { ToastrService } from 'ngx-toastr';
+import { DialogUpdateRaceComponent } from '../../dialog/dialog-update-race/dialog-update-race.component';
+import { environment } from 'src/app/environments/environment';
+import { GetRaceDto } from 'src/app/models/race/get-race-dto';
 
 @Component({
   selector: 'app-moderator-panel-races',
@@ -15,9 +18,10 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./moderator-panel-races.component.scss'],
 })
 export class ModeratorPanelRacesComponent implements OnInit {
-  paginationResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
-  allRacesResult: PaginationResult<GetRaceViewDto> = new PaginationResult();
+  paginationResult: PaginationResult<GetRaceDto> = new PaginationResult();
+  allRacesResult: PaginationResult<GetRaceDto> = new PaginationResult();
   paginationDto: PaginationDto = new PaginationDto();
+  raceUrl = environment.raceUrl;
   searchForm = this.fb.nonNullable.group({
     searchValue: '',
   });
@@ -95,15 +99,32 @@ export class ModeratorPanelRacesComponent implements OnInit {
     });
   }
 
-  openDialog(race: GetRaceViewDto) {
+  openDialogRemove(race: GetRaceDto) {
     let dialogRef = this.dialog.open(DialogRemoveRaceComponent, { data: race });
 
     dialogRef.afterClosed().subscribe({
       next: (response) => {
-        console.log(response);
         if (response == true) {
           this.deleteRace(race.id);
         }
+      },
+    });
+  }
+
+  openDialogUpdate(race: GetRaceDto) {
+    let dialogRef = this.dialog.open(DialogUpdateRaceComponent, { data: race });
+
+    dialogRef.afterClosed().subscribe({
+      next: () => {
+        this.raceService.get(this.paginationDto).subscribe({
+          next: (response) => {
+            this.paginationResult = response;
+
+            this.allRacesResult.results = response.results.slice();
+            this.allRacesResult.totalCount = response.totalCount;
+          },
+          error: (error) => console.log(error),
+        });
       },
     });
   }

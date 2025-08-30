@@ -1,0 +1,76 @@
+<div id="main-container">
+  <div id="dialog-container">
+    <form [formGroup]="updateForm" (ngSubmit)="updateRace()">
+      <mat-dialog-content>Do you want to update this race?</mat-dialog-content>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Name:</mat-label>
+          <input id="name" formControlName="name" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="nameError">
+            {{ nameError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Date of start (yyyy-MM-dd):</mat-label>
+          <input id="dateOfStart" formControlName="dateOfStart" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="dateOfStartError">
+            {{ dateOfStartError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Entry fee:</mat-label>
+          <input id="entryFeeGBP" formControlName="entryFeeGBP" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="entryFeeError">
+            {{ entryFeeError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Poster url:</mat-label>
+          <input id="posterUrl" formControlName="posterUrl" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="posterUrlError">
+            {{ posterUrlError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Description:</mat-label>
+          <input id="description" formControlName="description" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="descriptionError">
+            {{ descriptionError }}
+          </div>
+        </div>
+      </div>
+      <div id="button-container">
+        <mat-dialog-actions>
+          <button mat-raised-button class="submit-button" type="submit">
+            Submit
+          </button>
+          <button
+            mat-raised-button
+            class="submit-button"
+            [mat-dialog-close]="false"
+          >
+            Cancel
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>
+</div>

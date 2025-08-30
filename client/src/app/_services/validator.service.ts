@@ -40,4 +40,36 @@ export class ValidatorService {
       }
     };
   }
+  raceStartDateValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const startDate = new Date(control.value);
+      const today = new Date();
+      const maxDate = new Date('2035-01-01');
+
+      today.setHours(0, 0, 0, 0);
+
+      if (startDate < today) {
+        return {
+          pastDate: true,
+          message: 'Race start date cannot be in the past.',
+        };
+      }
+      if (startDate > maxDate) {
+        return {
+          futureDate: true,
+          message: `Race start date is after the allowed maximum date of 2035-01-01.`,
+        };
+      }
+      return null;
+    };
+  }
+  isDate(control: AbstractControl): ValidationErrors | null {
+    if (control.value) {
+      const date = new Date(control.value);
+      if (isNaN(date.getTime())) {
+        return { invalidDate: true, message: 'Invalid date format.' };
+      }
+    }
+    return null;
+  }
 }

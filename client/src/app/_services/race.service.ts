@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { PaginationDto } from '../models/pagination/pagination-dto';
 import { PaginationResult } from '../models/pagination/pagination-result';
 import { map, Observable } from 'rxjs';
+import { AddRaceDto } from '../models/race/add-race-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,19 @@ export class RaceService {
   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+  get(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
+    let params = new HttpParams()
+      .set('PageNumber', dto.pageNumber.toString())
+      .set('PageSize', dto.pageSize.toString());
+    return this.http.get<PaginationResult<GetRaceDto>>(
+      this.apiUrl + 'api/race',
+      { params }
+    );
+  }
 
-  get(dto: PaginationDto): Observable<PaginationResult<GetRaceViewDto>> {
+  getRaceView(
+    dto: PaginationDto
+  ): Observable<PaginationResult<GetRaceViewDto>> {
     let params = new HttpParams()
       .set('PageNumber', dto.pageNumber.toString())
       .set('PageSize', dto.pageSize.toString());
@@ -51,5 +63,9 @@ export class RaceService {
 
   remove(id: number) {
     return this.http.delete(this.apiUrl + `api/race/${id}`);
+  }
+
+  update(id: number, dto: AddRaceDto){
+    return this.http.put(this.apiUrl + `api/race/${id}`, dto);
   }
 }

@@ -5,10 +5,9 @@ mat-dialog-content {
   font-size: 20px !important;
   color: white !important;
 }
-
-p {
-  margin: 0;
-  padding: 0;
+mat-form-field{
+  width: 480px !important;
+  margin-top: 10px;
 }
 
 #main-container {
@@ -16,12 +15,13 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 400px;
-  height: 350px;
+  text-align: center;
+  width: 650px;
+  min-width: 650px;
+  height: 90%;
   color: white;
   background-color: mat.get-color-from-palette(theme.$primary);
   border: 2px solid white;
-  padding: 10px;
 }
 
 #button-container,
@@ -41,5 +41,5 @@ p {
 .submit-button {
   width: 100px;
   height: 40px;
-  margin: 20px;
+  margin: 5px 10px;
 }
