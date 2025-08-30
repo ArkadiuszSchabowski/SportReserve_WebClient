@@ -1,62 +1,72 @@
-mat-label{
-  margin-top: 10px;
-  font-size: 20px;
-  color: white;
-}
+@use "@angular/material" as mat;
+@use "src/styles" as theme;
 
-mat-icon {
+mat-icon.red {
   color: red;
 }
-
-p{
-  margin: 0;
-  padding: 1px;
+mat-icon.primary{
+  color: mat.get-color-from-palette(theme.$primary);
 }
 
-#main-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  color: white;
-  min-width: 400px;
-}
-
-#form-container{
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
+#main-container,
 #race-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 400px;
   height: auto;
-  border-top: 2px solid white;
+  color: white;
 }
-.race-information {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px 0;
-  padding-bottom: 30px;
-  font-size: 16px;
-  border-bottom: 2px solid white;
+#race-container {
+  margin-top: 10px;
 }
 
-.search-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  align-items: center;
+#main-container {
   padding: 20px;
 }
+#form-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+.poster-container{
+  display: flex;
+  justify-content: center;
+}
+.poster {
+  display: flex;
+  width: 400px;
+  height: 400px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 10px 0;
+}
+.button-icon-container {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+.left-icon-button {
+  margin-right: 10px;
+}
 
-.submit-button {
-  margin-top: 10px;
-  margin-left: 20px;
+.race-information-item {
+  display: flex;
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  form {
+    width: 400px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  form {
+    width: 400px;
+  }
 }

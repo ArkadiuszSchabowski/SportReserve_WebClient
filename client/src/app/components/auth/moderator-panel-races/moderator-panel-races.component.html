@@ -1,29 +1,41 @@
 <div id="main-container" class="component-container">
-    <mat-label>Moderator Panel - Races</mat-label>
-    <div id="form-container">
-        <form [formGroup]="searchForm">
-            <mat-form-field>
-                <input matInput
-                  type="text"
-                  placeholder="Search on this page..."
-                  formControlName="searchValue"
-                />
-            </mat-form-field>
-        </form>
+  <mat-label>Moderator Panel - Races</mat-label>
+  <div id="form-container">
+    <form [formGroup]="searchForm">
+      <mat-form-field>
+        <input
+          matInput
+          type="text"
+          placeholder="Search on this page..."
+          formControlName="searchValue"
+        />
+      </mat-form-field>
+    </form>
+  </div>
+  <div class="race-container" *ngFor="let race of paginationResult.results">
+    <div class="race-information-item">
+      Race ID: <strong>{{ race.id }} </strong>
     </div>
-  <div class="search-container">
-    <div id="race-container" *ngFor="let race of paginationResult.results">
-      <div class="race-information">
-        <p>
-          Race ID: <strong>{{ race.id }} </strong>
-        </p>
-        <p>Name: {{ race.name }}</p>
-        <p>Date of start: {{ race.dateOfStart }}</p>
-        <button (click)="openDialog(race)"><mat-icon>delete_forever</mat-icon></button>
-      </div>
+    <div class="race-information-item">Name: {{ race.name }}</div>
+    <div class="race-information-item">
+      Date of start: {{ race.dateOfStart }}
+    </div>
+    <div class="race-information-item">Description: {{ race.description }}</div>
+    <div class="race-information-item">entryFee: {{ race.entryFeeGBP }}</div>
+    <div class="poster-container">
+      <img class="poster" [src]="raceUrl + race.posterUrl" />
+    </div>
+    <div class="button-icon-container">
+      <button class="left-icon-button" (click)="openDialogUpdate(race)">
+        <mat-icon class="primary">edit</mat-icon>
+      </button>
+      <button (click)="openDialogRemove(race)">
+        <mat-icon class="red">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
-    <mat-paginator class="select-white-theme"
+  <mat-paginator
+    class="select-white-theme"
     [length]="paginationResult.totalCount"
     [pageSize]="100"
     [pageSizeOptions]="[100, 200, 500, 1000]"
