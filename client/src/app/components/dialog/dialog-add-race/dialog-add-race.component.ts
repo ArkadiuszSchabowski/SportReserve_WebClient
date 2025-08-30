@@ -1,10 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { RaceService } from 'src/app/_services/race.service';
 import { ValidatorService } from 'src/app/_services/validator.service';
 import { AddRaceDto } from 'src/app/models/race/add-race-dto';
-import { DialogUpdateRaceComponent } from '../dialog-update-race/dialog-update-race.component';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,7 +17,7 @@ export class DialogAddRaceComponent {
     constructor(
       private fb: FormBuilder,
       private raceService: RaceService,
-      private dialogRef: MatDialogRef<DialogUpdateRaceComponent>,
+      private dialogRef: MatDialogRef<DialogAddRaceComponent>,
       private validatorService: ValidatorService,
       private toastr: ToastrService
     ) {
