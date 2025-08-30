@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { RaceService } from 'src/app/_services/race.service';
 import { ValidatorService } from 'src/app/_services/validator.service';
 import { AddRaceDto } from 'src/app/models/race/add-race-dto';
@@ -19,6 +20,7 @@ export class DialogUpdateRaceComponent implements OnInit {
     private fb: FormBuilder,
     private raceService: RaceService,
     private dialogRef: MatDialogRef<DialogUpdateRaceComponent>,
+    private toastr: ToastrService,
     private validatorService: ValidatorService
   ) {
     this.updateForm = this.fb.group({
@@ -75,7 +77,8 @@ export class DialogUpdateRaceComponent implements OnInit {
     };
 
     this.raceService.update(this.data.id, dto).subscribe({
-      next: () => {
+      next: () => {     
+        this.toastr.success(`Race successfully updated.`);
         this.dialogRef.close(false);
       },
       error: (error) => console.log(error),
