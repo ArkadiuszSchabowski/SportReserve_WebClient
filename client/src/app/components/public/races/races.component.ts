@@ -36,7 +36,7 @@ export class RacesComponent implements OnInit {
     this.paginationDto.pageNumber = event.pageIndex + 1;
     this.paginationDto.pageSize = event.pageSize;
 
-    this.raceService.get(this.paginationDto).subscribe({
+    this.raceService.getRaceView(this.paginationDto).subscribe({
       next: (response) => {
         this.paginationResult.results = response.results;
         this.paginationResult.totalCount = response.totalCount;
@@ -54,7 +54,7 @@ export class RacesComponent implements OnInit {
   getRaces() {
     let dto = new PaginationDto();
 
-    this.raceService.get(dto).subscribe({
+    this.raceService.getRaceView(dto).subscribe({
       next: (response) => {
         console.log(response);
         this.paginationResult = response;
