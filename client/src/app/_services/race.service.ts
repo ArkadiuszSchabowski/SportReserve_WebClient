@@ -15,6 +15,11 @@ export class RaceService {
   apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
+
+  add(dto: AddRaceDto){
+    return this.http.post(this.apiUrl + 'api/race', dto)
+  }
+
   get(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
     let params = new HttpParams()
       .set('PageNumber', dto.pageNumber.toString())
