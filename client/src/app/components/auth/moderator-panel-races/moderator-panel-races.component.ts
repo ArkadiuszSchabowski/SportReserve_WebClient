@@ -11,6 +11,7 @@ import { DialogUpdateRaceComponent } from '../../dialog/dialog-update-race/dialo
 import { environment } from 'src/app/environments/environment';
 import { GetRaceDto } from 'src/app/models/race/get-race-dto';
 import { DialogAddRaceComponent } from '../../dialog/dialog-add-race/dialog-add-race.component';
+import { DialogAddRaceTraceComponent } from '../../dialog/dialog-add-race-trace/dialog-add-race-trace.component';
 
 @Component({
   selector: 'app-moderator-panel-races',
@@ -95,7 +96,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
       error: (error) => console.log(error),
     });
   }
-  openDialogAdd() {
+  openDialogAddRace() {
     let dialogRef = this.dialog.open(DialogAddRaceComponent);
 
     dialogRef.afterClosed().subscribe({
@@ -110,6 +111,26 @@ export class ModeratorPanelRacesComponent implements OnInit {
         },
         error: (error) => console.log(error),
       });
+  }
+
+  openDialogAddRaceTrace(race: GetRaceDto) {
+    let dialogRef = this.dialog.open(DialogAddRaceTraceComponent, {
+      data: race,
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: () => {
+        this.raceService.get(this.paginationDto).subscribe({
+          next: (response) => {
+            this.paginationResult = response;
+
+            this.allRacesResult.results = response.results.slice();
+            this.allRacesResult.totalCount = response.totalCount;
+          },
+        });
+      },
+      error: (error) => console.log(error),
+    });
   }
 
   openDialogRemove(race: GetRaceDto) {
