@@ -72,4 +72,16 @@ export class ValidatorService {
     }
     return null;
   }
+isTime(control: AbstractControl): ValidationErrors | null {
+  if (control.value) {
+    const timeRegex = /^(?:2[0-3]|[01]?[0-9]):[0-5]?[0-9]:[0-5]?[0-9]$/;
+    if (!timeRegex.test(control.value)) {
+      return {
+        invalidTime: true,
+        message: 'Invalid time format. Expected format is HH:mm:ss.',
+      };
+    }
+  }
+  return null;
+}
 }

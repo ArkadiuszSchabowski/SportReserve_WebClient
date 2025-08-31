@@ -14,31 +14,52 @@
       </form>
     </div>
     <div id="add-container">
-      <button id="button-add-race" class="button-green" (click)="openDialogAdd()">
+      <button
+        id="button-add-race"
+        class="button-green"
+        (click)="openDialogAddRace()"
+      >
         <mat-icon class="green">add</mat-icon>
       </button>
     </div>
   </div>
-  <div class="race-container" *ngFor="let race of paginationResult.results">
-    <div class="race-information-item">
-      Race ID: <strong>{{ race.id }} </strong>
+  <div
+    class="race-container margin-top-20"
+    *ngFor="let race of paginationResult.results"
+  >
+    <div>
+      Race ID: <strong>{{ race.id }}</strong>
     </div>
-    <div class="race-information-item">Name: {{ race.name }}</div>
-    <div class="race-information-item">
-      Date of start: {{ race.dateOfStart }}
-    </div>
-    <div class="race-information-item">Description: {{ race.description }}</div>
-    <div class="race-information-item">entryFee: {{ race.entryFeeGBP }}</div>
+    <div>Name: {{ race.name }}</div>
+    <div>Date of start: {{ race.dateOfStart }}</div>
+    <div>Description: {{ race.description }}</div>
+    <div *ngIf="race.entryFeeGBP">Entry fee: {{ race.entryFeeGBP }}</div>
+    <div *ngIf="!race.entryFeeGBP">Entry fee: Free</div>
     <div class="poster-container">
       <img class="poster" [src]="raceUrl + race.posterUrl" />
     </div>
     <div class="button-icon-container">
+      <button class="left-icon-button" (click)="openDialogAddRaceTrace(race)">
+        <mat-icon class="green">note_add</mat-icon>
+      </button>
       <button class="left-icon-button" (click)="openDialogUpdate(race)">
         <mat-icon class="primary">edit</mat-icon>
       </button>
       <button (click)="openDialogRemove(race)">
         <mat-icon class="red">delete_forever</mat-icon>
       </button>
+    </div>
+    <div class="race-trace-container" *ngFor="let trace of race.raceTraces">
+      <div>
+        Trace ID: <strong>{{ trace.id }}</strong>
+      </div>
+      <div>Location: {{ trace.location }}</div>
+      <div>Distance: {{ trace.distanceKm }} km</div>
+      <div>Hour of start: {{ trace.hourOfStart }}</div>
+      <div *ngIf="trace.slots">Slots: {{ trace.slots }}</div>
+      <div *ngIf="!trace.slots">Slots: No limit</div>
+      <div *ngIf="trace.isRegistrationOpen === true">Registration: Open</div>
+      <div *ngIf="trace.isRegistrationOpen === false">Registration: Close</div>
     </div>
   </div>
   <mat-paginator

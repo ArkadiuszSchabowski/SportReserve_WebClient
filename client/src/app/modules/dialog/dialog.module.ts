@@ -6,6 +6,7 @@ import { DialogRemoveRaceComponent } from 'src/app/components/dialog/dialog-remo
 import { DialogUpdateRaceComponent } from 'src/app/components/dialog/dialog-update-race/dialog-update-race.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogAddRaceComponent } from 'src/app/components/dialog/dialog-add-race/dialog-add-race.component';
+import { DialogAddRaceTraceComponent } from 'src/app/components/dialog/dialog-add-race-trace/dialog-add-race-trace.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { DialogAddRaceComponent } from 'src/app/components/dialog/dialog-add-rac
     DialogRemoveUserComponent,
     DialogRemoveRaceComponent,
     DialogUpdateRaceComponent,
+    DialogAddRaceTraceComponent
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule],
   exports: [
@@ -20,6 +22,7 @@ import { DialogAddRaceComponent } from 'src/app/components/dialog/dialog-add-rac
     DialogRemoveUserComponent,
     DialogRemoveRaceComponent,
     DialogUpdateRaceComponent,
+    DialogAddRaceTraceComponent
   ],
 })
 export class DialogModule {}
