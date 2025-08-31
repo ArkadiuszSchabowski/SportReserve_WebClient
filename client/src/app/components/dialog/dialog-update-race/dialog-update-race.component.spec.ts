@@ -16,9 +16,7 @@ describe('DialogUpdateRaceComponent', () => {
 
   class MockToastrService{}
 
-  const mockDialogRef = {
-    close: jasmine.createSpy('close'),
-  };
+  const mockDialogRef = {};
 
   beforeEach(() => {
     TestBed.configureTestingModule({

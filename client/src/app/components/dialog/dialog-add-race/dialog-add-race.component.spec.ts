@@ -11,12 +11,8 @@ describe('DialogAddRaceComponent', () => {
   let component: DialogAddRaceComponent;
   let fixture: ComponentFixture<DialogAddRaceComponent>;
   let toastrService: ToastrService;
-
+  const mockDialogRef = {};
   class MockToastrService {}
-
-  const mockDialogRef = {
-    close: jasmine.createSpy('close'),
-  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
