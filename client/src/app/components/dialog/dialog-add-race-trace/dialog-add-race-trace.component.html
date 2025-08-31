@@ -1,0 +1,91 @@
+<div id="main-container">
+  <div id="dialog-container">
+    <form [formGroup]="form" (ngSubmit)="addRaceTrace()">
+      <mat-dialog-content>Do you want to add the trace?</mat-dialog-content>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Location:</mat-label>
+          <input id="location" formControlName="location" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="locationError">
+            {{ locationError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Hour of start (HH:mm:ss):</mat-label>
+          <input id="hourOfStart" formControlName="hourOfStart" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="hourOfStartError">
+            {{ hourOfStartError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Distance km:</mat-label>
+          <input
+            type="number"
+            id="distanceKm"
+            formControlName="distanceKm"
+            matInput
+          />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="distanceKmError">
+            {{ distanceKmError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Slots:</mat-label>
+          <input type="number" id="slots" formControlName="slots" matInput />
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="slotsError">
+            {{ slotsError }}
+          </div>
+        </div>
+      </div>
+      <div class="model-field">
+        <mat-form-field class="margin-bottom-10">
+          <mat-label>Registration:</mat-label>
+          <mat-select
+            id="isRegistrationOpen"
+            formControlName="isRegistrationOpen"
+          >
+            <mat-option
+              *ngFor="let option of registrationOption"
+              [value]="option.value"
+            >
+              {{ option.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="error-container">
+          <div class="error" *ngIf="registrationError">
+            {{ registrationError }}
+          </div>
+        </div>
+      </div>
+      <div id="button-container">
+        <mat-dialog-actions>
+          <button mat-raised-button class="submit-button" type="submit">
+            Submit
+          </button>
+          <button
+            mat-raised-button
+            class="submit-button"
+            [mat-dialog-close]="false"
+          >
+            Cancel
+          </button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>
+</div>
