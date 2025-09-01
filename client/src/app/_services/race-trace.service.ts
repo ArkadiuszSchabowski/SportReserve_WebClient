@@ -14,4 +14,7 @@ export class RaceTraceService {
   add(dto: AddRaceTraceDto){
     return this.http.post(this.apiUrl + 'api/racetrace', dto)
   }
+    remove(id: number) {
+    return this.http.delete(this.apiUrl + `api/racetrace/${id}`);
+  }
 }

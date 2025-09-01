@@ -12,6 +12,9 @@ import { environment } from 'src/app/environments/environment';
 import { GetRaceDto } from 'src/app/models/race/get-race-dto';
 import { DialogAddRaceComponent } from '../../dialog/dialog-add-race/dialog-add-race.component';
 import { DialogAddRaceTraceComponent } from '../../dialog/dialog-add-race-trace/dialog-add-race-trace.component';
+import { GetRaceTraceDto } from 'src/app/models/race/get-race-trace-dto';
+import { RaceTraceService } from 'src/app/_services/race-trace.service';
+import { DialogRemoveRaceTraceComponent } from '../../dialog/dialog-remove-race-trace/dialog-remove-race-trace.component';
 
 @Component({
   selector: 'app-moderator-panel-races',
@@ -31,6 +34,7 @@ export class ModeratorPanelRacesComponent implements OnInit {
     private dialog: MatDialog,
     private fb: FormBuilder,
     private raceService: RaceService,
+    private raceTraceService: RaceTraceService,
     private toastr: ToastrService
   ) {}
 
@@ -58,6 +62,15 @@ export class ModeratorPanelRacesComponent implements OnInit {
     this.raceService.remove(id).subscribe({
       next: () => {
         this.toastr.success(`Race (ID: ${id}) successfully removed.`);
+        this.getRaces();
+      },
+    });
+  }
+
+    deleteTrace(id: number) {
+    this.raceTraceService.remove(id).subscribe({
+      next: () => {
+        this.toastr.success(`Trace (ID: ${id}) successfully removed.`);
         this.getRaces();
       },
     });
@@ -140,6 +153,18 @@ export class ModeratorPanelRacesComponent implements OnInit {
       next: (response) => {
         if (response == true) {
           this.deleteRace(race.id);
+        }
+      },
+    });
+  }
+
+    openDialogRemoveRaceTrace(trace: GetRaceTraceDto) {
+    let dialogRef = this.dialog.open(DialogRemoveRaceTraceComponent, { data: trace });
+
+    dialogRef.afterClosed().subscribe({
+      next: (response) => {
+        if (response == true) {
+          this.deleteTrace(trace.id);
         }
       },
     });
