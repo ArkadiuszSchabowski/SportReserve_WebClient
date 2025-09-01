@@ -39,13 +39,13 @@
       <img class="poster" [src]="raceUrl + race.posterUrl" />
     </div>
     <div class="button-icon-container">
-      <button class="left-icon-button" (click)="openDialogAddRaceTrace(race)">
+      <button class="button-icon left-icon-button" (click)="openDialogAddRaceTrace(race)">
         <mat-icon class="green">note_add</mat-icon>
       </button>
-      <button class="left-icon-button" (click)="openDialogUpdate(race)">
+      <button class="button-icon left-icon-button" (click)="openDialogUpdate(race)">
         <mat-icon class="primary">edit</mat-icon>
       </button>
-      <button (click)="openDialogRemove(race)">
+      <button class="button-icon" (click)="openDialogRemove(race)">
         <mat-icon class="red">delete_forever</mat-icon>
       </button>
     </div>
@@ -60,6 +60,9 @@
       <div *ngIf="!trace.slots">Slots: No limit</div>
       <div *ngIf="trace.isRegistrationOpen === true">Registration: Open</div>
       <div *ngIf="trace.isRegistrationOpen === false">Registration: Close</div>
+      <button class="button-icon" (click)="openDialogRemoveRaceTrace(trace)">
+        <mat-icon class="red">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
   <mat-paginator
