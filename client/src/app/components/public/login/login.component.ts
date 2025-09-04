@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/_services/auth.service';
 import { UserService } from 'src/app/_services/user.service';
 import { LoginDto } from 'src/app/models/auth/login-dto';
 
@@ -22,6 +23,7 @@ export class LoginComponent {
   passwordHiddenSignal = signal(true);
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private userService: UserService,
     private toastr: ToastrService,
@@ -48,6 +50,7 @@ export class LoginComponent {
 
     this.userService.login(credentials).subscribe({
       next: () => {
+        this.authService.setRole();
         this.toastr.success('Logged in successfully.');
         this.router.navigateByUrl('/profile/information');
       },
