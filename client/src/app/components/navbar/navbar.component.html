@@ -38,11 +38,14 @@
       >
         Profile
       </button>
-            <button
+      <button
         class="navbar-mobile-button"
         mat-menu-item
         routerLink="/moderator-panel"
-        *ngIf="authService.currentUserSource | async"
+        *ngIf="
+          (authService.currentUserSource | async) &&
+          (role === 'moderator' || role === 'admin')
+        "
       >
         Moderator Panel
       </button>
@@ -52,7 +55,12 @@
     </mat-menu>
   </div>
   <div id="navbar-container-web">
-    <button class="navbar-web-button navbar-web-left-edge-button" routerLink="/">Home</button>
+    <button
+      class="navbar-web-button navbar-web-left-edge-button"
+      routerLink="/"
+    >
+      Home
+    </button>
     <button
       class="navbar-web-button"
       routerLink="/login"
@@ -78,7 +86,11 @@
     <button
       class="navbar-web-button"
       routerLink="/moderator-panel"
-      *ngIf="authService.currentUserSource | async"
+      *ngIf="
+        (authService.currentUserSource | async) &&
+        ((authService.currentRoleSource | async) === 'moderator' ||
+          (authService.currentRoleSource | async) === 'admin')
+      "
     >
       Moderator Panel
     </button>
