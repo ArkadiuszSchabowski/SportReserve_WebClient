@@ -2,7 +2,8 @@
     <div id="select-container">
         <mat-label>Moderator Panel</mat-label>
         <div class="button-container">
-            <button mat-raised-button class="submit-button" routerLink="/moderator-panel-users">Users</button>
+            <button mat-raised-button class="submit-button" routerLink="/moderator-panel-users"
+            *ngIf="((authService.currentRoleSource | async) === 'admin')">Users</button>
             <button mat-raised-button class="submit-button" routerLink="/moderator-panel-races">Races</button>
         </div>
     </div>
