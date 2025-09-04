@@ -30,7 +30,6 @@ export class AuthService {
   }
   setRole(){
     const role = this.tokenService.getRoleFromToken();
-    console.log(role);
     this.currentRoleSource.next(role);
   }
 }
