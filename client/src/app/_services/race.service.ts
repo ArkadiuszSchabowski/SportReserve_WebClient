@@ -1,5 +1,5 @@
 import { environment } from '../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetRaceDto } from '../models/race/get-race-dto';
 import { GetRaceViewDto } from '../models/race/get-race-view-dto';
 import { Injectable } from '@angular/core';
@@ -16,8 +16,11 @@ export class RaceService {
 
   constructor(private http: HttpClient) {}
 
-  add(dto: AddRaceDto){
-    return this.http.post(this.apiUrl + 'api/race', dto)
+  add(dto: AddRaceDto) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post(this.apiUrl + 'api/race', dto, { headers });
   }
 
   get(dto: PaginationDto): Observable<PaginationResult<GetRaceDto>> {
@@ -67,10 +70,16 @@ export class RaceService {
   }
 
   remove(id: number) {
-    return this.http.delete(this.apiUrl + `api/race/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete(this.apiUrl + `api/race/${id}`, {headers});
   }
 
-  update(id: number, dto: AddRaceDto){
-    return this.http.put(this.apiUrl + `api/race/${id}`, dto);
+  update(id: number, dto: AddRaceDto) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.put(this.apiUrl + `api/race/${id}`, dto, {headers});
   }
 }

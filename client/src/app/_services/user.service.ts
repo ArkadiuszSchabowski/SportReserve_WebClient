@@ -1,6 +1,6 @@
 import { AuthService } from './auth.service';
 import { environment } from '../environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { GetUserDto } from '../models/user/get-user-dto';
 import { Injectable } from '@angular/core';
 import { LoginDto } from '../models/auth/login-dto';
@@ -18,19 +18,31 @@ export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   getUser(id: number) {
-    return this.http.get<GetUserDto>(this.apiUrl + `api/user/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<GetUserDto>(this.apiUrl + `api/user/${id}`, {
+      headers,
+    });
   }
 
   getUserByEmail(email: string) {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     const params = new HttpParams().set('email', email);
 
     return this.http.get<GetUserDto>(this.apiUrl + 'api/user/by-email', {
       params,
+      headers,
     });
   }
 
   getUsers() {
-    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/user');
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<GetUserDto[]>(this.apiUrl + 'api/user', { headers });
   }
 
   login(loginDto: LoginDto) {
@@ -50,7 +62,10 @@ export class UserService {
     return this.http.post<string>(this.apiUrl + 'api/user/register', dto);
   }
   remove(id: number) {
-    return this.http.delete(this.apiUrl + `api/user/${id}`);
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.delete(this.apiUrl + `api/user/${id}`, { headers });
   }
   validateRegisterStepOne(dto: RegisterStepOneDto) {
     return this.http.post(
