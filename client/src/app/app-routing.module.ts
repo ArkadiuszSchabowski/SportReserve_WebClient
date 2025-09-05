@@ -20,6 +20,8 @@ import { ValentineRunComponent } from './components/public/races/valentine-run/v
 import { ModeratorPanelComponent } from './components/auth/moderator-panel/moderator-panel.component';
 import { ModeratorPanelRacesComponent } from './components/auth/moderator-panel-races/moderator-panel-races.component';
 import { ModeratorPanelUsersComponent } from './components/auth/moderator-panel-users/moderator-panel-users.component';
+import { moderatorGuard } from './guards/moderator.guard';
+import { adminGuard } from './guards/admin.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,11 +36,11 @@ const routes: Routes = [
   {
     path: 'moderator-panel',
     component: ModeratorPanelComponent,
-    canActivate: [authGuard],
+    canActivate: [moderatorGuard],
   },
 
-  { path: 'moderator-panel-users', component: ModeratorPanelUsersComponent },
-  { path: 'moderator-panel-races', component: ModeratorPanelRacesComponent },
+  { path: 'moderator-panel-users', component: ModeratorPanelUsersComponent, canActivate: [adminGuard] },
+  { path: 'moderator-panel-races', component: ModeratorPanelRacesComponent, canActivate: [moderatorGuard] },
   {
     path: 'run-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,
@@ -63,13 +65,11 @@ const routes: Routes = [
       { path: 'reservations', component: ProfileReservationsComponent },
     ],
   },
+  { path: 'login', component: LoginComponent, canActivate: [unauthGuard] },
   {
-    path: '',
+    path: 'register',
+    component: RegisterComponent,
     canActivate: [unauthGuard],
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent },
-    ],
   },
   { path: '**', component: HomeComponent },
 ];
