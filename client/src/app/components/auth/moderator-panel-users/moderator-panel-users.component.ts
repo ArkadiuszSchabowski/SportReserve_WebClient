@@ -32,10 +32,9 @@ export class ModeratorPanelUsersComponent implements OnInit {
 
   deleteUser(id: number) {
     this.userService.remove(id).subscribe({
-      next: (response) => {
+      next: () => {
         this.toastr.success(`User (ID: ${id}) successfully removed.`);
         this.getUsers();
-        console.log(response);
       },
     });
   }
@@ -71,7 +70,6 @@ export class ModeratorPanelUsersComponent implements OnInit {
         this.allUsers = response;
         this.users = response;
       },
-      error: (error) => console.log(error),
     });
   }
 
@@ -80,7 +78,6 @@ export class ModeratorPanelUsersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe({
       next: (response) => {
-        console.log(response);
         if (response == true) {
           this.deleteUser(user.id);
         }

@@ -81,7 +81,6 @@ export class DialogUpdateRaceComponent implements OnInit {
         this.toastr.success(`Race successfully updated.`);
         this.dialogRef.close(false);
       },
-      error: (error) => console.log(error),
     });
   }
   get dateOfStartError(): string | null {
