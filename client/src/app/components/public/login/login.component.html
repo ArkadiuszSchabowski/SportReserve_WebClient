@@ -3,7 +3,7 @@
     <img id="login-image">
   </div>
   <div class="right-container">
-    <form [formGroup]="form" (ngSubmit)="login()">
+    <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
       <mat-card appearance="outlined">
         <div id="login-form">
           <mat-card-content>
