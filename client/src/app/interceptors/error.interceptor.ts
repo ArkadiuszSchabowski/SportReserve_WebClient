@@ -35,15 +35,16 @@ export class ErrorInterceptor implements HttpInterceptor {
                       modelStateErrors.push(error.error.errors[key]);
                     }
                   }
-                  console.log(modelStateErrors);
                   throw modelStateErrors.flat();
                 } else {
                   throw error;
                 }
               }
-              break;
             case 401:
-              this.toastr.error('You are not authorized to perform this action.');
+              this.toastr.error(error.error.message);
+              break;
+            case 403:
+              this.toastr.error(error.error.message);
               break;
             case 409:
               throw error;
