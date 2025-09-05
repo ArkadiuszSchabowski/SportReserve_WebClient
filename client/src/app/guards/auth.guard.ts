@@ -12,8 +12,8 @@ export const authGuard: CanActivateFn = (route, state) => {
   if (token) {
     return true;
   } else {
-    toastr.error('Access denied. Please log in to continue.');
-    router.navigateByUrl('/');
+    toastr.error('Please log in to access this resource.');
+    router.navigateByUrl('/login');
     return false;
   }
 };

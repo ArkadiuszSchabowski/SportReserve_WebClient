@@ -11,7 +11,7 @@ export const unauthGuard: CanActivateFn = (route, state) => {
   const token = authService.currentUserSource.getValue();
   if (token) {
     toastr.error('Access denied. Please log out to see this page.');
-    router.navigateByUrl('/');
+    router.navigateByUrl('/profile/information');
     return false;
   } else {
     return true;
