@@ -44,7 +44,8 @@
         routerLink="/moderator-panel"
         *ngIf="
           (authService.currentUserSource | async) &&
-          (role === 'moderator' || role === 'admin')
+          ((authService.currentRoleSource | async) === 'moderator' ||
+            (authService.currentRoleSource | async) === 'admin')
         "
       >
         Moderator Panel

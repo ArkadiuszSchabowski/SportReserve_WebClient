@@ -62,9 +62,6 @@ export class DialogAddRaceTraceComponent {
       parentRaceId: this.data.id,
     };
 
-    console.log("value:")
-    console.log(dto.isRegistrationOpen);
-
     this.raceTraceService.add(dto).subscribe({
       next: () => {
         this.toastr.success(`Race trace successfully added.`);

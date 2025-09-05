@@ -106,7 +106,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
         this.allRacesResult.results = response.results.slice();
         this.allRacesResult.totalCount = response.totalCount;
       },
-      error: (error) => console.log(error),
     });
   }
   openDialogAddRace() {
@@ -122,7 +121,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
           this.allRacesResult.results = response.results.slice();
           this.allRacesResult.totalCount = response.totalCount;
         },
-        error: (error) => console.log(error),
       });
   }
 
@@ -142,7 +140,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
           },
         });
       },
-      error: (error) => console.log(error),
     });
   }
 
@@ -182,7 +179,6 @@ export class ModeratorPanelRacesComponent implements OnInit {
             this.allRacesResult.results = response.results.slice();
             this.allRacesResult.totalCount = response.totalCount;
           },
-          error: (error) => console.log(error),
         });
       },
     });

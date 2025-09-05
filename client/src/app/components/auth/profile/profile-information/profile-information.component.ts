@@ -38,7 +38,6 @@ export class ProfileInformationComponent implements OnInit {
         this.user = response;
         this.userForm.patchValue(this.user);
       },
-      error: (error) => console.log(error),
     });
   }
 }

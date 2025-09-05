@@ -31,8 +31,6 @@ export class RacesComponent implements OnInit {
   }
 
   changePage(event: PageEvent) {
-    console.log('changePage function');
-
     this.paginationDto.pageNumber = event.pageIndex + 1;
     this.paginationDto.pageSize = event.pageSize;
 
@@ -41,7 +39,6 @@ export class RacesComponent implements OnInit {
         this.paginationResult.results = response.results;
         this.paginationResult.totalCount = response.totalCount;
       },
-      error: (error) => console.log(error),
     });
   }
 
@@ -56,10 +53,8 @@ export class RacesComponent implements OnInit {
 
     this.raceService.getRaceView(dto).subscribe({
       next: (response) => {
-        console.log(response);
         this.paginationResult = response;
       },
-      error: (error) => console.log(error),
     });
   }
 
