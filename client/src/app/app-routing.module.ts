@@ -22,11 +22,13 @@ import { ModeratorPanelRacesComponent } from './components/auth/moderator-panel-
 import { ModeratorPanelUsersComponent } from './components/auth/moderator-panel-users/moderator-panel-users.component';
 import { moderatorGuard } from './guards/moderator.guard';
 import { adminGuard } from './guards/admin.guard';
+import { RaceIdViewComponent } from './components/public/races/race-id-view/race-id-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'races', component: RacesComponent },
+  {path: 'race/:id', component: RaceIdViewComponent},
   {
     path: 'races/race-for-the-animal-shelter',
     component: AnimalShelterRunComponent,
