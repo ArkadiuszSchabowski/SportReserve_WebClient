@@ -41,11 +41,13 @@ export class RacesComponent implements OnInit {
       },
     });
   }
+  handleRace(race: GetRaceViewDto){
+    var url = this.createSlug(`race/${race.id}`)
+    this.goToRaceView(url);
+  }
 
-  createSlug(text: string) {
-    var slug = text.toLowerCase().trim().replace(/ /g, '-');
-
-    this.goToForm(slug);
+  createSlug(text: string): string {
+    return text.toLowerCase().trim().replace(/ /g, '-');
   }
 
   getRaces() {
@@ -58,7 +60,7 @@ export class RacesComponent implements OnInit {
     });
   }
 
-  goToForm(url: string) {
+  goToRaceView(url: string) {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
