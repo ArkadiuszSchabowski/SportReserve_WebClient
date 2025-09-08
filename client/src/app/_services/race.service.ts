@@ -69,17 +69,41 @@ export class RaceService {
       );
   }
 
+  getRaceWithId(id: number): Observable<GetRaceViewDto> {
+    return this.http.get<GetRaceDto>(this.apiUrl + `api/race/${id}`).pipe(
+      map((race) => {
+        return {
+          id: race.id,
+          name: race.name,
+          dateOfStart: race.dateOfStart,
+          description: race.description,
+          entryFeeGBP: race.entryFeeGBP,
+          posterUrl: race.posterUrl,
+          raceTraces: race.raceTraces.map((traces) => {
+            return {
+              hourOfStart: traces.hourOfStart,
+              id: traces.id,
+              isRegistrationOpen: traces.isRegistrationOpen,
+              slots: traces.slots,
+              details: `${traces.location} - ${traces.distanceKm} km`,
+            };
+          }),
+        };
+      })
+    );
+  }
+
   remove(id: number) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.delete(this.apiUrl + `api/race/${id}`, {headers});
+    return this.http.delete(this.apiUrl + `api/race/${id}`, { headers });
   }
 
   update(id: number, dto: AddRaceDto) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    return this.http.put(this.apiUrl + `api/race/${id}`, dto, {headers});
+    return this.http.put(this.apiUrl + `api/race/${id}`, dto, { headers });
   }
 }

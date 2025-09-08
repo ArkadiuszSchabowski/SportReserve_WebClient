@@ -1,0 +1,32 @@
+<div id="main-container" class="component-container">
+  <div id="race-container" class="race-container">
+    <div class="left-image-container">
+      <img id="poster-image" [src]="raceUrl + race.posterUrl"/>
+    </div>
+    <div class="right-information-container">
+      <div class="bold white-text">{{ race.name }}</div>
+      <div class="bold white-text">{{ race.dateOfStart }}</div>
+      <div class="bold white-text" *ngFor="let trace of race.raceTraces">
+        <div id="div" class="margin-top-5">{{ trace.details }}, hour of start: {{ trace.hourOfStart }}</div>
+        <div id="div" *ngIf="trace.slots">Max slots: {{ trace.slots }}</div>
+      </div>
+      <div *ngIf="race.entryFeeGBP" class="bold white-text margin-top-10">Entry Fee: {{ race.entryFeeGBP }} GBP</div>
+      <div *ngIf="!race.entryFeeGBP" class="bold white-text margin-top-10">Entry Fee: Free</div>
+      <div class="description white-text">
+        {{ race.description }}
+      </div>
+      <div class="button-container">
+        <button mat-raised-button class="race-button" (click)="goToForm()">
+          Join the race
+        </button>
+        <button
+          mat-raised-button
+          class="race-browse-button"
+          routerLink="/races"
+        >
+          Browse other races
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

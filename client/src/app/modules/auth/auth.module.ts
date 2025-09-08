@@ -22,10 +22,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     LondonRunFormComponent,
     ValentineRunFormComponent,
     ModeratorPanelComponent,
-    ModeratorPanelUsersComponent, 
-    ModeratorPanelRacesComponent
+    ModeratorPanelUsersComponent,
+    ModeratorPanelRacesComponent,
   ],
-  imports: [AppRoutingModule, CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [
+    AppRoutingModule,
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+  ],
   exports: [],
 })
 export class AuthModule {}

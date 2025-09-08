@@ -1,30 +1,30 @@
 <div id="main-container" class="component-container white-text">
   <div
     class="race-container"
-    *ngFor="let traces of paginationResult.results"
+    *ngFor="let race of paginationResult.results"
   >
     <div class="left-image-container">
-      <img id="poster" class="poster-button" [src]="raceUrl + traces.posterUrl" alt="{{traces.name}}" />
+      <img id="poster" class="poster-button" [src]="raceUrl + race.posterUrl"/>
     </div>
     <div class="right-information-container">
-      <div class="bold">{{ traces.name }}</div>
-      <div class="bold">Date: {{ traces.dateOfStart }}</div>
-      <div class="bold" *ngFor="let trace of traces.raceTraces">
-        <div>{{trace.details}}</div>
+      <div class="bold">{{ race.name }}</div>
+      <div class="bold">Date: {{ race.dateOfStart }}</div>
+      <div class="bold" *ngFor="let race of race.raceTraces">
+        <div>{{race.details}}</div>
       </div>
 
-      <div *ngIf="traces.entryFeeGBP" class="bold">Entry Fee: {{ traces.entryFeeGBP }} GBP</div>
-      <div *ngIf="!traces.entryFeeGBP" class="bold">Entry Fee: Free</div>
+      <div *ngIf="race.entryFeeGBP" class="bold">Entry Fee: {{ race.entryFeeGBP }} GBP</div>
+      <div *ngIf="!race.entryFeeGBP" class="bold">Entry Fee: Free</div>
       <div class="description">
-        {{ traces.description }}
+        {{ race.description }}
       </div>
       <div class="button-container">
         <button
           mat-raised-button
           class="race-button"
-          (click)="createSlug(traces.name + '/form')"
+          (click)="handleRace(race)"
         >
-          Join the race
+          See details
         </button>
       </div>
     </div>

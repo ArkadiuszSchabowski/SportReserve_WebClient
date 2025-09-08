@@ -14,33 +14,34 @@ import { RegisterComponent } from './components/public/register/register.compone
 import { AnimalShelterRunFormComponent } from './components/auth/race/animal-shelter-run-form/animal-shelter-run-form.component';
 import { ValentineRunFormComponent } from './components/auth/race/valentine-run-form/valentine-run-form.component';
 import { LondonRunFormComponent } from './components/auth/race/london-run-form/london-run-form.component';
-import { AnimalShelterRunComponent } from './components/public/races/animal-shelter-run/animal-shelter-run.component';
-import { LondonRunComponent } from './components/public/races/london-run/london-run.component';
-import { ValentineRunComponent } from './components/public/races/valentine-run/valentine-run.component';
 import { ModeratorPanelComponent } from './components/auth/moderator-panel/moderator-panel.component';
 import { ModeratorPanelRacesComponent } from './components/auth/moderator-panel-races/moderator-panel-races.component';
 import { ModeratorPanelUsersComponent } from './components/auth/moderator-panel-users/moderator-panel-users.component';
 import { moderatorGuard } from './guards/moderator.guard';
 import { adminGuard } from './guards/admin.guard';
+import { RaceIdViewComponent } from './components/public/races/race-id-view/race-id-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'races', component: RacesComponent },
-  {
-    path: 'races/race-for-the-animal-shelter',
-    component: AnimalShelterRunComponent,
-  },
-  { path: 'races/valentine-race-with-heart', component: ValentineRunComponent },
-  { path: 'races/london-half-marathon-race', component: LondonRunComponent },
+  { path: 'race/:id', component: RaceIdViewComponent },
   {
     path: 'moderator-panel',
     component: ModeratorPanelComponent,
     canActivate: [moderatorGuard],
   },
 
-  { path: 'moderator-panel-users', component: ModeratorPanelUsersComponent, canActivate: [adminGuard] },
-  { path: 'moderator-panel-races', component: ModeratorPanelRacesComponent, canActivate: [moderatorGuard] },
+  {
+    path: 'moderator-panel-users',
+    component: ModeratorPanelUsersComponent,
+    canActivate: [adminGuard],
+  },
+  {
+    path: 'moderator-panel-races',
+    component: ModeratorPanelRacesComponent,
+    canActivate: [moderatorGuard],
+  },
   {
     path: 'run-for-the-animal-shelter/form',
     component: AnimalShelterRunFormComponent,
