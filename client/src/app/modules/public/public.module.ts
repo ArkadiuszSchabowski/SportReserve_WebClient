@@ -20,6 +20,7 @@ import { ValentineRunComponent } from 'src/app/components/public/races/valentine
     ContactComponent,
     HomeComponent,
     LoginComponent,
+    RaceIdViewComponent,
     RacesComponent,
     RegisterComponent,
     AnimalShelterRunComponent,
@@ -36,6 +37,7 @@ import { ValentineRunComponent } from 'src/app/components/public/races/valentine
     ContactComponent,
     HomeComponent,
     LoginComponent,
+    RaceIdViewComponent,
     RacesComponent,
     RegisterComponent,
   ]
