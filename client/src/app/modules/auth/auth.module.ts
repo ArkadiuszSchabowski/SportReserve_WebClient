@@ -12,7 +12,6 @@ import { ModeratorPanelComponent } from 'src/app/components/auth/moderator-panel
 import { ModeratorPanelRacesComponent } from 'src/app/components/auth/moderator-panel-races/moderator-panel-races.component';
 import { ModeratorPanelUsersComponent } from 'src/app/components/auth/moderator-panel-users/moderator-panel-users.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RaceIdViewComponent } from 'src/app/components/public/races/race-id-view/race-id-view.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +24,6 @@ import { RaceIdViewComponent } from 'src/app/components/public/races/race-id-vie
     ModeratorPanelComponent,
     ModeratorPanelUsersComponent,
     ModeratorPanelRacesComponent,
-    RaceIdViewComponent,
   ],
   imports: [
     AppRoutingModule,

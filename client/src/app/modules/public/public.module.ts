@@ -11,9 +11,7 @@ import { RacesComponent } from 'src/app/components/public/races/races.component'
 import { RegisterComponent } from 'src/app/components/public/register/register.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { AnimalShelterRunComponent } from 'src/app/components/public/races/animal-shelter-run/animal-shelter-run.component';
-import { LondonRunComponent } from 'src/app/components/public/races/london-run/london-run.component';
-import { ValentineRunComponent } from 'src/app/components/public/races/valentine-run/valentine-run.component';
+import { RaceIdViewComponent } from 'src/app/components/public/races/race-id-view/race-id-view.component';
 
 @NgModule({
   declarations: [
@@ -23,23 +21,23 @@ import { ValentineRunComponent } from 'src/app/components/public/races/valentine
     RaceIdViewComponent,
     RacesComponent,
     RegisterComponent,
-    AnimalShelterRunComponent,
-    LondonRunComponent,
-    ValentineRunComponent
   ],
   imports: [
-    AppRoutingModule, CommonModule, CarouselModule.forRoot(), ReactiveFormsModule, MaterialModule, MatDatepickerModule, MatNativeDateModule
+    AppRoutingModule,
+    CommonModule,
+    CarouselModule.forRoot(),
+    ReactiveFormsModule,
+    MaterialModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
-  exports:[
-    AnimalShelterRunComponent,
-    LondonRunComponent,
-    ValentineRunComponent,
+  exports: [
     ContactComponent,
     HomeComponent,
     LoginComponent,
     RaceIdViewComponent,
     RacesComponent,
-    RegisterComponent,
-  ]
+    RegisterComponent
+  ],
 })
-export class PublicModule { }
+export class PublicModule {}
