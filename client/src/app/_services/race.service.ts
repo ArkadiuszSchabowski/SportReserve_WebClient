@@ -7,6 +7,7 @@ import { PaginationDto } from '../models/pagination/pagination-dto';
 import { PaginationResult } from '../models/pagination/pagination-result';
 import { map, Observable } from 'rxjs';
 import { AddRaceDto } from '../models/race/add-race-dto';
+import { UpdateRaceDto } from '../models/race/update-race-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -101,7 +102,7 @@ export class RaceService {
     return this.http.delete(this.apiUrl + `api/race/${id}`, { headers });
   }
 
-  update(id: number, dto: AddRaceDto) {
+  update(id: number, dto: UpdateRaceDto) {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
