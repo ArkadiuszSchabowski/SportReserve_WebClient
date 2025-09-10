@@ -35,14 +35,22 @@
     <div>Description: {{ race.description }}</div>
     <div *ngIf="race.entryFeeGBP">Entry fee: {{ race.entryFeeGBP }}</div>
     <div *ngIf="!race.entryFeeGBP">Entry fee: Free</div>
+    <div *ngIf="race.isRegistrationOpen === true">Registration: Open</div>
+    <div *ngIf="race.isRegistrationOpen === false">Registration: Close</div>
     <div class="poster-container">
       <img class="poster" [src]="raceUrl + race.posterUrl" />
     </div>
     <div class="button-icon-container">
-      <button class="button-icon left-icon-button" (click)="openDialogAddRaceTrace(race)">
+      <button
+        class="button-icon left-icon-button"
+        (click)="openDialogAddRaceTrace(race)"
+      >
         <mat-icon class="green">note_add</mat-icon>
       </button>
-      <button class="button-icon left-icon-button" (click)="openDialogUpdate(race)">
+      <button
+        class="button-icon left-icon-button"
+        (click)="openDialogUpdate(race)"
+      >
         <mat-icon class="primary">edit</mat-icon>
       </button>
       <button class="button-icon" (click)="openDialogRemove(race)">
@@ -58,8 +66,6 @@
       <div>Hour of start: {{ trace.hourOfStart }}</div>
       <div *ngIf="trace.slots">Slots: {{ trace.slots }}</div>
       <div *ngIf="!trace.slots">Slots: No limit</div>
-      <div *ngIf="trace.isRegistrationOpen === true">Registration: Open</div>
-      <div *ngIf="trace.isRegistrationOpen === false">Registration: Close</div>
       <button class="button-icon" (click)="openDialogRemoveRaceTrace(trace)">
         <mat-icon class="red">delete_forever</mat-icon>
       </button>

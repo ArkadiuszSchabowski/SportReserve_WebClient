@@ -1,11 +1,12 @@
 import { GetRaceTraceViewDto } from "./get-race-trace-view-dto";
 
-export class GetRaceViewDto {
-    id: number = 0;
-    name: string = '';
-    dateOfStart: string = '';
-    description: string = '';
-    posterUrl: string | null = null;
-    entryFeeGBP: number | null = null;
-    raceTraces: GetRaceTraceViewDto[] = [];
+export interface GetRaceViewDto {
+    id: number;
+    name: string;
+    dateOfStart: string;
+    description: string;
+    posterUrl: string | null;
+    entryFeeGBP: number | null;
+    isRegistrationOpen: boolean;
+    raceTraces: GetRaceTraceViewDto[];
 }

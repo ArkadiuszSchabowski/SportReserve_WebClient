@@ -1,8 +1,7 @@
-export class GetRaceTraceDto {
-    id: number = 0;
-    location: string = '';
-    hourOfStart: string = '';
-    distanceKm: number = 0;
-    slots: number | null = null;
-    isRegistrationOpen: boolean = true;
+export interface GetRaceTraceDto {
+    id: number;
+    location: string;
+    hourOfStart: string;
+    distanceKm: number;
+    slots: number | null;
 }

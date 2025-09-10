@@ -74,6 +74,7 @@ export class DialogUpdateRaceComponent implements OnInit {
       entryFeeGBP: this.updateForm.value.entryFeeGBP,
       posterUrl: this.updateForm.value.posterUrl,
       description: this.updateForm.value.description,
+      isRegistrationOpen: this.updateForm.isRegistrationOpen
     };
 
     this.raceService.update(this.data.id, dto).subscribe({

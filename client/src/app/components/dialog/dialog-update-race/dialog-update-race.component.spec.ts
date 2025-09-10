@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 describe('DialogUpdateRaceComponent', () => {
   let component: DialogUpdateRaceComponent;
   let fixture: ComponentFixture<DialogUpdateRaceComponent>;
-  const data: GetRaceViewDto = new GetRaceViewDto();
+  const data: GetRaceViewDto = {} as GetRaceViewDto;
   let toastrService: ToastrService;
 
   class MockToastrService{}

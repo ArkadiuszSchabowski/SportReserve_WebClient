@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 describe('DialogRemoveRaceTraceComponent', () => {
   let component: DialogRemoveRaceTraceComponent;
   let fixture: ComponentFixture<DialogRemoveRaceTraceComponent>;
-  const data: GetRaceTraceDto = new GetRaceTraceDto();
+  const data: GetRaceTraceDto = {} as GetRaceTraceDto;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

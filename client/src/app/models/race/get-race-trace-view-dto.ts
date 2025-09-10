@@ -1,7 +1,6 @@
-export class GetRaceTraceViewDto {
-    id: number = 0;
-    hourOfStart: string = '';
-    slots: number | null = null;
-    isRegistrationOpen: boolean = true;
-    details: string = '';
+export interface GetRaceTraceViewDto {
+    id: number;
+    hourOfStart: string;
+    slots: number | null;
+    details: string;
 }

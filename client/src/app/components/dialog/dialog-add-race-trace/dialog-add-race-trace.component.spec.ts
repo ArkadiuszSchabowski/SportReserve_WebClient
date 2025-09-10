@@ -13,7 +13,7 @@ describe('DialogAddRaceTraceComponent', () => {
   let component: DialogAddRaceTraceComponent;
   let fixture: ComponentFixture<DialogAddRaceTraceComponent>;
   let toastrService: ToastrService;
-  const data: GetRaceDto = new GetRaceDto();
+  const data: GetRaceDto = {} as GetRaceDto;
   const mockDialogRef = {};
   class MockToastrService{}
 

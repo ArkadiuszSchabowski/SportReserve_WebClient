@@ -19,7 +19,7 @@ export class RaceIdViewComponent {
   ) {}
 
   currentUser: string | null = null;
-  race: GetRaceViewDto = new GetRaceViewDto();
+  race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = null;
   raceUrl = environment.raceUrl;
 
