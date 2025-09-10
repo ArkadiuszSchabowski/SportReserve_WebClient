@@ -4,8 +4,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { RaceService } from 'src/app/_services/race.service';
 import { ValidatorService } from 'src/app/_services/validator.service';
-import { AddRaceDto } from 'src/app/models/race/add-race-dto';
 import { GetRaceDto } from 'src/app/models/race/get-race-dto';
+import { UpdateRaceDto } from 'src/app/models/race/update-race-dto';
 
 @Component({
   selector: 'app-dialog-update-race',
@@ -68,13 +68,12 @@ export class DialogUpdateRaceComponent implements OnInit {
       return;
     }
 
-    const dto: AddRaceDto = {
+    const dto: UpdateRaceDto = {
       name: this.updateForm.value.name,
       dateOfStart: this.updateForm.value.dateOfStart,
       entryFeeGBP: this.updateForm.value.entryFeeGBP,
       posterUrl: this.updateForm.value.posterUrl,
       description: this.updateForm.value.description,
-      isRegistrationOpen: this.updateForm.isRegistrationOpen
     };
 
     this.raceService.update(this.data.id, dto).subscribe({
