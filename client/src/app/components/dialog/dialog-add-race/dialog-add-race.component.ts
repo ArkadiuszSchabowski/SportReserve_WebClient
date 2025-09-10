@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./dialog-add-race.component.scss']
 })
 export class DialogAddRaceComponent {
-    updateForm: any;
+    form: any;
   
     constructor(
       private fb: FormBuilder,
@@ -21,7 +21,7 @@ export class DialogAddRaceComponent {
       private validatorService: ValidatorService,
       private toastr: ToastrService
     ) {
-      this.updateForm = this.fb.group({
+      this.form = this.fb.group({
         name: [
           '',
           [
@@ -51,17 +51,18 @@ export class DialogAddRaceComponent {
       });
     }
     addRace() {
-      if (this.updateForm.invalid) {
-        this.updateForm.markAllAsTouched();
+      if (this.form.invalid) {
+        this.form.markAllAsTouched();
         return;
       }
   
       const dto: AddRaceDto = {
-        name: this.updateForm.value.name,
-        dateOfStart: this.updateForm.value.dateOfStart,
-        entryFeeGBP: this.updateForm.value.entryFeeGBP,
-        posterUrl: this.updateForm.value.posterUrl,
-        description: this.updateForm.value.description,
+        name: this.form.value.name,
+        dateOfStart: this.form.value.dateOfStart,
+        entryFeeGBP: this.form.value.entryFeeGBP,
+        posterUrl: this.form.value.posterUrl,
+        description: this.form.value.description,
+        isRegistrationOpen: this.form.isRegistrationOpen
       };
   
       this.raceService.add(dto).subscribe({
@@ -73,7 +74,7 @@ export class DialogAddRaceComponent {
       });
     }
     get dateOfStartError(): string | null {
-      const control = this.updateForm.get('dateOfStart');
+      const control = this.form.get('dateOfStart');
       if (control && control.touched && control.errors) {
         if (control.errors['required']) {
           return 'Date of start is required.';
@@ -92,7 +93,7 @@ export class DialogAddRaceComponent {
     }
   
     get descriptionError(): string | null {
-      const control = this.updateForm.get('description');
+      const control = this.form.get('description');
       if (control && control.touched && control.errors) {
         if (control.errors['required']) {
           return 'Description is required.';
@@ -107,7 +108,7 @@ export class DialogAddRaceComponent {
       return null;
     }
     get nameError(): string | null {
-      const control = this.updateForm.get('name');
+      const control = this.form.get('name');
       if (control && control.touched && control.errors) {
         if (control.errors['required']) {
           return 'Race name is required.';

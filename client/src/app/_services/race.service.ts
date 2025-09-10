@@ -43,6 +43,7 @@ export class RaceService {
       .get<PaginationResult<GetRaceDto>>(this.apiUrl + 'api/race', { params })
       .pipe(
         map((races) => {
+          console.log(races);
           return {
             totalCount: races.totalCount,
             results: races.results.map((race) => {
@@ -53,11 +54,11 @@ export class RaceService {
                 description: race.description,
                 entryFeeGBP: race.entryFeeGBP,
                 posterUrl: race.posterUrl,
+                isRegistrationOpen: race.isRegistrationOpen,
                 raceTraces: race.raceTraces.map((traces) => {
                   return {
                     hourOfStart: traces.hourOfStart,
                     id: traces.id,
-                    isRegistrationOpen: traces.isRegistrationOpen,
                     slots: traces.slots,
                     details: `${traces.location} - ${traces.distanceKm} km`,
                   };
@@ -79,11 +80,11 @@ export class RaceService {
           description: race.description,
           entryFeeGBP: race.entryFeeGBP,
           posterUrl: race.posterUrl,
+          isRegistrationOpen: race.isRegistrationOpen,
           raceTraces: race.raceTraces.map((traces) => {
             return {
               hourOfStart: traces.hourOfStart,
               id: traces.id,
-              isRegistrationOpen: traces.isRegistrationOpen,
               slots: traces.slots,
               details: `${traces.location} - ${traces.distanceKm} km`,
             };

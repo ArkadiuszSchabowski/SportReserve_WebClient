@@ -58,7 +58,6 @@ export class DialogAddRaceTraceComponent {
       hourOfStart: this.form.value.hourOfStart,
       distanceKm: this.form.value.distanceKm,
       slots: this.form.value.slots,
-      isRegistrationOpen: this.form.value.isRegistrationOpen,
       parentRaceId: this.data.id,
     };
 
@@ -109,10 +108,6 @@ export class DialogAddRaceTraceComponent {
   }
 
   get slotsError(): string | null {
-    return null;
-  }
-
-  get registrationError(): string | null {
     return null;
   }
 }

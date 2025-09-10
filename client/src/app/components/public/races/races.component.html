@@ -23,6 +23,7 @@
           mat-raised-button
           class="race-button"
           (click)="handleRace(race)"
+          *ngIf="race.isRegistrationOpen === true"
         >
           See details
         </button>

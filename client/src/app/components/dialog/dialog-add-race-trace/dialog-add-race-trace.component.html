@@ -51,27 +51,6 @@
           </div>
         </div>
       </div>
-      <div class="model-field">
-        <mat-form-field class="margin-bottom-10">
-          <mat-label>Registration:</mat-label>
-          <mat-select
-            id="isRegistrationOpen"
-            formControlName="isRegistrationOpen"
-          >
-            <mat-option
-              *ngFor="let option of registrationOption"
-              [value]="option.value"
-            >
-              {{ option.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <div class="error-container">
-          <div class="error" *ngIf="registrationError">
-            {{ registrationError }}
-          </div>
-        </div>
-      </div>
       <div id="button-container">
         <mat-dialog-actions>
           <button mat-raised-button class="submit-button" type="submit">

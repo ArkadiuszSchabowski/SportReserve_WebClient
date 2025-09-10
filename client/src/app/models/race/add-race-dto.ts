@@ -4,4 +4,5 @@ export class AddRaceDto {
     description: string = '';
     posterUrl: string | null = '';
     entryFeeGBP: number | null = null;
+    isRegistrationOpen: boolean = false;
 }
