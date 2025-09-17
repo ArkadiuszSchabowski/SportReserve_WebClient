@@ -18,6 +18,7 @@ export class RaceIdViewComponent {
     private raceService: RaceService
   ) {}
 
+  id: number | null = null;
   currentUser: string | null = null;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = null;
@@ -30,11 +31,10 @@ export class RaceIdViewComponent {
 
   getRace() {
     this.getRaceIdFromUrl();
-    let id = this.convertIdToNumber();
-    this.raceService.getRaceWithId(id).subscribe({
+    this.id = this.convertIdToNumber();
+    this.raceService.getRaceWithId(this.id).subscribe({
       next: (response) => {
         this.race = response;
-        console.log(this.race);
       },
     });
   }
@@ -50,7 +50,7 @@ export class RaceIdViewComponent {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
-      this.router.navigateByUrl('run-for-the-animal-shelter/form');
+      this.router.navigateByUrl(`run-for-the-animal-shelter/form/${this.id}`);
     }
   }
   setUser() {
