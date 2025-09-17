@@ -43,17 +43,17 @@ const routes: Routes = [
     canActivate: [moderatorGuard],
   },
   {
-    path: 'run-for-the-animal-shelter/form',
+    path: 'run-for-the-animal-shelter/form/:id',
     component: AnimalShelterRunFormComponent,
     canActivate: [authGuard],
   },
   {
-    path: 'valentine-race-with-heart/form',
+    path: 'valentine-race-with-heart/form/:id',
     component: ValentineRunFormComponent,
     canActivate: [authGuard],
   },
   {
-    path: 'london-half-marathon-race/form',
+    path: 'london-half-marathon-race/form/:id',
     component: LondonRunFormComponent,
     canActivate: [authGuard],
   },
