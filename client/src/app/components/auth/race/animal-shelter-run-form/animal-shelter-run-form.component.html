@@ -1,1 +1,226 @@
-<p>animal-shelter-run-form works!</p>
+<div id="main-container" class="component-container">
+  <div class="left-container">
+    <img id="image" [src]="raceUrl + race.posterUrl" />
+  </div>
+  <div class="right-container">
+    <mat-stepper orientation="vertical" [linear]="isLinear" #stepper>
+      <mat-step [editable]="false">
+        <form [formGroup]="raceInfoForm" (ngSubmit)="validateRaceInformation()">
+          <ng-template matStepLabel>Race information</ng-template>
+          <mat-card appearance="outlined">
+            <div id="race-form">
+              <mat-card-content>
+                <mat-form-field>
+                  <mat-label>Race name</mat-label>
+                  <input
+                    id="race"
+                    formControlName="race"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="raceError">
+                    {{ raceError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Trace</mat-label>
+                  <mat-select id="raceTrace" formControlName="raceTrace">
+                    <mat-option
+                      *ngFor="let trace of raceTraces"
+                      [value]="trace.id"
+                    >
+                      {{ trace.details + ", " + trace.hourOfStart }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="raceTraceError">
+                    {{ raceTraceError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Emergency contact</mat-label>
+                  <input
+                    id="emergencyContact"
+                    formControlName="emergencyContact"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="emergencyContactError">
+                    {{ emergencyContactError }}
+                  </div>
+                </div>
+                <mat-form-field *ngIf="isShelterDogSelectVisibility">
+                  <mat-label>Dog Size</mat-label>
+                  <mat-select id="dogSize" formControlName="dogSize">
+                    <mat-option
+                      *ngFor="let dogSize of dogSizes"
+                      [value]="dogSize.value"
+                    >
+                      {{ dogSize.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div
+                  class="error-container"
+                  *ngIf="isShelterDogSelectVisibility"
+                >
+                  <div class="error" *ngIf="dogSizeError">
+                    {{ dogSizeError }}
+                  </div>
+                </div>
+                <mat-form-field *ngIf="isDonationAmountSelectVisibility">
+                  <mat-label>Donation Amount(GBP)</mat-label>
+                  <input
+                    id="donationAmount"
+                    formControlName="donationAmount"
+                    matInput
+                    type="number"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div
+                  class="error-container"
+                  *ngIf="isDonationAmountSelectVisibility"
+                >
+                  <div class="error" *ngIf="donationAmountError">
+                    {{ donationAmountError }}
+                  </div>
+                </div>
+                <section>
+                  <mat-checkbox
+                    (click)="ChangeShelterDogSelectVisibility()"
+                    class="white-text"
+                    >I want run with shelter dog.</mat-checkbox
+                  >
+                </section>
+                <section>
+                  <mat-checkbox
+                    (click)="ChangeDonationAmountSelectVisibility()"
+                    class="white-text"
+                    >I want pay donation before race.</mat-checkbox
+                  >
+                </section>
+                <button
+                  type="submit"
+                  mat-flat-button
+                  class="submit-button margin-top-10"
+                >
+                  Next
+                </button>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="personalInfoForm" [editable]="false">
+        <form
+          [formGroup]="personalInfoForm"
+          (ngSubmit)="sendReservation()"
+        >
+          <ng-template matStepLabel>Personal information</ng-template>
+          <mat-card appearance="outlined">
+            <div id="personal-information-form">
+              <mat-card-content>
+                <mat-form-field>
+                  <mat-label>Email</mat-label>
+                  <input
+                    id="email"
+                    formControlName="email"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="emailError">
+                    {{ emailError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Name</mat-label>
+                  <input
+                    id="name"
+                    formControlName="name"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="nameError">
+                    {{ nameError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Surname</mat-label>
+                  <input
+                    id="surname"
+                    formControlName="surname"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="surnameError">
+                    {{ surnameError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Gender</mat-label>
+                  <input
+                    id="gender"
+                    formControlName="gender"
+                    matInput
+                    type="text"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="genderError">
+                    {{ genderError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Date of birth</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    id="dateOfBirth"
+                    formControlName="dateOfBirth"
+                    required
+                    readonly
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="dateOfBirthError">
+                    {{ dateOfBirthError }}
+                  </div>
+                </div>
+                <button
+                  type="submit"
+                  mat-flat-button
+                  class="submit-button margin-top-20 margin-bottom-10"
+                >
+                  Send reservation
+                </button>
+              </mat-card-content>
+            </div>
+          </mat-card>
+        </form>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
