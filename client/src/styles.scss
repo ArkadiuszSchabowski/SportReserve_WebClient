@@ -82,6 +82,10 @@ $theme: mat.define-light-theme(
   color: mat.get-color-from-palette($primary) !important;
 }
 
+::ng-deep label.mdc-label{
+  color: white !important;
+}
+
 mat-card {
   background-color: mat.get-color-from-palette($primary) !important;
 }
