@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -55,7 +55,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
 
   raceInfoForm: FormGroup<AnimalShelterRaceForm> = this.fb.group({
     race: [
-      { value: '', viewValue: this.race.name, disabled: true },
+      { value: '', disabled: true },
       [Validators.required],
     ],
     raceTrace: ['', [Validators.required]],
@@ -67,7 +67,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
         Validators.pattern(this.FLEXIBLE_PHONE_NUMBER_REGEX),
       ],
     ],
-    donationAmount: [10, [Validators.min(1), Validators.max(1000000)]],
+    donationAmount: [0, [Validators.min(0), Validators.max(1000000)]],
   });
 
   personalInfoForm: FormGroup<UserInformationForm> = this.fb.group({
@@ -123,21 +123,22 @@ export class AnimalShelterRunFormComponent implements OnInit {
     });
   }
 
-  ChangeShelterDogSelectVisibility() {
+  changeShelterDogSelectVisibility() {
     this.isShelterDogSelectVisibility = !this.isShelterDogSelectVisibility;
+    this.raceInfoForm.controls.dogSize.reset();
   }
-  ChangeDonationAmountSelectVisibility() {
+  changeDonationAmountSelectVisibility() {
     this.isDonationAmountSelectVisibility =
       !this.isDonationAmountSelectVisibility;
+      this.raceInfoForm.controls.donationAmount.reset();
   }
 
   validateRaceInformation() {
-    console.log(this.raceInfoForm.controls);
     if (this.raceInfoForm.invalid) {
       this.raceInfoForm.markAllAsTouched();
       return;
     }
-
+    console.log(this.raceInfoForm.controls);
     this.stepper.next();
   }
 
@@ -154,13 +155,13 @@ export class AnimalShelterRunFormComponent implements OnInit {
     let dto: AnimalShelterRaceReservationDto = {
       userId: this.user.id,
       raceId: this.race.id,
-      raceTraceId: parseInt(this.raceInfoForm.value.raceTrace!),
+      raceTraceId: parseFloat(this.raceInfoForm.value.raceTrace!),
       dogSize: this.raceInfoForm.value.dogSize!,
       donationAmount: this.raceInfoForm.value.donationAmount!,
       emergencyContact: this.raceInfoForm.value.emergencyContact!,
     };
 
-    this.reservationService.SendAnimalShelterRaceReservation(dto).subscribe({
+    this.reservationService.sendAnimalShelterRaceReservation(dto).subscribe({
       next: () => {
         this.router.navigateByUrl('/profile/reservations');
         this.toastr.success('Reserved successfully.')
@@ -181,11 +182,11 @@ export class AnimalShelterRunFormComponent implements OnInit {
     const control = this.raceInfoForm.get('donationAmount');
 
     if (control && control.touched && control.errors) {
-      if (control.errors['required']) {
-        return 'Enter a correct value or uncheck a donation amount checkbox.';
+      if (control.errors['min']) {
+        return 'Please enter a positive number.';
       }
-      if (control.errors['min'] || control.errors['max']) {
-        return 'Please select a value between 1 GBP to 1000000 GBP.';
+      if(control.errors['max']){
+        return 'Please enter a value up to 1,000,000 GBP.'
       }
     }
     return null;
@@ -206,13 +207,6 @@ export class AnimalShelterRunFormComponent implements OnInit {
   }
 
   get dogSizeError(): string | null {
-    const control = this.raceInfoForm.get('dogSize');
-
-    if (control && control.touched && control.errors) {
-      if (control.errors['required']) {
-        return 'Select dog size or  uncheck a dog size checkbox.';
-      }
-    }
     return null;
   }
 
