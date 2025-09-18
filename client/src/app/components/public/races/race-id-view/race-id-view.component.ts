@@ -22,6 +22,7 @@ export class RaceIdViewComponent {
   currentUser: string | null = null;
   race: GetRaceViewDto = {} as GetRaceViewDto;
   raceIdString: string | null = null;
+  raceSlug: string = '';
   raceUrl = environment.raceUrl;
 
   ngOnInit(): void {
@@ -35,12 +36,17 @@ export class RaceIdViewComponent {
     this.raceService.getRaceWithId(this.id).subscribe({
       next: (response) => {
         this.race = response;
+        this.raceSlug = this.convertToSlug(this.race.name);
       },
     });
   }
   convertIdToNumber(): number {
     return parseInt(this.raceIdString!.toString());
   }
+  
+  convertToSlug = (text: string): string => {
+  return text.toLowerCase().replace(/ /g, '-');
+};
 
   getRaceIdFromUrl() {
     this.raceIdString = this.activatedRoute.snapshot.paramMap.get('id');
@@ -50,7 +56,7 @@ export class RaceIdViewComponent {
     if (!this.currentUser) {
       this.router.navigateByUrl('login');
     } else {
-      this.router.navigateByUrl(`run-for-the-animal-shelter/form/${this.id}`);
+      this.router.navigateByUrl(`${this.raceSlug}/form/${this.id}`);
     }
   }
   setUser() {
