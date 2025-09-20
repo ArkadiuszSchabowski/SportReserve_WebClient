@@ -1,34 +1,51 @@
-<div id="reservation-container">
-  <div class="reservation-item" *ngFor="let reservation of reservations">
-    <div>Reservation number: {{ reservation.id }}</div>
-    <div class="margin-top-10">Race name: {{ reservation.raceName }}</div>
-    <div>Location: {{ reservation.location }}</div>
-    <div>Date of start: {{ reservation.dateOfStart }}</div>
-    <div>Hour of start: {{ reservation.hourOfStart }}</div>
-    <div>Distance: {{ reservation.distanceKm }}km</div>
-    <div *ngIf="reservation.emergencyContact">
-      Emergency contact: {{ reservation.emergencyContact }}
-    </div>
-    <div *ngIf="reservation.dogSize">I would like run with: {{ reservation.dogSize }} shelter dog.
-    </div>
-    <div *ngIf="reservation.donationAmount">I would like pay donation before start: {{reservation.donationAmount}} GBP.</div>
-    <div *ngIf="reservation.tShirtSize">
-      T-shirt size: {{ reservation.tShirtSize }}
-    </div>
-    <div *ngIf="reservation.teamName">
-      Team Name: {{ reservation.teamName }}
-    </div>
-    <div *ngIf="reservation.medalGratification === true">
+<div id="main-container">
+  <div id="reservation-container" *ngIf="paginationResult">
+    <div
+      class="reservation-item"
+      *ngFor="let reservation of paginationResult.results"
+    >
+      <div>Reservation number: {{ reservation.id }}</div>
+      <div class="margin-top-10">Race name: {{ reservation.raceName }}</div>
+      <div>Location: {{ reservation.location }}</div>
+      <div>Date of start: {{ reservation.dateOfStart }}</div>
+      <div>Hour of start: {{ reservation.hourOfStart }}</div>
+      <div>Distance: {{ reservation.distanceKm }}km</div>
+      <div *ngIf="reservation.emergencyContact">
+        Emergency contact: {{ reservation.emergencyContact }}
+      </div>
+      <div *ngIf="reservation.dogSize">
+        I would like run with: {{ reservation.dogSize }} shelter dog.
+      </div>
+      <div *ngIf="reservation.donationAmount">
+        I would like pay donation before start:
+        {{ reservation.donationAmount }} GBP.
+      </div>
+      <div *ngIf="reservation.tShirtSize">
+        T-shirt size: {{ reservation.tShirtSize }}
+      </div>
+      <div *ngIf="reservation.teamName">
+        Team Name: {{ reservation.teamName }}
+      </div>
+      <div *ngIf="reservation.medalGratification === true">
         I would like a medal gratification.
-    </div>
-        <div *ngIf="reservation.valentineGadget">
-      Valentine gadget: {{ reservation.valentineGadget }}
-    </div>
-        <div *ngIf="reservation.runType">
-      Run type: {{ reservation.runType }}
-    </div>
-        <div *ngIf="reservation.wantsFinisherPhoto">
-      I would like a finisher photo.
+      </div>
+      <div *ngIf="reservation.valentineGadget">
+        Valentine gadget: {{ reservation.valentineGadget }}
+      </div>
+      <div *ngIf="reservation.runType">Run type: {{ reservation.runType }}</div>
+      <div *ngIf="reservation.wantsFinisherPhoto">
+        I would like a finisher photo.
+      </div>
     </div>
   </div>
+  <mat-paginator *ngIf="paginationResult"
+    id="mat-paginator"
+    class="select-white-theme"
+    [length]="paginationResult.totalCount"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page"
+    (page)="changePage($event)"
+  >
+  </mat-paginator>
 </div>
