@@ -41,6 +41,51 @@
                     {{ raceTraceError }}
                   </div>
                 </div>
+                <mat-form-field>
+                  <mat-label>Run Type</mat-label>
+                  <mat-select
+                    id="runType"
+                    formControlName="runType"
+                  >
+                    <mat-option
+                      *ngFor="let type of runTypes"
+                      [value]="type.value"
+                    >
+                      {{ type.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="runTypeError">
+                    {{ runTypeError }}
+                  </div>
+                </div>
+                <mat-form-field>
+                  <mat-label>Valentine Gadget</mat-label>
+                  <mat-select
+                    id="valentineGadget"
+                    formControlName="valentineGadget"
+                  >
+                    <mat-option
+                      *ngFor="let gadget of valentineGadgets"
+                      [value]="gadget.value"
+                    >
+                      {{ gadget.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="error-container">
+                  <div class="error" *ngIf="valentineGadgetError">
+                    {{ valentineGadgetError }}
+                  </div>
+                </div>
+                <section>
+                  <mat-checkbox
+                    (click)="changeBooleanFinisherPhoto()"
+                    class="white-text"
+                    >I would like a Valentine's finisher photo.</mat-checkbox
+                  >
+                </section>
                 <button
                   type="submit"
                   mat-flat-button

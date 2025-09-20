@@ -42,18 +42,32 @@ export class ValentineRunFormComponent {
   raceUrl: string = environment.raceUrl;
   raceTraces: GetRaceTraceViewDto[] = [];
 
+  valentineGadgets = [
+    { value: 'comfortableSportsCap', viewValue: 'Comfortable sports cap' },
+    { value: 'heartThemedceramicMug', viewValue: 'Heart-themed ceramic mug' },
+    { value: 'practicalShaker', viewValue: 'Practical shaker' },
+  ];
+
+  runTypes = [
+    { value: 'solo', viewValue: 'Solo Run' },
+    { value: 'couple', viewValue: 'Couple Run' },
+  ];
+
   personalInfoForm: FormGroup<UserInformationForm> = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      { value: '', disabled: true },
+      [Validators.required, Validators.email],
+    ],
     name: [
-      '',
+      { value: '', disabled: true },
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     ],
     surname: [
-      '',
+      { value: '', disabled: true },
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     ],
-    gender: ['', Validators.required],
-    dateOfBirth: ['', Validators.required],
+    gender: [{ value: '', disabled: true }, Validators.required],
+    dateOfBirth: [{ value: '', disabled: true }, Validators.required],
   });
 
   raceInfoForm: FormGroup<ValentineRaceForm> = this.fb.group({
@@ -62,8 +76,8 @@ export class ValentineRunFormComponent {
       [Validators.required],
     ],
     raceTrace: ['', [Validators.required]],
-    runType: [''],
-    valentineGadget: [''],
+    runType: ['', [Validators.required]],
+    valentineGadget: ['', [Validators.required]],
     wantsFinisherPhoto: [false],
   });
 
@@ -83,6 +97,10 @@ export class ValentineRunFormComponent {
         this.raceInfoForm.controls.race.disable();
       },
     });
+  }
+  changeBooleanFinisherPhoto() {
+    let currentValue = this.raceInfoForm.get('wantsFinisherPhoto')?.value;
+    this.raceInfoForm.get('wantsFinisherPhoto')?.patchValue(!currentValue);
   }
   convertIdToNumber(): number {
     return parseInt(this.raceIdString!.toString());
@@ -104,7 +122,6 @@ export class ValentineRunFormComponent {
   }
 
   validateRaceInformation() {
-    console.log(this.raceInfoForm.controls);
     if (this.raceInfoForm.invalid) {
       this.raceInfoForm.markAllAsTouched();
       return;
@@ -127,15 +144,17 @@ export class ValentineRunFormComponent {
       userId: this.user.id,
       raceId: this.race.id,
       raceTraceId: parseFloat(this.raceInfoForm.value.raceTrace!),
-      valentineGadget: '',
-      runType: '',
-      wantsFinisherPhoto: false
+      valentineGadget: this.raceInfoForm.value.valentineGadget!,
+      runType: this.raceInfoForm.value.runType!,
+      wantsFinisherPhoto: this.raceInfoForm.value.wantsFinisherPhoto!,
     };
+
+    console.log(dto);
 
     this.reservationService.sendValentineRaceReservation(dto).subscribe({
       next: () => {
         this.router.navigateByUrl('/profile/reservations');
-        this.toastr.success('Reserved successfully.')
+        this.toastr.success('Reserved successfully.');
       },
     });
   }
@@ -205,6 +224,15 @@ export class ValentineRunFormComponent {
     }
     return null;
   }
+  get runTypeError(): string | null {
+    const control = this.raceInfoForm.get('runType');
+    if (control && control.touched && control.errors) {
+      if (control.errors['required']) {
+        return 'Please select a run type.';
+      }
+    }
+    return null;
+  }
 
   get surnameError(): string | null {
     const control = this.personalInfoForm.get('surname');
@@ -214,6 +242,16 @@ export class ValentineRunFormComponent {
       }
       if (control.errors['minlength'] || control.errors['maxlength']) {
         return 'User surname must be between 3 and 25 characters.';
+      }
+    }
+    return null;
+  }
+
+  get valentineGadgetError(): string | null {
+    const control = this.raceInfoForm.get('valentineGadget');
+    if (control && control.touched && control.errors) {
+      if (control.errors['required']) {
+        return "Don't forget to pick your gadget!";
       }
     }
     return null;
