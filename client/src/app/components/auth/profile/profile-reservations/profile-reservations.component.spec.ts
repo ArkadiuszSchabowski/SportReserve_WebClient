@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileReservationsComponent } from './profile-reservations.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MaterialModule } from 'src/app/modules/material/material.module';
 
 describe('ProfileReservationsComponent', () => {
   let component: ProfileReservationsComponent;
@@ -7,7 +9,8 @@ describe('ProfileReservationsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ProfileReservationsComponent]
+      declarations: [ProfileReservationsComponent],
+      imports: [HttpClientTestingModule, MaterialModule]
     });
     fixture = TestBed.createComponent(ProfileReservationsComponent);
     component = fixture.componentInstance;

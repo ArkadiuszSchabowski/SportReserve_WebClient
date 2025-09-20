@@ -1,0 +1,41 @@
+#main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#reservation-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  border-top: 2px solid white;
+  color: white;
+}
+.reservation-item {
+  display: flex;
+  flex-direction: column;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 20px 0;
+  border-bottom: 2px solid white;
+}
+#mat-paginator {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  #reservation-container{
+    margin: 20px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+    #reservation-container{
+    margin: 20px;
+  }
+}
