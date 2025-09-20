@@ -49,17 +49,20 @@ export class LondonRunFormComponent {
   raceTraces: GetRaceTraceViewDto[] = [];
 
   personalInfoForm: FormGroup<UserInformationForm> = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
+    email: [
+      { value: '', disabled: true },
+      [Validators.required, Validators.email],
+    ],
     name: [
-      '',
+      { value: '', disabled: true },
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     ],
     surname: [
-      '',
+      { value: '', disabled: true },
       [Validators.required, Validators.minLength(3), Validators.maxLength(25)],
     ],
-    gender: ['', Validators.required],
-    dateOfBirth: ['', Validators.required],
+    gender: [{ value: '', disabled: true }, Validators.required],
+    dateOfBirth: [{ value: '', disabled: true }, Validators.required],
   });
 
   raceInfoForm: FormGroup<LondonHalfMarathonRaceForm> = this.fb.group({
