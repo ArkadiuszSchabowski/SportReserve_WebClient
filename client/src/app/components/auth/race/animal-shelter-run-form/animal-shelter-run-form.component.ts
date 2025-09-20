@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -54,10 +59,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
   ];
 
   raceInfoForm: FormGroup<AnimalShelterRaceForm> = this.fb.group({
-    race: [
-      { value: '', disabled: true },
-      [Validators.required],
-    ],
+    race: [{ value: '', disabled: true }, [Validators.required]],
     raceTrace: ['', [Validators.required]],
     dogSize: [''],
     emergencyContact: [
@@ -130,7 +132,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
   changeDonationAmountSelectVisibility() {
     this.isDonationAmountSelectVisibility =
       !this.isDonationAmountSelectVisibility;
-      this.raceInfoForm.controls.donationAmount.reset();
+    this.raceInfoForm.controls.donationAmount.reset();
   }
 
   validateRaceInformation() {
@@ -164,7 +166,7 @@ export class AnimalShelterRunFormComponent implements OnInit {
     this.reservationService.sendAnimalShelterRaceReservation(dto).subscribe({
       next: () => {
         this.router.navigateByUrl('/profile/reservations');
-        this.toastr.success('Reserved successfully.')
+        this.toastr.success('Reserved successfully.');
       },
     });
   }
@@ -185,8 +187,8 @@ export class AnimalShelterRunFormComponent implements OnInit {
       if (control.errors['min']) {
         return 'Please enter a positive number.';
       }
-      if(control.errors['max']){
-        return 'Please enter a value up to 1,000,000 GBP.'
+      if (control.errors['max']) {
+        return 'Please enter a value up to 1,000,000 GBP.';
       }
     }
     return null;
